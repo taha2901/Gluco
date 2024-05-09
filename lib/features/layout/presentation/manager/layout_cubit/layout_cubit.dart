@@ -10,9 +10,10 @@ class LayoutCubit extends Cubit<LayoutState> {
 
   int currentIndex = 0;
   List<Widget> screens = [
-    // const HomeView(),
-    // const CategoryView(),
-    //  SettingsView(),
+    Container(),
+    Container(),
+    Container(),
+    Container(),
   ];
 
   void changeBottomNavBar(int index) {

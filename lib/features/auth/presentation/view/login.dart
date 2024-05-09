@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gluco/core/widgets/custom_button.dart';
 import 'package:gluco/core/widgets/custom_text_field.dart';
 import 'package:gluco/features/auth/presentation/view/register.dart';
+import 'package:gluco/features/layout/presentation/view/souq_layout.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -107,6 +108,7 @@ class LoginScreen extends StatelessWidget {
                             // LoginCubit.get(context).userLogin(
                             //     email: emailController.text,
                             //     password: passWordController.text);
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const GlucoLayout(),));
                           }
                         },
                       ),

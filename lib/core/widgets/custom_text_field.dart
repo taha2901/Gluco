@@ -48,7 +48,7 @@ class CustomTextField extends StatefulWidget {
   bool? centerTitle;
   final List<String>? dropdownItems;
   final void Function(String?)?
-      onDropdownChanged; // اجعل الوسيط ودالته اختياريين
+      onDropdownChanged; 
   final Color? textColor;
   final double? width;
   final double? height;
@@ -68,7 +68,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         color: widget.backgroundColor,
         child: TextFormField(
           textAlignVertical: TextAlignVertical.center,
-          textAlign: TextAlign.end,
+          // textAlign: TextAlign.end,
           controller: widget.controller,
           onTap: widget.suffixPressed,
           obscureText: widget.obscure!,
@@ -81,10 +81,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
           onChanged: widget.onChange,
           onFieldSubmitted: widget.onSubmitted,
           decoration: InputDecoration(
-            filled: true,
+            // filled: true,  
             fillColor: Theme.of(context).colorScheme.secondary,
             hintText: widget.hint,
-            hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
+            // hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
             prefixText: widget.prefixText,
             contentPadding: const EdgeInsets.symmetric(horizontal: 50),
             enabledBorder: OutlineInputBorder(

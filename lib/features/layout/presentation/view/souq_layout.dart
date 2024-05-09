@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/features/layout/presentation/manager/layout_cubit/layout_cubit.dart';
 
-class SouqLayout extends StatelessWidget {
-   final String? name;
-  const SouqLayout({super.key,  this.name});
+class GlucoLayout extends StatelessWidget {
+  final String? name;
+  const GlucoLayout({super.key, this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,6 @@ class SouqLayout extends StatelessWidget {
           var cubit = LayoutCubit.get(context);
           return Scaffold(
             appBar: AppBar(
-              // title: const Text('Salla'),
               title: Text('Hi ${name} ' ?? 'salla'),
               actions: [
                 IconButton(
@@ -31,9 +30,7 @@ class SouqLayout extends StatelessWidget {
                   icon: const Icon(Icons.search),
                 ),
                 IconButton(
-                  onPressed: () {
-                    // signOut(context);
-                  },
+                  onPressed: () {},
                   icon: const Icon(Icons.logout_outlined),
                 ),
               ],
