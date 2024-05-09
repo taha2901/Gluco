@@ -15,6 +15,7 @@ class GlucoLayout extends StatelessWidget {
         builder: (context, state) {
           var cubit = LayoutCubit.get(context);
           return Scaffold(
+            backgroundColor: Colors.transparent,
             appBar: AppBar(
               title: Text('Hi ${name} ' ?? 'salla'),
               actions: [
@@ -37,11 +38,15 @@ class GlucoLayout extends StatelessWidget {
             ),
             body: cubit.screens[cubit.currentIndex],
             bottomNavigationBar: BottomNavigationBar(
-                currentIndex: cubit.currentIndex,
-                onTap: (index) {
-                  cubit.changeBottomNavBar(index);
-                },
-                items: cubit.bottomItem),
+              currentIndex: cubit.currentIndex,
+              onTap: (index) {
+                cubit.changeBottomNavBar(index);
+              },
+              items: cubit.bottomItem,
+              backgroundColor: Color.fromRGBO(255, 255, 255, 0.5),
+              selectedItemColor: Colors.blue, // لون العنصر المحدد
+              unselectedItemColor: Colors.grey,
+            ),
           );
         },
       ),
