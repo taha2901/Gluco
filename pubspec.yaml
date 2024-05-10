@@ -13,15 +13,20 @@ dependencies:
   shared_preferences: ^2.2.3
   flutter_bloc: ^8.1.5
   fluttertoast: ^8.2.5
+  font_awesome_flutter: ^10.7.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  flutter_lints: ^4.0.0
   dio: ^5.4.3+1
   bloc: ^8.1.4
   smooth_page_indicator: ^1.1.0
   adaptive_theme: ^3.6.0
+  easy_date_timeline: ^1.0.7
+  permission_handler: ^11.3.1
+  device_info_plus: ^10.1.0
+  pedometer: ^4.0.1
 flutter:
 
   uses-material-design: true
