@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gluco/features/home/presentation/view/widgets/favourite_bool.dart';
 
 class BarApp extends StatefulWidget {
-  const BarApp({Key? key}) : super(key: key);
+  const BarApp({super.key});
 
   @override
   State<BarApp> createState() => _BarAppState();
