@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gluco/features/activities/presentation/view/Activities.dart';
 import 'package:gluco/features/appointments/presentation/view/show_appintment.dart';
 import 'package:gluco/features/category/presentation/view/category.dart';
 import 'package:gluco/features/chat_bot/my_bot.dart';
@@ -22,6 +23,7 @@ class LayoutCubit extends Cubit<LayoutState> {
     const ProfileScreen(),
     const ShowAppointment(),
     const MyBot(),
+    const Activities()
   ];
 
   void changeBottomNavBar(int index) {
@@ -53,6 +55,10 @@ class LayoutCubit extends Cubit<LayoutState> {
     const BottomNavigationBarItem(
       icon: Icon(Icons.bolt),
       label: 'Gluco Bot',
+    ),
+    const BottomNavigationBarItem(
+      icon: Icon(Icons.local_activity),
+      label: 'Activities',
     ),
   ];
 }

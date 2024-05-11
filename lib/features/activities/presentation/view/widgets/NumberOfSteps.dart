@@ -18,7 +18,7 @@ class NumOfSteps extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 30),
               child: Image.asset(
-                'assets/images/img_3.png',
+                'assets/img_3.png',
                 width: 94,
                 height: 120,
               ),
@@ -47,8 +47,8 @@ class NumOfSteps extends StatelessWidget {
         SizedBox(
             height: 212,
             child: ChartSteps(
-                [3.0, 5.0, 8.0, 10.0, 12.0, 14.0, 16.0, 18.0, 20.0])),
-        Text(
+                const [3.0, 5.0, 8.0, 10.0, 12.0, 14.0, 16.0, 18.0, 20.0])),
+        const Text(
           "اليوم",
           textAlign: TextAlign.center,
         ),
