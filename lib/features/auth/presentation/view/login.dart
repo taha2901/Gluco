@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gluco/core/widgets/custom_button.dart';
 import 'package:gluco/core/widgets/custom_text_field.dart';
 import 'package:gluco/features/auth/presentation/view/register.dart';
+import 'package:gluco/features/auth/presentation/view/widget/text_field.dart';
 import 'package:gluco/features/layout/presentation/view/glocu_layout.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -54,22 +56,28 @@ class LoginScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Login',
-                  style: Theme.of(context).textTheme.headline4!.copyWith(),
+                Center(
+                  child: Text(
+                    'تسجيل الدخول',
+                    style: Theme.of(context).textTheme.headline4!.copyWith(),
+                  ),
                 ),
-                Text('Login now to browse our hot offers',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(color: Colors.grey)),
                 const SizedBox(
                   height: 30.0,
                 ),
-                CustomTextField(
-                  hint: 'Email Address',
-                  prefixIcon: const Icon(Icons.email_outlined),
+                // CustomTextField(
+                //   hint: 'أدخل الايميل',
+                //   prefixIcon: const Icon(Icons.email_outlined),
+                //   controller: emailController,
+                //   onSubmitted: (value) {
+                //     emailController.text = value;
+                //   },
+                // ),
+                CustomField(
+                  icon: Iconsax.direct,
+                  lable: 'أدخل الايميل',
                   controller: emailController,
+                  showBorder: false,
                   onSubmitted: (value) {
                     emailController.text = value;
                   },
@@ -77,11 +85,27 @@ class LoginScreen extends StatelessWidget {
                 const SizedBox(
                   height: 15.0,
                 ),
-                CustomTextField(
-                  hint: 'password',
-                  prefixIcon: const Icon(Icons.lock_outlined),
+                // CustomTextField(
+                //   hint: 'أدخل الرقم السري',
+                //   prefixIcon: const Icon(Icons.lock_outlined),
+                //   // obscure: LoginCubit.get(context).isObsecure,
+                //   controller: passWordController,
+                //   onSubmitted: (value) {
+                //     passWordController.text = value;
+                //   },
+                //   // suffixIcon: LoginCubit.get(context).suffix,
+                //   suffixPressed: () {
+                //     // LoginCubit.get(context).changePasswordVisibility();
+                //   },
+                // ),
+
+                CustomField(
+                  showBorder: false,
                   // obscure: LoginCubit.get(context).isObsecure,
                   controller: passWordController,
+                  lable: "ادخل الرقم السري",
+                  icon: Iconsax.password_check,
+                  isPass: true,
                   onSubmitted: (value) {
                     passWordController.text = value;
                   },
@@ -90,6 +114,21 @@ class LoginScreen extends StatelessWidget {
                     // LoginCubit.get(context).changePasswordVisibility();
                   },
                 ),
+                Row(
+                  children: [
+                    const Spacer(),
+                    GestureDetector(
+                      child: const Text("هل نسيت كلمة السر؟"),
+                      onTap: () {
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //       builder: (context) => const ForgetScreen(),
+                        //     ));
+                      },
+                    )
+                  ],
+                ),
                 const SizedBox(
                   height: 30.0,
                 ),
@@ -97,42 +136,75 @@ class LoginScreen extends StatelessWidget {
                 //     ? const Center(
                 //         child: CircularProgressIndicator(),
                 //       )
-                //     : 
-                    CustomButton(
-                        text: 'LOGIN',
-                        color: Colors.blue,
-                        textcolor: Colors.white,
-                        circular: 10.0,
-                        onTap: () {
-                          if (formKey.currentState!.validate()) {
-                            // LoginCubit.get(context).userLogin(
-                            //     email: emailController.text,
-                            //     password: passWordController.text);
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const GlucoLayout(),));
-                          }
-                        },
-                      ),
+                //     :
+                CustomButton(
+                  text: 'تسجيل دخول',
+                  color: Colors.blue,
+                  textcolor: Colors.white,
+                  circular: 30.0,
+                  onTap: () {
+                    if (formKey.currentState!.validate()) {
+                      // LoginCubit.get(context).userLogin(
+                      //     email: emailController.text,
+                      //     password: passWordController.text);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const GlucoLayout(),
+                          ));
+                    }
+                  },
+                ),
                 const SizedBox(
                   height: 15.0,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text('Don\'t have an account?'),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return RegisterScreen();
-                            },
-                          ),
-                        );
-                      },
-                      child: const Text('Register'),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     const Text('Don\'t have an account?'),
+                //     TextButton(
+                //       onPressed: () {
+                //         Navigator.push(
+                //           context,
+                //           MaterialPageRoute(
+                //             builder: (context) {
+                //               return RegisterScreen();
+                //             },
+                //           ),
+                //         );
+                //       },
+                //       child: const Text('Register'),
+                //     ),
+                //   ],
+                // ),
+                OutlinedButton(
+                  
+                  style: OutlinedButton.styleFrom(
+                    
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    padding: const EdgeInsets.all(16),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return RegisterScreen();
+                        },
+                      ),
+                    );
+                  },
+                  child: Center(
+                    child: Text(
+                      "أنشئ حساب",
+                      style: TextStyle(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onBackground, // onBackground not background
+                      ),
                     ),
-                  ],
+                  ),
                 ),
               ],
             ),

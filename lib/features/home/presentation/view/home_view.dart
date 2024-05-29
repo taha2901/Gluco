@@ -1,65 +1,100 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gluco/core/widgets/custom_text_field.dart';
-import 'package:gluco/features/home/presentation/view/widgets/custom_text_field_center_text.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gluco/features/home/presentation/view/widgets/tick_heart.dart';
 import 'package:gluco/features/home/presentation/view/widgets/tick_services.dart';
 import 'package:gluco/features/home/presentation/view/widgets/time_line_cal_one.dart';
 import 'package:gluco/features/home/presentation/view/widgets/two_square_container.dart';
+import 'package:gluco/features/seacrh/presentation/view/search.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 32),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
-              child: CustomTextFieldCenterlable(
-                hint: 'بحث',
-                fillColor: Colors.white,
-                prefixIcon: Icons.account_balance_wallet_rounded,
-                suffixIcon: Icons.search,
+              // child: GestureDetector(
+              //   onTap: () {
+              //     Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchScreen(),));
+              //   },
+              //   child: Card(
+              //     child: const CustomTextFieldCenterlable(
+              //       hint: 'بحث',
+              //       fillColor: Colors.white,
+              //       prefixIcon: Icons.account_balance_wallet_rounded,
+              //       suffixIcon: Icons.search,
+              //     ),
+              //   ),
+              // ),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SearchScreen(),
+                    ),
+                  );
+                },
+                child: const Card(
+                  child: Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Icon(Iconsax.search_normal_copy),
+                        Text(
+                          'بحث',
+                          style: TextStyle(fontSize: 22),
+                        ),
+                        Icon(Iconsax.square_copy),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ),
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: SizedBox(
                 height: 16,
               ),
             ),
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: Text(
                 'تتبع الانشطه',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
               ),
             ),
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: MyTimeLineCalender1(),
             ),
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: SizedBox(
                 height: 24,
               ),
             ),
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: TwoSquareContainer(),
             ),
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: SizedBox(
                 height: 24,
               ),
             ),
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: TicksOfHeart(),
             ),
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: SizedBox(
                 height: 32,
               ),
             ),
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: Text(
                 'الخدمات',
                 style: TextStyle(
@@ -68,12 +103,12 @@ class HomeView extends StatelessWidget {
                 ),
               ),
             ),
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: SizedBox(
                 height: 8,
               ),
             ),
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: TicksOfServices(),
             ),
           ],

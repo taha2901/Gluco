@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gluco/core/widgets/custom_button.dart';
 import 'package:gluco/core/widgets/custom_text_field.dart';
+import 'package:gluco/features/auth/presentation/view/widget/text_field.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 // ignore: must_be_immutable
 class RegisterScreen extends StatelessWidget {
@@ -53,50 +55,59 @@ class RegisterScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Register', style: Theme.of(context).textTheme.bodyLarge),
-                Text('Register now to browse our hot offers',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(color: Colors.grey)),
+                Center(
+                    child: Text('إنشاء حساب',
+                        style: Theme.of(context).textTheme.bodyLarge)),
+
                 const SizedBox(
                   height: 30.0,
                 ),
-                CustomTextField(
-                  hint: 'username',
-                  prefixIcon: const Icon(Icons.person),
+                // CustomTextField(
+                //   hint: 'أدخل اسمك',
+                //   prefixIcon: const Icon(Icons.person),
+                //   controller: nameController,
+                //   onSubmitted: (value) {
+                //     nameController.text = value;
+                //   },
+                //   // type: TextInputType.name,
+                // ),
+                 CustomField(
+                  icon: Icons.person,
+                  lable: 'أدخل اسمك',
                   controller: nameController,
+                  showBorder: false,
                   onSubmitted: (value) {
                     nameController.text = value;
                   },
-                  // type: TextInputType.name,
                 ),
                 const SizedBox(
                   height: 15.0,
                 ),
-                CustomTextField(
-                  hint: 'Email Address',
-                  prefixIcon: const Icon(Icons.email_outlined),
+                CustomField(
+                  icon: Iconsax.direct,
+                  lable: 'أدخل الايميل',
                   controller: emailController,
+                  showBorder: false,
                   onSubmitted: (value) {
                     emailController.text = value;
                   },
-                  // type: TextInputType.emailAddress,
                 ),
                 const SizedBox(
                   height: 15.0,
                 ),
-                CustomTextField(
-                  hint: 'password',
-                  prefixIcon: const Icon(Icons.lock_outlined),
-                  // obscure: RegisterCubit.get(context).isObsecure,
+                CustomField(
+                  showBorder: false,
+                  // obscure: LoginCubit.get(context).isObsecure,
                   controller: passWordController,
+                  lable: "ادخل الرقم السري",
+                  icon: Iconsax.password_check,
+                  isPass: true,
                   onSubmitted: (value) {
                     passWordController.text = value;
                   },
-                  // suffixIcon: RegisterCubit.get(context).suffix,
+                  // suffixIcon: LoginCubit.get(context).suffix,
                   suffixPressed: () {
-                    // RegisterCubit.get(context).changePasswordVisibility();
+                    // LoginCubit.get(context).changePasswordVisibility();
                   },
                 ),
                 const SizedBox(
@@ -111,7 +122,7 @@ class RegisterScreen extends StatelessWidget {
                   text: 'Register',
                   color: Colors.blue,
                   textcolor: Colors.white,
-                  circular: 10.0,
+                  circular: 30.0,
                   onTap: () {
                     if (formKey.currentState!.validate()) {
                       // RegisterCubit.get(context).userRegister(

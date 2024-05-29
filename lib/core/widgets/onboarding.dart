@@ -15,19 +15,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   final List<OnBoardingModel> board = [
     OnBoardingModel(
-        title: 'E-Bookstore',
         body:
-            'We are here to help you discover the wonderful world of books. Start your journey now and enjoy a unique reading experience.',
+            'اعثر على أفضل الأطباء في منطقتك واحجز موعدًا بكل سهولة للحصول على الرعاية الصحية الممتازة التي تستحقها.',
         image: 'assets/1.jpg'),
     OnBoardingModel(
-        title: 'Choose your preferences,',
-        body:
-            'Tell us about your interests and choose the sections you would like to explore. We will provide you with the perfect books based on your preferences.',
+        body: 'استمتع بمتابعه مستوي السكر المناسب لعيشه حياه طبيعيه ',
         image: 'assets/2.jpg'),
     OnBoardingModel(
-        title: 'journey of discovery',
         body:
-            'Explore our wide range of books, search, review reviews, and choose the books you want to read. From suspense novels to science books, you\'ll find everything you\'re looking for here.',
+            'الاهتمام بالرياضه هتفيدك و تظبط مستوي السكر تابع مع مستويات الرياضه و اوصل للهدف الي يظبط مستوي السكر ',
         image: 'assets/3.jpg'),
   ];
   bool islast = false;
@@ -85,26 +81,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextButton(
-                    onPressed: () {
-                      submit();
-                    },
-                    child: const Text(
-                      'SKIP',
-                    ),
-                  ),
-                  SmoothPageIndicator(
-                    controller: boardController,
-                    count: board.length,
-                    effect: const ExpandingDotsEffect(
-                      dotColor: Colors.grey,
-                      dotHeight: 10.0,
-                      expansionFactor: 4,
-                      dotWidth: 10,
-                      spacing: 5,
-                    ),
-                  ),
-                  // const Spacer(),
                   FloatingActionButton(
                     onPressed: () {
                       if (islast) {
@@ -120,6 +96,27 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     },
                     child: const Icon(Icons.arrow_forward_ios),
                   ),
+                  SmoothPageIndicator(
+                    controller: boardController,
+                    count: board.length,
+                    effect: const ExpandingDotsEffect(
+                      dotColor: Colors.grey,
+                      dotHeight: 10.0,
+                      expansionFactor: 4,
+                      dotWidth: 10,
+                      spacing: 5,
+                    ),
+                  ),
+                  // const Spacer(),
+
+                  TextButton(
+                    onPressed: () {
+                      submit();
+                    },
+                    child: const Text(
+                      'تخطي',
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -132,11 +129,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
 class OnBoardingModel {
   final String image;
-  final String title;
+  // final String title;
   final String body;
 
-  OnBoardingModel(
-      {required this.image, required this.title, required this.body});
+  OnBoardingModel({required this.image, required this.body});
 }
 
 // ignore: must_be_immutable
@@ -145,7 +141,8 @@ class CurveClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     final path = Path();
     path.lineTo(0, size.height - 50); // بداية القطع من أعلى يسار الصورة
-    path.quadraticBezierTo(size.width / 2.3, size.height, size.width, size.height - 60); // منحنى courve
+    path.quadraticBezierTo(size.width / 2.3, size.height, size.width,
+        size.height - 60); // منحنى courve
     path.lineTo(size.width, 0); // النهاية من أسفل يمين الصورة
     path.close();
     return path;
@@ -156,7 +153,7 @@ class CurveClipper extends CustomClipper<Path> {
 }
 
 class BuildBoardingItem extends StatelessWidget {
-  BuildBoardingItem({
+  const BuildBoardingItem({
     super.key,
     required this.board,
   });
@@ -170,7 +167,7 @@ class BuildBoardingItem extends StatelessWidget {
         ClipPath(
           clipper: CurveClipper(),
           child: Image(
-            height: MediaQuery.of(context).size.height / 2, 
+            height: MediaQuery.of(context).size.height / 2,
             width: double.infinity,
             fit: BoxFit.cover,
             image: AssetImage(board.image),
@@ -181,32 +178,15 @@ class BuildBoardingItem extends StatelessWidget {
           left: 0,
           right: 0,
           child: Container(
-            decoration: const BoxDecoration(
-              // color: Colors.white,
-            ),
+            decoration: const BoxDecoration(),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16), 
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Center(
-                    child: Text(
-                      board.title,
-                      style: const TextStyle(
-                        fontSize: 24.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
                   Text(
+                    textAlign: TextAlign.center,
                     board.body,
-                    style: const TextStyle(
-                      fontSize: 14,
-                    ),
-                  ),
+                      style: Theme.of(context).textTheme.headlineSmall),
                 ],
               ),
             ),

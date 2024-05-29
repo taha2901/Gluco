@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/features/home/presentation/view/widgets/custom_icon.dart';
 import 'package:gluco/features/layout/presentation/manager/layout_cubit/layout_cubit.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class GlucoLayout extends StatelessWidget {
   final String? name;
@@ -18,36 +19,42 @@ class GlucoLayout extends StatelessWidget {
           return Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
-              leading: CustomIcon(
-                onTap: () {},
-                icon: Icons.facebook_outlined,
-                color: Colors.black.withOpacity(0.1),
-                colorIcon: Colors.black,
+              leading: Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //       builder: (context) => const ProfileScreen()),
+                      // );
+                    },
+                    child: const CircleAvatar(
+                      radius: 20,
+                      // child: Image.asset('assets/1.jpg'),
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'أهلا طه',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                ],
               ),
               actions: [
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'أهلا طه',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w600),
-                  ),
+                MaterialButton(
+                  onPressed: () {},
+                  child: const Icon(Iconsax.notification),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //       builder: (context) => const ProfileScreen()),
-                    // );
-                  },
-                  child: CircleAvatar(
-                    radius: 20,
-                    child: Image.asset('assets/1.jpg'),
-                  ),
-                ),
+                MaterialButton(
+                  onPressed: () {},
+                  child: const Icon(Iconsax.messages_1_copy),
+                )
               ],
             ),
             body: cubit.screens[cubit.currentIndex],
@@ -57,7 +64,7 @@ class GlucoLayout extends StatelessWidget {
                 cubit.changeBottomNavBar(index);
               },
               items: cubit.bottomItem,
-              backgroundColor: Color.fromRGBO(255, 255, 255, 0.5),
+              backgroundColor: const Color.fromRGBO(255, 255, 255, 0.5),
               selectedItemColor: Colors.blue,
               unselectedItemColor: Colors.grey,
             ),
