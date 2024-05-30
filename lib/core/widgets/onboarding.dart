@@ -50,6 +50,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           children: [
             Expanded(
               child: PageView.builder(
+                // scrollDirection:
+                //     axisDirectionToAxis(flipAxisDirection(AxisDirection.right)),
                 physics: const BouncingScrollPhysics(),
                 controller: boardController,
                 onPageChanged: (int index) {
@@ -184,8 +186,8 @@ class BuildBoardingItem extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    textAlign: TextAlign.center,
-                    board.body,
+                      textAlign: TextAlign.center,
+                      board.body,
                       style: Theme.of(context).textTheme.headlineSmall),
                 ],
               ),

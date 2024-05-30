@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax_flutter/iconsax_flutter.dart';
 
-class BarApp extends StatelessWidget {
-  const BarApp({super.key});
+class BarAppOneDoc extends StatelessWidget {
+  const BarAppOneDoc({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +15,7 @@ class BarApp extends StatelessWidget {
           ),
         ),
         const Text(
-          "دكتور",
+          "حجز",
           style: TextStyle(
             fontSize: 18,
             fontStyle: FontStyle.normal,
@@ -25,7 +24,7 @@ class BarApp extends StatelessWidget {
         ),
         MaterialButton(
           onPressed: () {},
-          child: const Icon(Iconsax.notification),
+          child: const Icon(Icons.favorite),
         ),
       ],
     );

@@ -1,18 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:gluco/core/helper/api.dart';
 import 'package:gluco/core/helper/cach.dart';
+import 'package:gluco/core/widgets/network.dart';
 import 'package:gluco/core/widgets/onboarding.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:intl/intl.dart';
+import 'package:gluco/features/auth/presentation/view/login.dart';
+import 'package:gluco/features/layout/presentation/view/glocu_layout.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final savedThemeMode = await AdaptiveTheme.getThemeMode();
   DioHelper.init();
   await ChachHelper.init();
+
+  userToken = ChachHelper.getData(key: 'token');
+  debugPrint('Token in main is $userToken');
+
+  Widget widget;
+  bool? onBoarding = ChachHelper.getData(key: 'onBoarding');
+
+  if (onBoarding != null) {
+    if (userToken != null) {
+      widget = const GlucoLayout();
+    } else {
+      widget = const LoginScreen();
+    }
+  } else {
+    widget = const OnBoardingScreen();
+  }
+
   runApp(
     Gluco(
+      startWidget: widget,
+      token: userToken,
       savedThemeMode: savedThemeMode,
     ),
   );
@@ -20,7 +41,15 @@ void main() async {
 
 class Gluco extends StatelessWidget {
   final AdaptiveThemeMode? savedThemeMode;
-  const Gluco({super.key, this.savedThemeMode});
+  final Widget startWidget;
+  final String? token;
+
+  const Gluco({
+    Key? key,
+    this.savedThemeMode,
+    required this.startWidget,
+    this.token,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +67,12 @@ class Gluco extends StatelessWidget {
       initial: savedThemeMode ?? AdaptiveThemeMode.light,
       debugShowFloatingThemeButton: true,
       builder: (theme, darkTheme) => MaterialApp(
-        locale: Locale('ar'),
-        supportedLocales: [
+        locale: const Locale('ar'),
+        supportedLocales: const [
           Locale('en'), // الإنجليزية
           Locale('ar'), // العربية
         ],
-        localizationsDelegates: [
+        localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
@@ -59,7 +88,7 @@ class Gluco extends StatelessWidget {
         theme: theme,
         darkTheme: darkTheme,
         debugShowCheckedModeBanner: false,
-        home: const OnBoardingScreen(),
+        home: startWidget,
       ),
     );
   }

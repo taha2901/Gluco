@@ -34,11 +34,11 @@ class GlucoLayout extends StatelessWidget {
                       // child: Image.asset('assets/1.jpg'),
                     ),
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
-                      'أهلا طه',
-                      style: TextStyle(
+                      'أهلا ${name}',
+                      style: const TextStyle(
                           color: Colors.black,
                           fontSize: 13,
                           fontWeight: FontWeight.w600),

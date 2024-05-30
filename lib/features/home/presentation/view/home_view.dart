@@ -1,12 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:gluco/features/home/presentation/view/widgets/card_of_search.dart';
 import 'package:gluco/features/home/presentation/view/widgets/tick_heart.dart';
 import 'package:gluco/features/home/presentation/view/widgets/tick_services.dart';
 import 'package:gluco/features/home/presentation/view/widgets/time_line_cal_one.dart';
 import 'package:gluco/features/home/presentation/view/widgets/two_square_container.dart';
 import 'package:gluco/features/seacrh/presentation/view/search.dart';
-import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -41,22 +39,7 @@ class HomeView extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Card(
-                  child: Padding(
-                    padding: EdgeInsets.all(12.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(Iconsax.search_normal_copy),
-                        Text(
-                          'بحث',
-                          style: TextStyle(fontSize: 22),
-                        ),
-                        Icon(Iconsax.square_copy),
-                      ],
-                    ),
-                  ),
-                ),
+                child: const CardOfSearch(),
               ),
             ),
             const SliverToBoxAdapter(

@@ -9,7 +9,7 @@ class AboutDoctor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           "عن الطبيب",
@@ -19,7 +19,6 @@ class AboutDoctor extends StatelessWidget {
         Text(" الزيارات : (150) "),
         Text(
           "سعيد الحسيني: طبيب استشاري أمراض الجهاز الهضمي والكبد في مستشفى القصر العيني بالقاهرة. تخرج من كلية الطب بجامعة القاهرة عام 2017 ، وحصل على درجة الماجستير في أمراض الجهاز الهضمي والكبد عام 2020.",
-          textAlign: TextAlign.right,
         ),
       ],
     );

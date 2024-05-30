@@ -1,23 +1,23 @@
 
-// import 'package:finalabanob/features/auth/data/auth_register/register_model.dart';
+import 'package:gluco/features/auth/data/auth/auth.dart';
 
-// sealed class RegisterState {}
+sealed class RegisterState {}
 
-// final class RegisterInitial extends RegisterState {}
+final class RegisterInitial extends RegisterState {}
 
-// final class RegisterLoaded extends RegisterState {}
+final class RegisterLoaded extends RegisterState {}
 
-// final class RegisterSuccess extends RegisterState {
-//   final RegisterModel registerModel;
+final class RegisterSuccess extends RegisterState {
+  final AuthModel registerModel;
 
-//   RegisterSuccess({required this.registerModel});
-// }
+  RegisterSuccess({required this.registerModel});
+}
 
 
-// final class RegisterFailure extends RegisterState {
-//   final String errMessage;
+final class RegisterFailure extends RegisterState {
+  final String errMessage;
 
-//   RegisterFailure(this.errMessage);
-// }
+  RegisterFailure(this.errMessage);
+}
 
-// final class RegisterchangePasswordVisibility extends RegisterState {}
+final class RegisterchangePasswordVisibility extends RegisterState {}

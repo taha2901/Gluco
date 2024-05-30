@@ -3,6 +3,7 @@ import 'package:gluco/features/home/presentation/view/widgets/BarApp.dart';
 import 'package:gluco/features/home/presentation/view/widgets/Comments.dart';
 import 'package:gluco/features/home/presentation/view/widgets/Time.dart';
 import 'package:gluco/features/home/presentation/view/widgets/about_doctor.dart';
+import 'package:gluco/features/home/presentation/view/widgets/bar_app_one_doc.dart';
 import 'package:gluco/features/home/presentation/view/widgets/botton_reservation.dart';
 import 'package:gluco/features/home/presentation/view/widgets/define_doc_reservation.dart';
 import 'package:gluco/features/home/presentation/view/widgets/easy_infinite_time_lines2.dart';
@@ -39,13 +40,13 @@ class DoctorReservation extends StatelessWidget {
           child: CustomScrollView(
             slivers: [
               const SliverToBoxAdapter(
-                child: BarApp(),
+                child: BarAppOneDoc(),
               ),
               SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 34),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const DefineInReservation(),
                       const AboutDoctor(),
@@ -89,7 +90,7 @@ class DoctorReservation extends StatelessWidget {
                       ),
                       const ButtonsInReservation(),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        // mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           const Text("اضافه تعليق"),
                           IconButton(

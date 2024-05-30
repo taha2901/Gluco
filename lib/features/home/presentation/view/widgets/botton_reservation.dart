@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gluco/core/widgets/custom_button.dart';
 import 'package:gluco/features/home/presentation/view/widgets/custom_icon.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class ButtonsInReservation extends StatelessWidget {
   const ButtonsInReservation({
@@ -12,14 +13,8 @@ class ButtonsInReservation extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 30),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        // mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CustomIcon(
-            icon: Icons.messenger_sharp,
-            color: Colors.black.withOpacity(0.8),
-            colorIcon: Colors.white,
-            circular: 30,
-          ),
           Expanded(
             child: CustomButton(
               text: 'تأكيد',
@@ -34,7 +29,13 @@ class ButtonsInReservation extends StatelessWidget {
                 // );
               },
             ),
-          )
+          ),
+          CustomIcon(
+            icon: Iconsax.message,
+            color: Colors.black.withOpacity(0.8),
+            colorIcon: Colors.white,
+            circular: 30,
+          ),
         ],
       ),
     );

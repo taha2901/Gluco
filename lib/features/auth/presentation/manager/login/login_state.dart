@@ -1,21 +1,21 @@
-// import 'package:finalabanob/features/auth/data/auth_login/auth.dart';
+import 'package:gluco/features/auth/data/auth/auth.dart';
 
-// sealed class LoginState {}
+sealed class LoginState {}
 
-// final class LoginInitial extends LoginState {}
+final class LoginInitial extends LoginState {}
 
-// final class LoginLoaded extends LoginState {}
+final class LoginLoaded extends LoginState {}
 
-// final class LoginSuccess extends LoginState {
-//   final Auth loginModel;
+final class LoginSuccess extends LoginState {
+  final AuthModel login;
 
-//   LoginSuccess(this.loginModel);
-// }
+  LoginSuccess(this.login);
+}
 
-// final class LoginFailure extends LoginState {
-//   final String errMessage;
+final class LoginFailure extends LoginState {
+  final String errMessage;
 
-//   LoginFailure(this.errMessage);
-// }
+  LoginFailure(this.errMessage);
+}
 
-// final class LoginchangePasswordVisibility extends LoginState {}
+final class LoginchangePasswordVisibility extends LoginState {}

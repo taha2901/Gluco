@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:gluco/features/home/data/doctor_offer.dart';
 
 class DoctorOffer extends StatelessWidget {
-  const DoctorOffer({Key? key}) : super(key: key);
+  const DoctorOffer({
+    super.key,
+    // required this.offerModel,
+  });
+  // final DoctorOfferModel offerModel;
 
   @override
   Widget build(BuildContext context) {
@@ -15,47 +20,49 @@ class DoctorOffer extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Image.asset(
-              "assets/DoctorAhmed.png",
-            ),
-            const Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "دكتور احمد ضاحى (امراض القلب)",
-                  style: TextStyle(
+                  '(امراض القلب) دكتور احمد ضاحي',
+                  style: const TextStyle(
                     color: Colors.white,
                   ),
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(
-                      "السبت /7:00 مساء   ",
-                      style: TextStyle(color: Colors.white),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 8),
+                      child: Icon(
+                        Icons.calendar_today,
+                        color: Color(0xffFFCC70),
+                        size: 15,
+                      ),
                     ),
-                    Icon(
-                      Icons.calendar_today,
-                      color: Color(0xffFFCC70),
-                      size: 15,
+                    Text(
+                       'السبت / 7 مساءا',
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ],
                 ),
                 Row(
                   children: [
                     Text(
-                      '90 L.E : ',
-                      style: TextStyle(
-                        color: Color(0xffFFCC70),
-                      ),
+                     'الكشف بنصف الثمن 90 جنيه',
+                      style: const TextStyle(color: Colors.white),
                     ),
-                    Text(
-                      'الكشف بنصف الثمن ',
-                      style: TextStyle(color: Colors.white),
-                    )
+                    // Text(
+                    //   '90 جنيه',
+                    //   style: TextStyle(
+                    //     color: Color(0xffFFCC70),
+                    //   ),
+                    // ),
                   ],
                 ),
               ],
+            ),
+            Image.asset(
+              'assets/DoctorAhmed.png',
             ),
           ],
         ),

@@ -35,7 +35,7 @@ class TicksOfServices extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const Doctor()),
+                    builder: (context) =>  Doctor()),
               );
             },
             text: 'دكتور',
