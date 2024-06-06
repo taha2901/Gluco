@@ -17,8 +17,8 @@ class ChatCard extends StatelessWidget {
                 ),
               ),
           leading: const CircleAvatar(),
-          title: const Text("Name"),
-          subtitle: const Text("Last Message"),
+          title: const Text("الاسم"),
+          subtitle: const Text("اخر رساله"),
           trailing: const Badge(
             padding: EdgeInsets.symmetric(horizontal: 12),
             label: Text("3"),

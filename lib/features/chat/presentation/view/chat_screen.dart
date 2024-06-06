@@ -65,7 +65,7 @@ class _ChatScreenState extends State<ChatScreen> {
                           height: 16,
                         ),
                         Text(
-                          "Say Assalamu Alaikum",
+                          "السلام عليكم",
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ],

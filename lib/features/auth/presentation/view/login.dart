@@ -59,7 +59,8 @@ class LoginScreen extends StatelessWidget {
                       Center(
                         child: Text(
                           'تسجيل الدخول',
-                          style: Theme.of(context).textTheme.headline4!.copyWith(),
+                          style:
+                              Theme.of(context).textTheme.headline4!.copyWith(),
                         ),
                       ),
                       const SizedBox(height: 30.0),
@@ -107,9 +108,16 @@ class LoginScreen extends StatelessWidget {
                               circular: 30.0,
                               onTap: () {
                                 if (formKey.currentState!.validate()) {
-                                  LoginCubit.get(context).userLogin(
-                                      email: emailController.text,
-                                      password: passWordController.text);
+                                  // LoginCubit.get(context).userLogin(
+                                  //     email: emailController.text,
+                                  //     password: passWordController.text);
+                                  Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const GlucoLayout(),
+                                    ),
+                                    (route) => false,
+                                  );
                                 }
                               },
                             ),

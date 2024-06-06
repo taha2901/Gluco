@@ -12,12 +12,13 @@ class ChatHomeScreen extends StatefulWidget {
 
 class _ChatHomeScreenState extends State<ChatHomeScreen> {
   TextEditingController emailCon = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showBottomSheet(
+          showModalBottomSheet(
             context: context,
             builder: (context) {
               return Container(
@@ -67,7 +68,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
         child: const Icon(Iconsax.message_add),
       ),
       appBar: AppBar(
-        title: const Text("Chats"),
+        title: const Text("شات"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
