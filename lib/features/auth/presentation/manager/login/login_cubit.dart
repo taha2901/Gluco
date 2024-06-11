@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/core/helper/api.dart';
+import 'package:gluco/core/widgets/network.dart';
 import 'package:gluco/features/auth/data/auth/auth.dart';
 import 'package:gluco/features/auth/presentation/manager/login/login_state.dart';
 
@@ -13,16 +14,16 @@ class LoginCubit extends Cubit<LoginState> {
     required String email,
     required String password,
   }) {
-    AuthModel loginModel;
+    Auth loginModel;
     emit(LoginLoaded());
     DioHelper().postData(
-      url: 'Auth/Login',
+      url: LOGIN,
       data: {
         'Email': email,
         'Password': password,
       },
     ).then((value) {
-      loginModel = AuthModel.fromJson(value.data);
+      loginModel = Auth.fromJson(value.data);
       emit(LoginSuccess(loginModel));
     }).catchError((onError) {
       print('Error in login cubit: ${onError.toString()}');

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/features/chat/presentation/view/chat_home_screen.dart';
-import 'package:gluco/features/home/presentation/view/widgets/custom_icon.dart';
 import 'package:gluco/features/layout/presentation/manager/layout_cubit/layout_cubit.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 

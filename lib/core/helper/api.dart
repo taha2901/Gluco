@@ -6,7 +6,7 @@ class DioHelper {
   static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'http://nouraapi.runasp.net/api/', // تعيين العنوان الأساسي للطلبات
+        baseUrl: 'http://nouraapi.runasp.net/api/', 
         receiveDataWhenStatusError: true, // استقبال البيانات حتى عند حدوث خطأ في الحالة
       ),
     );
@@ -18,7 +18,6 @@ class DioHelper {
     String lang = 'en',
     String? token,
   }) async {
-    // إعداد الرؤوس للطلب GET
     dio!.options.headers = {
       'Content-Type': 'application/json',
       'lang': lang,

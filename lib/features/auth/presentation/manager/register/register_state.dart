@@ -8,7 +8,7 @@ final class RegisterInitial extends RegisterState {}
 final class RegisterLoaded extends RegisterState {}
 
 final class RegisterSuccess extends RegisterState {
-  final AuthModel registerModel;
+  final Auth registerModel;
 
   RegisterSuccess({required this.registerModel});
 }

@@ -3,9 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/core/helper/cach.dart';
 import 'package:gluco/core/widgets/custom_button.dart';
 import 'package:gluco/core/widgets/custom_show_toast.dart';
-import 'package:gluco/core/widgets/custom_text_field.dart';
 import 'package:gluco/core/widgets/network.dart';
-import 'package:gluco/features/auth/presentation/manager/login/login_cubit.dart';
 import 'package:gluco/features/auth/presentation/manager/register/register_cubit.dart';
 import 'package:gluco/features/auth/presentation/manager/register/register_state.dart';
 import 'package:gluco/features/auth/presentation/view/widget/text_field.dart';
@@ -18,13 +16,8 @@ class RegisterScreen extends StatelessWidget {
   var emailController = TextEditingController();
   var passWordController = TextEditingController();
   var nameController = TextEditingController();
-  var firstNameController = TextEditingController();
-  var secNameController = TextEditingController();
-  var addressController = TextEditingController();
-  var sexController = TextEditingController();
   var phoneController = TextEditingController();
   var confirmPassController = TextEditingController();
-  var ageController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
@@ -47,9 +40,10 @@ class RegisterScreen extends StatelessWidget {
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => GlucoLayout(
-                              name: state.registerModel.username,
-                            )),
+                      builder: (context) => GlucoLayout(
+                        name: '${state.registerModel.username}',
+                      ),
+                    ),
                     (route) => false,
                   );
                 },
@@ -76,24 +70,6 @@ class RegisterScreen extends StatelessWidget {
                               style: Theme.of(context).textTheme.bodyLarge)),
                       const SizedBox(
                         height: 30.0,
-                      ),
-                      CustomField(
-                        icon: Icons.person,
-                        lable: 'أدخل اسمك الاول',
-                        controller: firstNameController,
-                        showBorder: false,
-                        onSubmitted: (value) {
-                          firstNameController.text = value;
-                        },
-                      ),
-                      CustomField(
-                        icon: Icons.person,
-                        lable: 'أدخل اسمك الثاني',
-                        controller: secNameController,
-                        showBorder: false,
-                        onSubmitted: (value) {
-                          secNameController.text = value;
-                        },
                       ),
                       CustomField(
                         icon: Icons.person,
@@ -127,36 +103,6 @@ class RegisterScreen extends StatelessWidget {
                         onSubmitted: (value) {
                           phoneController.text = value;
                         },
-                      ),
-                      CustomField(
-                        icon: Iconsax.direct,
-                        lable: 'أدخل عمرك ',
-                        controller: ageController,
-                        showBorder: false,
-                        onSubmitted: (value) {
-                          ageController.text = value;
-                        },
-                      ),
-                      CustomField(
-                        icon: Iconsax.direct,
-                        lable: 'أدخل عنوانك ',
-                        controller: addressController,
-                        showBorder: false,
-                        onSubmitted: (value) {
-                          addressController.text = value;
-                        },
-                      ),
-                      CustomField(
-                        icon: Iconsax.direct,
-                        lable: 'أدخل نوعك ',
-                        controller: sexController,
-                        showBorder: false,
-                        onSubmitted: (value) {
-                          sexController.text = value;
-                        },
-                      ),
-                      const SizedBox(
-                        height: 15.0,
                       ),
                       CustomField(
                         showBorder: false,
@@ -206,14 +152,9 @@ class RegisterScreen extends StatelessWidget {
                               onTap: () {
                                 if (formKey.currentState!.validate()) {
                                   RegisterCubit.get(context).userRegister(
-                                      address: addressController.text,
-                                      age: ageController.text,
                                       confirmpPassword:
                                           confirmPassController.text,
-                                      firstName: firstNameController.text,
                                       phone: phoneController.text,
-                                      secondName: secNameController.text,
-                                      sex: sexController.text,
                                       username: nameController.text,
                                       email: emailController.text,
                                       password: passWordController.text);

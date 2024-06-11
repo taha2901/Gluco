@@ -16,31 +16,20 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String password,
     required String confirmpPassword,
     required String phone,
-    required String firstName,
-    required String secondName,
-    required String age,
-    required String sex,
-    required String address,
   }) {
-    AuthModel registerModel;
+    Auth registerModel;
     emit(RegisterLoaded());
     DioHelper().postData(
       url: REGISTER,
       data: {
-        'FirstName': firstName,
-        'LastName':secondName ,
         'Username': username,
         'Email': email,
         'Phone': phone,
-        'age': age,
-        'address': address,
-        'sex': sex,
         'Password': password,
         'confirmpassword': confirmpPassword,
-        
       },
     ).then((value) {
-      registerModel = AuthModel.fromJson(value.data);
+      registerModel = Auth.fromJson(value.data);
       // debugPrint('All Data in Register cubit is ${registerModel.toString()}');
       emit(RegisterSuccess(registerModel: registerModel));
     }).catchError((onError) {

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "495839621726",
+    "project_id": "gluco-chat",
+    "storage_bucket": "gluco-chat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495839621726:android:5e44faa9d662628a93facf",
+        "android_client_info": {
+          "package_name": "com.example.gluco"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7OfiKJVl2IRy3bfkqSPBFxZsN421rfvI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

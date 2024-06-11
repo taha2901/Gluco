@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gluco/core/widgets/custom_button.dart';
+import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
 import 'package:gluco/features/home/presentation/view/widgets/DoctorReservation.dart';
 
 class DoctorDetials extends StatelessWidget {
-  const DoctorDetials({super.key});
-
+  const DoctorDetials({super.key, required this.docDetails});
+  final DoctorModel docDetails;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,7 +21,7 @@ class DoctorDetials extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            const Row(
+             Row(
               children: [
                 SizedBox(
                   width: 8,
@@ -35,9 +36,9 @@ class DoctorDetials extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('د سعيد محمد '),
-                      Text('استشاري جراحه و المسالك البوليه'),
-                      Text('4.1  تقييم الزوار'),
+                      Text(docDetails.userName.toString()),
+                      Text(docDetails.doctorSpecialization.toString()),
+                      const Text('4.1  تقييم الزوار'),
                     ],
                   ),
                 )
@@ -46,7 +47,7 @@ class DoctorDetials extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            const Row(
+             Row(
               children: [
                 SizedBox(
                   width: 8,
@@ -58,10 +59,10 @@ class DoctorDetials extends StatelessWidget {
                 SizedBox(
                   width: 8,
                 ),
-                Text('16-شارع جمال عبدالناصر'),
+                Text(docDetails.address.toString()),
               ],
             ),
-            const Row(
+             Row(
               children: [
                 SizedBox(
                   width: 8,
@@ -73,10 +74,10 @@ class DoctorDetials extends StatelessWidget {
                 SizedBox(
                   width: 8,
                 ),
-                Text('سبت و ثلاثاء من 7 ص'),
+                Text(docDetails.appointment.toString()),
               ],
             ),
-            const Row(
+             Row(
               children: [
                 SizedBox(
                   width: 8,
@@ -88,7 +89,7 @@ class DoctorDetials extends StatelessWidget {
                 SizedBox(
                   width: 8,
                 ),
-                Text('سعر الكشف::  130 ج'),
+                Text('سعر الكشف::  ${docDetails.detectionPrice} ج'),
               ],
             ),
             const Row(

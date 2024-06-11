@@ -1,5 +1,5 @@
-class AuthModel {
-	dynamic message;
+class Auth {
+	String? message;
 	bool? isAuthenticated;
 	String? username;
 	String? email;
@@ -7,7 +7,7 @@ class AuthModel {
 	String? token;
 	String? expiresOn;
 
-	AuthModel({
+	Auth({
 		this.message, 
 		this.isAuthenticated, 
 		this.username, 
@@ -17,8 +17,8 @@ class AuthModel {
 		this.expiresOn, 
 	});
 
-	factory AuthModel.fromJson(Map<String, dynamic> json) => AuthModel(
-				message: json['message'] as dynamic,
+	factory Auth.fromJson(Map<String, dynamic> json) => Auth(
+				message: json['message'] as String?,
 				isAuthenticated: json['isAuthenticated'] as bool?,
 				username: json['username'] as String?,
 				email: json['email'] as String?,

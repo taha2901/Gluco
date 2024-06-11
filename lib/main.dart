@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/core/helper/api.dart';
 import 'package:gluco/core/helper/cach.dart';
 import 'package:gluco/core/widgets/network.dart';
@@ -6,6 +7,7 @@ import 'package:gluco/core/widgets/onboarding.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:gluco/features/auth/presentation/view/login.dart';
+import 'package:gluco/features/home/presentation/manager/cubit/doctor_cubit.dart';
 import 'package:gluco/features/layout/presentation/view/glocu_layout.dart';
 
 void main() async {
@@ -66,29 +68,32 @@ class Gluco extends StatelessWidget {
       ),
       initial: savedThemeMode ?? AdaptiveThemeMode.light,
       debugShowFloatingThemeButton: true,
-      builder: (theme, darkTheme) => MaterialApp(
-        locale: const Locale('ar'),
-        supportedLocales: const [
-          Locale('en'), // الإنجليزية
-          Locale('ar'), // العربية
-        ],
-        localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        localeResolutionCallback: (locale, supportedLocales) {
-          for (var supportedLocale in supportedLocales) {
-            if (supportedLocale.languageCode == locale?.languageCode) {
-              return supportedLocale;
+      builder: (theme, darkTheme) => BlocProvider(
+        create: (context) => DoctorCubit()..getDoctors(),
+        child: MaterialApp(
+          locale: const Locale('ar'),
+          supportedLocales: const [
+            Locale('en'), // English
+            Locale('ar'), // Arabic
+          ],
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          localeResolutionCallback: (locale, supportedLocales) {
+            for (var supportedLocale in supportedLocales) {
+              if (supportedLocale.languageCode == locale?.languageCode) {
+                return supportedLocale;
+              }
             }
-          }
-          return supportedLocales.first;
-        },
-        theme: theme,
-        darkTheme: darkTheme,
-        debugShowCheckedModeBanner: false,
-        home: startWidget,
+            return supportedLocales.first;
+          },
+          theme: theme,
+          darkTheme: darkTheme,
+          debugShowCheckedModeBanner: false,
+          home: startWidget,
+        ),
       ),
     );
   }

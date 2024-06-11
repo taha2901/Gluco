@@ -25,16 +25,15 @@ class LoginScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is LoginSuccess) {
             if (state.login.isAuthenticated == true) {
-              userToken = '${state.login.token}';
+              userToken = state.login.token;
               ChachHelper.saveData(key: 'token', value: state.login.token).then(
                 (value) {
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => GlucoLayout(
-                        name: '${state.login.username}',
-                      ),
-                    ),
+                        builder: (context) => GlucoLayout(
+                              name: '${state.login.username}',
+                            )),
                     (route) => false,
                   );
                 },
@@ -59,8 +58,10 @@ class LoginScreen extends StatelessWidget {
                       Center(
                         child: Text(
                           'تسجيل الدخول',
-                          style:
-                              Theme.of(context).textTheme.headline4!.copyWith(),
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineSmall!
+                              .copyWith(),
                         ),
                       ),
                       const SizedBox(height: 30.0),
@@ -108,16 +109,9 @@ class LoginScreen extends StatelessWidget {
                               circular: 30.0,
                               onTap: () {
                                 if (formKey.currentState!.validate()) {
-                                  // LoginCubit.get(context).userLogin(
-                                  //     email: emailController.text,
-                                  //     password: passWordController.text);
-                                  Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const GlucoLayout(),
-                                    ),
-                                    (route) => false,
-                                  );
+                                  LoginCubit.get(context).userLogin(
+                                      email: emailController.text,
+                                      password: passWordController.text);
                                 }
                               },
                             ),
