@@ -83,6 +83,28 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  TextButton(
+                    onPressed: () {
+                      submit();
+                    },
+                    child: const Text(
+                      'تخطي',
+                    ),
+                  ),
+                  
+                  SmoothPageIndicator(
+                    controller: boardController,
+                    count: board.length,
+                    effect: const ExpandingDotsEffect(
+                      dotColor: Colors.grey,
+                      dotHeight: 10.0,
+                      expansionFactor: 4,
+                      dotWidth: 10,
+                      spacing: 5,
+                    ),
+                  ),
+                  // const Spacer(),
+
                   FloatingActionButton(
                     onPressed: () {
                       if (islast) {
@@ -97,27 +119,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       }
                     },
                     child: const Icon(Icons.arrow_forward_ios),
-                  ),
-                  SmoothPageIndicator(
-                    controller: boardController,
-                    count: board.length,
-                    effect: const ExpandingDotsEffect(
-                      dotColor: Colors.grey,
-                      dotHeight: 10.0,
-                      expansionFactor: 4,
-                      dotWidth: 10,
-                      spacing: 5,
-                    ),
-                  ),
-                  // const Spacer(),
-
-                  TextButton(
-                    onPressed: () {
-                      submit();
-                    },
-                    child: const Text(
-                      'تخطي',
-                    ),
                   ),
                 ],
               ),
