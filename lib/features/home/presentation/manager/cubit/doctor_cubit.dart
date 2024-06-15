@@ -23,4 +23,17 @@ class DoctorCubit extends Cubit<DoctorState> {
       print(onError.toString());
     });
   }
+
+  List<DoctorModel> filteredDoctors = [];
+
+  void filterProducts({required String input}) {
+  if (doctorModels.isNotEmpty) {
+    filteredDoctors = doctorModels.where((element) => element.userName!.toLowerCase().startsWith(input.toLowerCase()))
+        .toList();
+    emit(DoctorFilteredState(filteredDoctors));
+  } else {
+    emit(DoctorFilteredState([])); // في حال عدم وجود أطباء في القائمة
+  }
+}
+
 }

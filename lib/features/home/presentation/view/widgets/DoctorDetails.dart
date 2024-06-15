@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gluco/core/widgets/custom_button.dart';
 import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
-import 'package:gluco/features/home/presentation/view/widgets/DoctorReservation.dart';
+import 'package:gluco/features/home/presentation/view/widgets/confirm_reservation.dart';
+import 'package:gluco/features/home/presentation/view/widgets/cusrom_button.dart';
 
 class DoctorDetials extends StatelessWidget {
   const DoctorDetials({super.key, required this.docDetails});
@@ -21,15 +21,15 @@ class DoctorDetials extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-             Row(
+            Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 40,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 12,
                 ),
                 Expanded(
@@ -47,46 +47,46 @@ class DoctorDetials extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-             Row(
+            Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
-                Icon(
+                const Icon(
                   Icons.location_on_sharp,
                   size: 15,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
                 Text(docDetails.address.toString()),
               ],
             ),
-             Row(
+            Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
-                Icon(
+                const Icon(
                   Icons.calendar_today,
                   size: 15,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
                 Text(docDetails.appointment.toString()),
               ],
             ),
-             Row(
+            Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
-                Icon(
+                const Icon(
                   Icons.shopping_cart_checkout_sharp,
                   size: 15,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
                 Text('سعر الكشف::  ${docDetails.detectionPrice} ج'),
@@ -110,20 +110,20 @@ class DoctorDetials extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            CustomButton(
-              text: 'حجز',
-              circular: 15,
-              color: Colors.black,
-              height: 35,
-              textcolor: Colors.white,
-              onTap: () {
+            CustomButtonHome(
+              width: double.infinity,
+              borderRadius: 0.0,
+              text: 'احجز',
+              color: Colors.blue,
+              textColor: Colors.white,
+              onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const DoctorReservation(),
+                    builder: (context) =>  ConfirmReservation(showDoc: docDetails,),
                   ),
                 );
               },
-            )
+            ),
           ],
         ),
       ),

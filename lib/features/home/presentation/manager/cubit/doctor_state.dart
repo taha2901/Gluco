@@ -18,3 +18,9 @@ class DoctorsErrorState extends DoctorState {
 
   DoctorsErrorState(this.error);
 }
+
+class DoctorFilteredState extends DoctorState {
+  final List<DoctorModel> filteredDoctors;
+
+  DoctorFilteredState(this.filteredDoctors);
+}

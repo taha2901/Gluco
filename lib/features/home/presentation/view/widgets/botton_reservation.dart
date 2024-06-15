@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gluco/core/widgets/custom_button.dart';
+import 'package:gluco/features/home/presentation/view/widgets/cusrom_button.dart';
 import 'package:gluco/features/home/presentation/view/widgets/custom_icon.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
@@ -13,26 +13,15 @@ class ButtonsInReservation extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 30),
       child: Row(
-        // mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
-            child: CustomButton(
-              text: 'تأكيد',
-              circular: 5,
-              color: Colors.black,
-              textcolor: Colors.white,
-              height: 50,
-              onTap: () {
-                // Navigator.pushNamed(
-                //   context,
-                //   ConfirmReservation.id,
-                // );
-              },
-            ),
+            child: CustomButtonHome(text: 'تأكيد', color: Colors.blue, textColor: Colors.white, onPressed: () {
+              
+            },borderRadius: 4,),
           ),
-          CustomIcon(
+          const CustomIcon(
             icon: Iconsax.message,
-            color: Colors.black.withOpacity(0.8),
+            color: Colors.blue,
             colorIcon: Colors.white,
             circular: 30,
           ),

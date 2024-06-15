@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gluco/features/home/presentation/view/widgets/BarApp.dart';
+import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
 import 'package:gluco/features/home/presentation/view/widgets/Comments.dart';
 import 'package:gluco/features/home/presentation/view/widgets/Time.dart';
 import 'package:gluco/features/home/presentation/view/widgets/about_doctor.dart';
@@ -9,20 +9,10 @@ import 'package:gluco/features/home/presentation/view/widgets/define_doc_reserva
 import 'package:gluco/features/home/presentation/view/widgets/easy_infinite_time_lines2.dart';
 
 class DoctorReservation extends StatelessWidget {
-  const DoctorReservation({Key? key}) : super(key: key);
-  static String id = 'DoctorReservation';
+  const DoctorReservation({super.key, required this.showDoc});
+  final DoctorModel showDoc;
   @override
   Widget build(BuildContext context) {
-    // List<Appointment> Appointments = [
-    //   Appointment("سبت", "24/8"),
-    //   Appointment("الاحد", "25/8"),
-    //   Appointment("الاثنين", "26/8"),
-    //   Appointment("الثلاثاء", "27/8"),
-    //   Appointment("الاربعاء", "28/8"),
-    //   Appointment("الخميس", "29/8"),
-    //   Appointment("الجمعه", "30/8")
-    // ];
-
     final List<String> times = [
       "8:00م",
       "9:00م",
@@ -48,7 +38,7 @@ class DoctorReservation extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const DefineInReservation(),
+                       DefineInReservation(showDoc: showDoc,),
                       const AboutDoctor(),
                       const SizedBox(
                         height: 24,
@@ -58,19 +48,6 @@ class DoctorReservation extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold),
                       ),
-                      // Container(
-                      //   margin: const EdgeInsets.only(bottom: 11),
-                      //   child: SizedBox(
-                      //     height: 80,
-                      //     width: double.infinity,
-                      //     child: ListView.builder(
-                      //       scrollDirection: Axis.horizontal,
-                      //       itemCount: Appointments.length,
-                      //       itemBuilder: (context, index) =>
-                      //           AppointmentsWidget(Appointments[index]),
-                      //     ),
-                      //   ),
-                      // ),
                       const MyCalenderTwo(),
                       const SizedBox(
                         height: 16,
@@ -90,7 +67,6 @@ class DoctorReservation extends StatelessWidget {
                       ),
                       const ButtonsInReservation(),
                       Row(
-                        // mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           const Text("اضافه تعليق"),
                           IconButton(

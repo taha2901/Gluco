@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:gluco/core/widgets/custom_button.dart';
 import 'package:gluco/core/widgets/custom_text_field.dart';
+import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
+import 'package:gluco/features/home/presentation/view/widgets/DoctorReservation.dart';
+import 'package:gluco/features/home/presentation/view/widgets/cusrom_button.dart';
 
 class formReservation extends StatefulWidget {
-  const formReservation({super.key});
-
+  const formReservation({super.key, required this.showDoc});
+  final DoctorModel showDoc;
   @override
   State<formReservation> createState() => _formReservationState();
 }
 
+// ignore: camel_case_types
 class _formReservationState extends State<formReservation> {
   String? selectedOption;
   @override
@@ -64,15 +67,22 @@ class _formReservationState extends State<formReservation> {
         const SizedBox(
           height: 32,
         ),
-        CustomButton(
+        CustomButtonHome(
           text: 'التالي',
-          color: Colors.black,
-          height: 50,
-          textcolor: Colors.white,
-          circular: 10,
+          color: Colors.blue,
+          textColor: Colors.white,
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DoctorReservation(
+                    showDoc: widget.showDoc,
+                  ),
+                ));
+          },
+          borderRadius: 4,
         ),
       ],
     );
-    ;
   }
 }

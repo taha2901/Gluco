@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
 import 'package:gluco/features/home/presentation/view/widgets/doctor.dart';
 import 'package:gluco/features/home/presentation/view/widgets/gluco_measurments.dart';
 import 'package:gluco/features/home/presentation/view/widgets/services.dart';
+
 class TicksOfServices extends StatelessWidget {
-  final List<DoctorModel> doctorModels;
-  const TicksOfServices({super.key, required this.doctorModels});
+  const TicksOfServices({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,8 @@ class TicksOfServices extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const GlucoseMeasurement()),
+                MaterialPageRoute(
+                    builder: (context) => const GlucoseMeasurement()),
               );
             },
           ),

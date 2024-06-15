@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:gluco/core/widgets/custom_button.dart';
 import 'package:gluco/core/widgets/custom_text_field.dart';
+import 'package:gluco/features/home/presentation/view/widgets/cusrom_button.dart';
 
 class PersonalDetails extends StatelessWidget {
   const PersonalDetails({Key? key}) : super(key: key);
@@ -57,12 +58,7 @@ class PersonalDetails extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 30),
-              child: CustomButton(
-                text: "حفظ",
-                color: Colors.black87,
-                textcolor: Colors.white,
-                circular: 8,
-              ),
+              child: CustomButtonHome(text: 'حفظ', color: Colors.blue, textColor: Colors.white, onPressed: () {},borderRadius: 4,),
             ),
           ],
         ),

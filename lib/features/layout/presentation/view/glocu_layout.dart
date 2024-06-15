@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/features/chat/presentation/view/chat_home_screen.dart';
 import 'package:gluco/features/layout/presentation/manager/layout_cubit/layout_cubit.dart';
+import 'package:gluco/features/settings/presentation/view/profile_screen.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class GlucoLayout extends StatelessWidget {
@@ -21,29 +22,33 @@ class GlucoLayout extends StatelessWidget {
             appBar: AppBar(
               leading: Row(
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //       builder: (context) => const ProfileScreen()),
-                      // );
-                    },
-                    child: const CircleAvatar(
-                      radius: 20,
-                      // child: Image.asset('assets/1.jpg'),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ProfileScreen()),
+                        );
+                      },
+                      child: const CircleAvatar(
+                        radius: 20,
+                        // child: Image.asset('assets/1.jpg'),
+                      ),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'أهلا ${name}',
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
+                  // Expanded(
+                  //   child: Padding(
+                  //     padding: EdgeInsets.all(8.0),
+                  //     child: Text(
+                  //       'أهلا ${name}',
+                  //       style: const TextStyle(
+                  //           color: Colors.black,
+                  //           fontSize: 13,
+                  //           fontWeight: FontWeight.w600),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
               actions: [
@@ -63,6 +68,8 @@ class GlucoLayout extends StatelessWidget {
                 )
               ],
             ),
+           
+           
             body: cubit.screens[cubit.currentIndex],
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: cubit.currentIndex,

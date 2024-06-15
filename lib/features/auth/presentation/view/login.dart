@@ -13,6 +13,7 @@ import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -24,24 +25,28 @@ class LoginScreen extends StatelessWidget {
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccess) {
-            if (state.login.isAuthenticated == true) {
+            if (state.login.isAuthenticated!) {
               userToken = state.login.token;
               ChachHelper.saveData(key: 'token', value: state.login.token).then(
                 (value) {
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => GlucoLayout(
-                              name: '${state.login.username}',
-                            )),
+                      builder: (context) => GlucoLayout(
+                        name: '${state.login.username}',
+                      ),
+                    ),
                     (route) => false,
                   );
                 },
               );
-              showToast(msg: 'success', state: ToastStates.SUCCESS);
+              showToast(msg: state.login.message ?? 'Login Successful', state: ToastStates.SUCCESS);
             } else {
-              showToast(msg: 'no', state: ToastStates.ERROR);
+              print(state.login.message);
+              showToast(msg: state.login.message ?? 'Login Failed', state: ToastStates.ERROR);
             }
+          } else if (state is LoginFailure) {
+            showToast(msg: state.errMessage, state: ToastStates.ERROR);
           }
         },
         builder: (context, state) {
@@ -58,10 +63,7 @@ class LoginScreen extends StatelessWidget {
                       Center(
                         child: Text(
                           'تسجيل الدخول',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineSmall!
-                              .copyWith(),
+                          style: Theme.of(context).textTheme.headlineSmall,
                         ),
                       ),
                       const SizedBox(height: 30.0),
@@ -70,9 +72,6 @@ class LoginScreen extends StatelessWidget {
                         lable: 'أدخل الايميل',
                         controller: emailController,
                         showBorder: false,
-                        onSubmitted: (value) {
-                          emailController.text = value;
-                        },
                       ),
                       const SizedBox(height: 15.0),
                       CustomField(
@@ -82,9 +81,6 @@ class LoginScreen extends StatelessWidget {
                         lable: "ادخل الرقم السري",
                         icon: Iconsax.password_check,
                         isPass: true,
-                        onSubmitted: (value) {
-                          passWordController.text = value;
-                        },
                         suffixIcon: LoginCubit.get(context).suffix,
                         suffixPressed: () {
                           LoginCubit.get(context).changePasswordVisibility();
@@ -96,7 +92,7 @@ class LoginScreen extends StatelessWidget {
                           GestureDetector(
                             child: const Text("هل نسيت كلمة السر؟"),
                             onTap: () {},
-                          )
+                          ),
                         ],
                       ),
                       const SizedBox(height: 30.0),
@@ -110,8 +106,9 @@ class LoginScreen extends StatelessWidget {
                               onTap: () {
                                 if (formKey.currentState!.validate()) {
                                   LoginCubit.get(context).userLogin(
-                                      email: emailController.text,
-                                      password: passWordController.text);
+                                    email: emailController.text,
+                                    password: passWordController.text,
+                                  );
                                 }
                               },
                             ),
@@ -119,16 +116,15 @@ class LoginScreen extends StatelessWidget {
                       OutlinedButton(
                         style: OutlinedButton.styleFrom(
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30)),
+                            borderRadius: BorderRadius.circular(30),
+                          ),
                           padding: const EdgeInsets.all(16),
                         ),
                         onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) {
-                                return RegisterScreen();
-                              },
+                              builder: (context) => RegisterScreen(),
                             ),
                           );
                         },

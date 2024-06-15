@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
 
 class DefineInReservation extends StatelessWidget {
   const DefineInReservation({
-    super.key,
+    super.key, required this.showDoc,
   });
-
+  final DoctorModel showDoc;
   @override
   Widget build(BuildContext context) {
     return Row(
-      // crossAxisAlignment: CrossAxisAlignment.center,
-      // mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Expanded(
           child: Image.asset(
@@ -17,27 +16,24 @@ class DefineInReservation extends StatelessWidget {
           ),
         ),
         Container(
-          // color: const Color(0xFFFFFFFF),
-          child: const Column(
+          child:  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                // mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    "دكتور سعيد الحسينى",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    showDoc.userName.toString(),
+                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
               Text(
-                "استشارى باطنه",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                showDoc.doctorSpecialization.toString(),
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
               Row(
-                // mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 8,
                     backgroundColor: Color(0xFF000000),
                     child: Icon(
@@ -46,16 +42,16 @@ class DefineInReservation extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 8,
                   ),
                   Text(
-                    'شارع جمال عبد الناصر  ',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                    showDoc.address.toString(),
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
                 ],
               ),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   CircleAvatar(
@@ -79,7 +75,7 @@ class DefineInReservation extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 8,
                     backgroundColor: Color(0xFF000000),
                     child: Icon(
@@ -88,12 +84,12 @@ class DefineInReservation extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 8,
                   ),
                   Text(
-                    'سعر الكشف  : 130 ج',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                    'سعر الكشف  : ${showDoc.detectionPrice} ج',
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
                 ],
               ),

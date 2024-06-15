@@ -1,4 +1,5 @@
-import 'package:gluco/features/auth/data/auth/auth.dart';
+
+import 'package:gluco/features/auth/data/auth.dart';
 
 sealed class LoginState {}
 

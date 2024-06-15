@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/core/helper/api.dart';
 import 'package:gluco/core/widgets/network.dart';
-import 'package:gluco/features/auth/data/auth/auth.dart';
+import 'package:gluco/features/auth/data/auth.dart';
 import 'package:gluco/features/auth/presentation/manager/login/login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
@@ -14,16 +14,15 @@ class LoginCubit extends Cubit<LoginState> {
     required String email,
     required String password,
   }) {
-    Auth loginModel;
     emit(LoginLoaded());
     DioHelper().postData(
       url: LOGIN,
       data: {
-        'Email': email,
-        'Password': password,
+        'email': email,
+        'password': password,
       },
     ).then((value) {
-      loginModel = Auth.fromJson(value.data);
+      final loginModel = Auth.fromJson(value.data);
       emit(LoginSuccess(loginModel));
     }).catchError((onError) {
       print('Error in login cubit: ${onError.toString()}');
@@ -36,8 +35,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   void changePasswordVisibility() {
     isObsecure = !isObsecure;
-    suffix =
-        isObsecure ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+    suffix = isObsecure ? Icons.visibility_outlined : Icons.visibility_off_outlined;
     emit(LoginchangePasswordVisibility());
   }
 }

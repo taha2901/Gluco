@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
 import 'package:gluco/features/home/presentation/view/widgets/card_of_search.dart';
 import 'package:gluco/features/home/presentation/view/widgets/tick_heart.dart';
 import 'package:gluco/features/home/presentation/view/widgets/tick_services.dart';
@@ -12,20 +11,6 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Assuming you have a list of DoctorModel objects
-    final List<DoctorModel> doctorModels = [
-      DoctorModel(
-        userName: 'دكتور احمد ضاحي',
-        phone: '0123456789',
-        email: 'ahmed@example.com',
-        address: 'Cairo, Egypt',
-        appointment: 'السبت / 7 مساءا',
-        detectionPrice: 90,
-        doctorSpecialization: 'امراض القلب',
-      ),
-      // Add more doctor models here
-    ];
-
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
@@ -93,8 +78,8 @@ class HomeView extends StatelessWidget {
                 height: 8,
               ),
             ),
-            SliverToBoxAdapter(
-              child: TicksOfServices(doctorModels: doctorModels),
+            const SliverToBoxAdapter(
+              child: TicksOfServices(),
             ),
           ],
         ),

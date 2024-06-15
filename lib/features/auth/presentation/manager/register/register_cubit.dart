@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/core/helper/api.dart';
 import 'package:gluco/core/widgets/network.dart';
-import 'package:gluco/features/auth/data/auth/auth.dart';
+import 'package:gluco/features/auth/data/auth.dart';
 import 'package:gluco/features/auth/presentation/manager/register/register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
@@ -22,10 +22,10 @@ class RegisterCubit extends Cubit<RegisterState> {
     DioHelper().postData(
       url: REGISTER,
       data: {
-        'Username': username,
-        'Email': email,
-        'Phone': phone,
-        'Password': password,
+        'username': username,
+        'email': email,
+        'phone': phone,
+        'password': password,
         'confirmpassword': confirmpPassword,
       },
     ).then((value) {

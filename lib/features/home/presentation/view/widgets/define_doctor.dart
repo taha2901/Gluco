@@ -1,11 +1,12 @@
-
 import 'package:flutter/material.dart';
+import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
 
 class defineDoctor extends StatelessWidget {
   const defineDoctor({
     super.key,
+    required this.showDoc,
   });
-
+  final DoctorModel showDoc;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -14,21 +15,28 @@ class defineDoctor extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Icon(Icons.delete,color: Colors.red,),
-            const Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+            Expanded(
+              child: Image.asset(
+                "assets/DoctorSaied.png",
+              ),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "د سعيد محمد ",
-                  style: TextStyle(
+                  showDoc.userName.toString(),
+                  style: const TextStyle(
                       fontWeight: FontWeight.w700,
                       fontStyle: FontStyle.normal,
                       fontSize: 15,
                       color: Color(0xFF000000)),
                 ),
                 Text(
-                  "استشاري جراحه و المسالك البوليه",
-                  style: TextStyle(
+                  showDoc.doctorSpecialization.toString(),
+                  style: const TextStyle(
                       fontWeight: FontWeight.w600,
                       fontStyle: FontStyle.normal,
                       fontSize: 15,
@@ -37,63 +45,62 @@ class defineDoctor extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
+                    const Icon(
+                      Icons.location_on_sharp,
+                      size: 15,
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
                     Text(
-                      "شارع جمال عبدالناصر",
-                      style: TextStyle(
+                      showDoc.address.toString(),
+                      style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           fontStyle: FontStyle.normal,
                           fontSize: 15,
                           color: Color(0xFF000000)),
                     ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    Icon(
-                      Icons.location_on_sharp,
-                      size: 15,
-                    ),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(
-                      "7:00 pm : ",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontStyle: FontStyle.normal,
-                          fontSize: 15,
-                          color: Color(0xFF000000)),
-                    ),
-                    Text(
-                      "سبت و ثلاثاء",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontStyle: FontStyle.normal,
-                          fontSize: 15,
-                          color: Color(0xFF000000)),
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    Icon(
+                    const Icon(
                       Icons.calendar_today,
                       size: 15,
                     ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
+                    const SizedBox(
+                      width: 8,
+                    ),
                     Text(
-                      "130 L.E : ",
-                      style: TextStyle(
+                      showDoc.appointment.toString(),
+                      style: const TextStyle(
                           fontWeight: FontWeight.w500,
                           fontStyle: FontStyle.normal,
                           fontSize: 15,
                           color: Color(0xFF000000)),
                     ),
-                    Text(
+                    // Text(
+                    //   " : 7:00 مساءا  ",
+                    //   style: TextStyle(
+                    //       fontWeight: FontWeight.w500,
+                    //       fontStyle: FontStyle.normal,
+                    //       fontSize: 15,
+                    //       color: Color(0xFF000000)),
+                    // ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    const Icon(
+                      Icons.shopping_cart_checkout_sharp,
+                      size: 15,
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    const Text(
                       "سعر الكشف",
                       style: TextStyle(
                           fontWeight: FontWeight.w400,
@@ -101,25 +108,25 @@ class defineDoctor extends StatelessWidget {
                           fontSize: 15,
                           color: Color(0xFF000000)),
                     ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    Icon(
-                      Icons.shopping_cart_checkout_sharp,
-                      size: 15,
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
                     Text(
-                      "20 minute : ",
-                      style: TextStyle(
+                      " : ${showDoc.detectionPrice.toString()} جنيه ",
+                      style: const TextStyle(
                           fontWeight: FontWeight.w500,
                           fontStyle: FontStyle.normal,
                           fontSize: 15,
                           color: Color(0xFF000000)),
+                    ),
+                  ],
+                ),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Icon(
+                      Icons.timer_outlined,
+                      size: 15,
+                    ),
+                    SizedBox(
+                      width: 8,
                     ),
                     Text(
                       "مده الانتظار",
@@ -129,12 +136,13 @@ class defineDoctor extends StatelessWidget {
                           fontSize: 15,
                           color: Color(0xFF000000)),
                     ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    Icon(
-                      Icons.timer_outlined,
-                      size: 15,
+                    Text(
+                      " : 20 دقيقه",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontStyle: FontStyle.normal,
+                          fontSize: 15,
+                          color: Color(0xFF000000)),
                     ),
                   ],
                 ),
@@ -143,10 +151,9 @@ class defineDoctor extends StatelessWidget {
             const SizedBox(
               width: 6,
             ),
-            Expanded(
-              child: Image.asset(
-                "assets/DoctorSaied.png",
-              ),
+            const Icon(
+              Icons.delete,
+              color: Colors.red,
             ),
           ],
         ),

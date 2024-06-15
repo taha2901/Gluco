@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gluco/features/settings/presentation/view/widget/add_person.dart';
-import 'package:gluco/features/settings/presentation/view/widget/custom_widget.dart';
 import 'package:gluco/features/settings/presentation/view/widget/medical_recoer.dart';
 import 'package:gluco/features/settings/presentation/view/widget/modify_personal_detail.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class FormProfile extends StatelessWidget {
   const FormProfile({
@@ -14,154 +14,131 @@ class FormProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomWidget(
-          onPressed: () {
+        GestureDetector(
+          onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const PersonalDetails()),
             );
           },
-          icon: Icons.person,
-          text: 'تفاصيل شخصيه',
+          child: const Card(
+            child: ListTile(
+              leading: Icon(Iconsax.user),
+              title: Text('تفاصيل شخصيه'),
+            ),
+          ),
         ),
-        const SizedBox(
-          height: 10,
-        ),
-        // CustomTextField(
-        //   showBorder: false,
-        //   hint: 'سجلاتي الطبيه',
-        //   suffixIcon: FontAwesomeIcons.fileText,
-        //   prefixIcon: IconButton(
-        //       onPressed: () {
-        //         // Navigator.pushNamed(context, MedicalRecords.id);
-        //       },
-        //       icon: const Icon(FontAwesomeIcons.arrowLeft)),
-        // ),
-        CustomWidget(
-          onPressed: () {
+        GestureDetector(
+          onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const MedicalRecords()),
             );
           },
-          icon: Icons.medical_services_rounded,
-          text: 'سجلاتي الطبيه',
+          child: const Card(
+            child: ListTile(
+              leading: Icon(
+                Icons.medical_services_rounded,
+              ),
+              title: Text('سجلاتي الطبيه'),
+            ),
+          ),
         ),
-        const SizedBox(
-          height: 10,
-        ),
-        // CustomTextField(
-        //   showBorder: false,
-        //   hint: 'اضافه اشخاص للمتابعه',
-        //   suffixIcon: FontAwesomeIcons.plusSquare,
-        //   prefixIcon: IconButton(
-        //       onPressed: () {
-        //         // Navigator.pushNamed(context, AddPerson.id);
-        //       },
-        //       icon: const Icon(FontAwesomeIcons.arrowLeft)),
-        // ),
-        CustomWidget(
-          onPressed: () {
+        GestureDetector(
+          onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const AddPerson()),
             );
           },
-          icon: FontAwesomeIcons.plusSquare,
-          text: 'اضافه اشخاص للمتابعه',
+          child: const Card(
+            child: ListTile(
+              leading: Icon(
+                Iconsax.add_square,
+              ),
+              title: Text('اضافه اشخاص للمتابعه'),
+            ),
+          ),
         ),
-        const SizedBox(
-          height: 10,
-        ),
-        // CustomTextField(
-        //   showBorder: false,
-        //   hint: 'الاشعارات',
-        //   suffixIcon: FontAwesomeIcons.bell,
-        //   prefixIcon: IconButton(
-        //       onPressed: () {
-        //         // Navigator.pushNamed(context, NotificationDetials.id);
-        //       },
-        //       icon: const Icon(FontAwesomeIcons.arrowLeft)),
-        // ),
-        CustomWidget(
-          onPressed: () {
-            // Navigator.pushNamed(context, NotificationDetials.id);
+        GestureDetector(
+          onTap: () {
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => const NotificationDetials()),
+            // );
           },
-          icon: FontAwesomeIcons.bell,
-          text: 'الاشعارات',
+          child: const Card(
+            child: ListTile(
+              leading: Icon(
+                FontAwesomeIcons.bell,
+              ),
+              title: Text('الاشعارات'),
+            ),
+          ),
         ),
-        const SizedBox(
-          height: 10,
-        ),
-        // CustomTextField(
-        //   showBorder: false,
-        //   hint: 'طرق الدفع',
-        //   suffixIcon: FontAwesomeIcons.creditCard,
-        //   prefixIcon: IconButton(
-        //       onPressed: () {}, icon: const Icon(FontAwesomeIcons.arrowLeft)),
-        // ),
-
-        CustomWidget(
-          // onPressed: () {
-          //   // Navigator.pushNamed(context, NotificationDetials.id);
-          // },
-          icon: FontAwesomeIcons.creditCard,
-          text: 'طرق الدفع',
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        // CustomTextField(
-        //   showBorder: false,
-        //   hint: 'المفضله',
-        //   suffixIcon: FontAwesomeIcons.heart,
-        //   prefixIcon: IconButton(
-        //       onPressed: () {
-        //         //  Navigator.pushNamed(context, StoreFavourities.id);
-        //       },
-        //       icon: const Icon(FontAwesomeIcons.arrowLeft)),
-        // ),
-
-        CustomWidget(
-          onPressed: () {
-            // Navigator.pushNamed(context, StoreFavourities.id);
+        GestureDetector(
+          onTap: () {
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => const NotificationDetials()),
+            // );
           },
-          icon: FontAwesomeIcons.heart,
-          text: 'المفضله',
+          child: const Card(
+            child: ListTile(
+              leading: Icon(
+                FontAwesomeIcons.creditCard,
+              ),
+              title: Text('طرق الدفع'),
+            ),
+          ),
         ),
-        const SizedBox(
-          height: 10,
+        GestureDetector(
+          onTap: () {
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => const StoreFavourities()),
+            // );
+          },
+          child: const Card(
+            child: ListTile(
+              leading: Icon(
+                Iconsax.heart,
+              ),
+              title: Text('المفضله'),
+            ),
+          ),
         ),
-        // CustomTextField(
-        //   showBorder: false,
-        //   hint: 'المساعده و الدعم',
-        //   suffixIcon: FontAwesomeIcons.phone,
-        //   prefixIcon: IconButton(
-        //       onPressed: () {}, icon: const Icon(FontAwesomeIcons.arrowLeft)),
-        // ),
-        CustomWidget(
-          // onPressed: () {
-          //   // Navigator.pushNamed(context, NotificationDetials.id);
-          // },
-          icon: FontAwesomeIcons.phone,
-          text: 'المساعده و الدعم',
+        GestureDetector(
+          onTap: () {
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => const StoreFavourities()),
+            // );
+          },
+          child: const Card(
+            child: ListTile(
+              leading: Icon(
+                Icons.phone,
+              ),
+              title: Text('المساعده و الدعم'),
+            ),
+          ),
         ),
-        const SizedBox(
-          height: 10,
-        ),
-        // CustomTextField(
-        //   showBorder: false,
-        //   hint: ' تسجيل الخروج',
-        //   suffixIcon: Icons.login,
-        //   prefixIcon: IconButton(
-        //       onPressed: () {}, icon: const Icon(FontAwesomeIcons.arrowLeft)),
-        // ),
-        CustomWidget(
-          // onPressed: () {
-          //   // Navigator.pushNamed(context, NotificationDetials.id);
-          // },
-          icon: Icons.logout,
-          text: ' تسجيل الخروج',
+        GestureDetector(
+          onTap: () {
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => const StoreFavourities()),
+            // );
+          },
+          child: const Card(
+            child: ListTile(
+              leading: Icon(
+                Icons.logout,
+              ),
+              title: Text(' تسجيل الخروج'),
+            ),
+          ),
         ),
       ],
     );
