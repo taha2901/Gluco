@@ -23,7 +23,7 @@ class LayoutCubit extends Cubit<LayoutState> {
     const ShowAppointment(),
     const Activities(),
     const MyBot(),
-    const ProfileScreen(),
+    // const ProfileScreen(),
   ];
 
   void changeBottomNavBar(int index) {
@@ -52,9 +52,9 @@ class LayoutCubit extends Cubit<LayoutState> {
       icon: Icon(Icons.chat),
       label: 'جلوكو بوت',
     ),
-    const BottomNavigationBarItem(
-      icon: Icon(Iconsax.profile_2user),
-      label: 'بروفايل',
-    ),
+    // const BottomNavigationBarItem(
+    //   icon: Icon(Iconsax.profile_2user),
+    //   label: 'بروفايل',
+    // ),
   ];
 }
