@@ -7,6 +7,7 @@ import 'package:gluco/features/chat_bot/my_bot.dart';
 import 'package:gluco/features/favourite/presentation/view/favourite.dart';
 import 'package:gluco/features/home/presentation/view/home_view.dart';
 import 'package:gluco/features/settings/presentation/view/profile_screen.dart';
+import 'package:gluco/features/social/presentation/view/social_view.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 part 'layout_state.dart';
@@ -23,7 +24,7 @@ class LayoutCubit extends Cubit<LayoutState> {
     const ShowAppointment(),
     const Activities(),
     const MyBot(),
-    // const ProfileScreen(),
+    // const SocialView(),
   ];
 
   void changeBottomNavBar(int index) {
@@ -53,8 +54,8 @@ class LayoutCubit extends Cubit<LayoutState> {
       label: 'جلوكو بوت',
     ),
     // const BottomNavigationBarItem(
-    //   icon: Icon(Iconsax.profile_2user),
-    //   label: 'بروفايل',
+    //   icon: Icon(Iconsax.face),
+    //   label: 'social',
     // ),
   ];
 }

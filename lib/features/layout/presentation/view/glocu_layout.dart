@@ -3,11 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/features/chat/presentation/view/chat_home_screen.dart';
 import 'package:gluco/features/layout/presentation/manager/layout_cubit/layout_cubit.dart';
 import 'package:gluco/features/settings/presentation/view/profile_screen.dart';
+import 'package:gluco/features/social/presentation/view/social_view.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:gluco/features/auth/data/auth.dart';
 
 class GlucoLayout extends StatelessWidget {
-  final String? name;
-  const GlucoLayout({super.key, this.name});
+  final Auth auth;
+  const GlucoLayout({super.key, required this.auth});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,8 @@ class GlucoLayout extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ProfileScreen()),
+                            builder: (context) => const ProfileScreen(),
+                          ),
                         );
                       },
                       child: const CircleAvatar(
@@ -37,39 +40,46 @@ class GlucoLayout extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // Expanded(
-                  //   child: Padding(
-                  //     padding: EdgeInsets.all(8.0),
-                  //     child: Text(
-                  //       'أهلا ${name}',
-                  //       style: const TextStyle(
-                  //           color: Colors.black,
-                  //           fontSize: 13,
-                  //           fontWeight: FontWeight.w600),
-                  //     ),
-                  //   ),
-                  // ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'أهلا ${auth.username}',
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
               actions: [
                 MaterialButton(
-                  onPressed: () {},
-                  child: const Icon(Iconsax.notification),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SocialView(auth: auth),
+                      ),
+                    );
+                  },
+                  child: const Icon(Iconsax.facebook),
                 ),
                 MaterialButton(
                   onPressed: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ChatHomeScreen(),
-                        ));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ChatHomeScreen(),
+                      ),
+                    );
                   },
                   child: const Icon(Iconsax.messages_1_copy),
                 )
               ],
             ),
-           
-           
             body: cubit.screens[cubit.currentIndex],
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: cubit.currentIndex,

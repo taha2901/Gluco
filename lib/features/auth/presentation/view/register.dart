@@ -41,7 +41,7 @@ class RegisterScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => GlucoLayout(
-                        name: '${state.registerModel.username}',
+                        auth: state.registerModel,
                       ),
                     ),
                     (route) => false,

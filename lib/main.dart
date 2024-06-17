@@ -6,9 +6,11 @@ import 'package:gluco/core/widgets/network.dart';
 import 'package:gluco/core/widgets/onboarding.dart';
 // import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:gluco/features/auth/data/auth.dart';
 import 'package:gluco/features/auth/presentation/view/login.dart';
 import 'package:gluco/features/home/presentation/manager/cubit/doctor_cubit.dart';
 import 'package:gluco/features/layout/presentation/view/glocu_layout.dart';
+import 'package:gluco/features/social/presentation/manager/get_posts/social_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +26,8 @@ void main() async {
 
   if (onBoarding != null) {
     if (userToken != null) {
-      widget = const GlucoLayout();
+      Auth auth = Auth(/* Initialize Auth object with required parameters */);
+      widget =  GlucoLayout(auth: auth,);
     } else {
       widget = const LoginScreen();
     }
@@ -55,30 +58,37 @@ class Gluco extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      
-        create: (context) => DoctorCubit()..getDoctors(),
-        child: MaterialApp(
-          locale: const Locale('ar'),
-          supportedLocales: const [
-            Locale('en'), // English
-            Locale('ar'), // Arabic
-          ],
-          localizationsDelegates: const [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          localeResolutionCallback: (locale, supportedLocales) {
-            for (var supportedLocale in supportedLocales) {
-              if (supportedLocale.languageCode == locale?.languageCode) {
-                return supportedLocale;
-              }
-            }
-            return supportedLocales.first;
-          },
-          debugShowCheckedModeBanner: false,
-          home: startWidget,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => DoctorCubit()..getDoctors(),
         ),
-      );  }
+        BlocProvider(
+          create: (context) => SocialCubit()..getPosts(),
+        ),
+      ],
+      child: MaterialApp(
+        locale: const Locale('ar'),
+        supportedLocales: const [
+          Locale('en'), // English
+          Locale('ar'), // Arabic
+        ],
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        localeResolutionCallback: (locale, supportedLocales) {
+          for (var supportedLocale in supportedLocales) {
+            if (supportedLocale.languageCode == locale?.languageCode) {
+              return supportedLocale;
+            }
+          }
+          return supportedLocales.first;
+        },
+        debugShowCheckedModeBanner: false,
+        home: startWidget,
+      ),
+    );
+  }
 }
