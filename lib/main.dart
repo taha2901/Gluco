@@ -6,6 +6,8 @@ import 'package:gluco/core/widgets/network.dart';
 import 'package:gluco/core/widgets/onboarding.dart';
 // import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:gluco/features/appointments/presentation/manager/add_medicine_cubit/add_medicine_cubit.dart';
+import 'package:gluco/features/appointments/presentation/manager/get_medicine_cubit/get_medicine_cubit.dart';
 import 'package:gluco/features/auth/data/auth.dart';
 import 'package:gluco/features/auth/presentation/view/login.dart';
 import 'package:gluco/features/home/presentation/manager/cubit/doctor_cubit.dart';
@@ -65,6 +67,12 @@ class Gluco extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => SocialCubit()..getPosts(),
+        ),
+        BlocProvider(
+          create: (context) => GetMedicineCubit()..getMedicines(),
+        ),
+         BlocProvider(
+          create: (context) => AddMedicineCubit(),
         ),
       ],
       child: MaterialApp(

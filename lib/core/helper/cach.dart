@@ -27,8 +27,20 @@ class ChachHelper {
     return sharedPreferences!.getInt('likes_$postId');
   }
 
-  static Future<void> incrementLikes({required String postId}) async {
-    int currentLikes = await getLikes(postId: postId) ?? 0;
-    await saveData(key: 'likes_$postId', value: currentLikes + 1);
+  static Future<bool?> getLikeStatus({required String postId}) async {
+    return sharedPreferences!.getBool('liked_$postId');
+  }
+
+  static Future<void> toggleLike({required String postId}) async {
+    bool? liked = await getLikeStatus(postId: postId);
+    if (liked == null || !liked) {
+      int currentLikes = await getLikes(postId: postId) ?? 0;
+      await saveData(key: 'likes_$postId', value: currentLikes + 1);
+      await saveData(key: 'liked_$postId', value: true);
+    } else {
+      int currentLikes = await getLikes(postId: postId) ?? 0;
+      await saveData(key: 'likes_$postId', value: currentLikes - 1);
+      await saveData(key: 'liked_$postId', value: false);
+    }
   }
 }

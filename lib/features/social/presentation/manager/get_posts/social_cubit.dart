@@ -25,16 +25,6 @@ class SocialCubit extends Cubit<SocialState> {
       emit(GetSocialError());
     });
   }
-
-
-  // void toggleLike({required String postId}) {
-  // final post = socialModel?.firstWhere((element) => element.id == postId);
-  // if (post != null) {
-  //   final newLikes = post.likes + (post.isLiked ? -1 : 1);
-  //   final updatedPost = post.copyWith(likes: newLikes, isLiked: !post.isLiked);
-  //   socialModel?[socialModel!.indexOf(post)] = updatedPost;
-  //   emit(ToggleLikeSuccess(updatedPost));
-  // }
 }
 
 

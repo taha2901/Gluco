@@ -3,7 +3,7 @@ class AddMedicineModel {
 	String? name;
 	String? dosage;
 	String? times;
-	DateTime? date;
+	String? date;
 	String? userId;
 	List<dynamic>? users;
 
@@ -23,9 +23,7 @@ class AddMedicineModel {
 			name: json['name'] as String?,
 			dosage: json['dosage'] as String?,
 			times: json['times'] as String?,
-			date: json['date'] == null
-						? null
-						: DateTime.parse(json['date'] as String),
+			date: json['date'] as String?,
 			userId: json['user_Id'] as String?,
 			users: json['users'] as List<dynamic>?,
 		);
@@ -38,7 +36,7 @@ class AddMedicineModel {
 				'name': name,
 				'dosage': dosage,
 				'times': times,
-				'date': date?.toIso8601String(),
+				'date': date,
 				'user_Id': userId,
 				'users': users,
 			};

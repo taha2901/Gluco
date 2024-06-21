@@ -9,10 +9,6 @@ class DoctorCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 8),
       child: Card(
-        // decoration: BoxDecoration(
-        //   color: Colors.grey,
-        //   borderRadius: BorderRadius.circular(15),
-        // ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

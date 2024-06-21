@@ -6,11 +6,9 @@ import 'package:gluco/features/settings/presentation/view/profile_screen.dart';
 import 'package:gluco/features/social/presentation/view/social_view.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:gluco/features/auth/data/auth.dart';
-
 class GlucoLayout extends StatelessWidget {
   final Auth auth;
   const GlucoLayout({super.key, required this.auth});
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -37,19 +35,6 @@ class GlucoLayout extends StatelessWidget {
                       child: const CircleAvatar(
                         radius: 20,
                         // child: Image.asset('assets/1.jpg'),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'أهلا ${auth.username}',
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600,
-                        ),
                       ),
                     ),
                   ),

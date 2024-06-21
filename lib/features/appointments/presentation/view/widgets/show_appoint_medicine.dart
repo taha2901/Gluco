@@ -1,42 +1,43 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gluco/features/appointments/data/get_medicine_model/get_medicine_model.dart';
 
 class ShowAppointMedicine extends StatelessWidget {
   const ShowAppointMedicine({
-    super.key,
+    super.key, this.medicineModel,
   });
-
+  final GetMedicineModel? medicineModel;
   @override
   Widget build(BuildContext context) {
-    return const Card(
+    return  Card(
         color: Colors.grey,
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 20),
+          padding: const EdgeInsets.symmetric(vertical: 20),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CircleAvatar(
+              const CircleAvatar(
                 backgroundColor: Colors.amber,
                 radius: 25,
-                backgroundImage: AssetImage('assets/images/pose_2.png'),
+                // backgroundImage: AssetImage('assets/images/pose_2.png'),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 18,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'انتينال',
+                    medicineModel!.name.toString(),
                     style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  Text('قبل الغذاء كبسوله واحده الساعه 4 مساءا'),
+                  Text(medicineModel!.dosage.toString()),
                 ],
               ),
-              Spacer(),
-              Padding(
+              const Spacer(),
+              const Padding(
                 padding: EdgeInsets.only(left: 10),
                 child: Icon(FontAwesomeIcons.ellipsis),
               ),

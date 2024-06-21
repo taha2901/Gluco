@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:gluco/core/helper/cach.dart';
 import 'package:gluco/features/auth/presentation/view/login.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -17,14 +18,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     OnBoardingModel(
         body:
             'اعثر على أفضل الأطباء في منطقتك واحجز موعدًا بكل سهولة للحصول على الرعاية الصحية الممتازة التي تستحقها.',
-        image: 'assets/1.jpg'),
+        image: 'assets/images/1.png'),
     OnBoardingModel(
         body: 'استمتع بمتابعه مستوي السكر المناسب لعيشه حياه طبيعيه ',
-        image: 'assets/2.jpg'),
+        image: 'assets/images/2.png'),
     OnBoardingModel(
         body:
             'الاهتمام بالرياضه هتفيدك و تظبط مستوي السكر تابع مع مستويات الرياضه و اوصل للهدف الي يظبط مستوي السكر ',
-        image: 'assets/3.jpg'),
+        image: 'assets/images/3.png'),
   ];
   bool islast = false;
   void submit() {
@@ -50,8 +51,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           children: [
             Expanded(
               child: PageView.builder(
-                // scrollDirection:
-                //     axisDirectionToAxis(flipAxisDirection(AxisDirection.right)),
                 physics: const BouncingScrollPhysics(),
                 controller: boardController,
                 onPageChanged: (int index) {
@@ -91,7 +90,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       'تخطي',
                     ),
                   ),
-                  
                   SmoothPageIndicator(
                     controller: boardController,
                     count: board.length,
@@ -103,8 +101,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       spacing: 5,
                     ),
                   ),
-                  // const Spacer(),
-
                   FloatingActionButton(
                     onPressed: () {
                       if (islast) {
@@ -165,37 +161,35 @@ class BuildBoardingItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        ClipPath(
-          clipper: CurveClipper(),
-          child: Image(
-            height: MediaQuery.of(context).size.height / 2,
-            width: double.infinity,
-            fit: BoxFit.cover,
-            image: AssetImage(board.image),
-          ),
-        ),
-        Positioned(
-          bottom: 110,
-          left: 0,
-          right: 0,
-          child: Container(
-            decoration: const BoxDecoration(),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                children: [
-                  Text(
-                      textAlign: TextAlign.center,
-                      board.body,
-                      style: Theme.of(context).textTheme.headlineSmall),
-                ],
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.07,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Image(
+                height: MediaQuery.of(context).size.height / 2,
+                width: double.infinity,
+                fit: BoxFit.fill,
+                image: AssetImage(board.image),
               ),
             ),
-          ),
+            const SizedBox(height: 16),
+            Text(
+              board.body,
+              style: Theme.of(context).textTheme.headlineSmall,
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
