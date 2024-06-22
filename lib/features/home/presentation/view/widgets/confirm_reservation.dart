@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
+import 'package:gluco/features/home/data/doctor/doctor.model.dart';
 import 'package:gluco/features/home/presentation/view/widgets/define_doctor.dart';
 import 'package:gluco/features/home/presentation/view/widgets/form_reservation.dart';
 
 class ConfirmReservation extends StatelessWidget {
-  const ConfirmReservation({super.key, required this.showDoc});
+  const ConfirmReservation({super.key, required this.showDoc, required this.doctorId});
   final DoctorModel showDoc;
+  final int doctorId;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +31,7 @@ class ConfirmReservation extends StatelessWidget {
                 height: 30,
               ),
               formReservation(
+                doctorId: doctorId,
                 showDoc: showDoc,
               ),
             ],

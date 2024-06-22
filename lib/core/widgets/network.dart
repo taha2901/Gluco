@@ -4,10 +4,14 @@ const REGISTER = 'Auth/register';
 
 const HOME_Doctor = 'Doctors/SelectDoctors';
 
-const GET_POSTS = 'Posts';
+const POSTS = 'Posts';
 
 const GET_MEDICINES = 'Medicine/Get medicines for user';
 
 const ADD_Medicine = 'Medicine/AddMedicines';
+
+const Add_Reservation = 'Doctors/Reservation';
+
+const Add_Observer = 'AddObserver/AddObserver';
 
 String? userToken = '';

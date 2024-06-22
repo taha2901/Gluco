@@ -1,88 +1,108 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/core/widgets/custom_text_field.dart';
-import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
+import 'package:gluco/features/home/data/doctor/doctor.model.dart';
+import 'package:gluco/features/home/presentation/manager/reservation_cubit/reservation_cubit.dart';
 import 'package:gluco/features/home/presentation/view/widgets/DoctorReservation.dart';
 import 'package:gluco/features/home/presentation/view/widgets/cusrom_button.dart';
 
-class formReservation extends StatefulWidget {
-  const formReservation({super.key, required this.showDoc});
+class formReservation extends StatelessWidget {
+  const formReservation({super.key, required this.showDoc, required this.doctorId});
   final DoctorModel showDoc;
-  @override
-  State<formReservation> createState() => _formReservationState();
-}
+  final int doctorId;
 
-// ignore: camel_case_types
-class _formReservationState extends State<formReservation> {
-  String? selectedOption;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CustomTextField(
-          hint: 'أدخل اسمك',
-        ),
-        const SizedBox(
-          height: 16,
-        ),
-        Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+    var nameController = TextEditingController();
+    var sexController = TextEditingController();
+    var ageController = TextEditingController();
+    var phoneController = TextEditingController();
+
+    return BlocConsumer<ReservationCubit, ReservationState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Form(
+          key: formKey,
+          child: Column(
+            children: [
+              CustomTextField(
+                hint: 'أدخل اسمك',
+                controller: nameController,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
                 children: [
-                  CustomTextField(
-                    hint: selectedOption == null ? 'الجنس' : null,
-                    suffixtext: selectedOption,
-                    dropdownItems: const ['ذكر', 'أنثي'],
-                    onDropdownChanged: (String? value) {
-                      setState(() {
-                        selectedOption = value; // تحديث القيمة المختارة
-                      });
-                    },
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        CustomTextField(
+                          hint: 'الجنس',
+                          controller: sexController,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        CustomTextField(
+                          hint: 'أدخل عمرك',
+                          controller: ageController,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  CustomTextField(
-                    hint: 'أدخل عمرك',
-                  ),
-                ],
+              const SizedBox(
+                height: 16,
               ),
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 16,
-        ),
-        CustomTextField(
-          hint: 'أدخل رقم تلفونك',
-        ),
-        const SizedBox(
-          height: 32,
-        ),
-        CustomButtonHome(
-          text: 'التالي',
-          color: Colors.blue,
-          textColor: Colors.white,
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DoctorReservation(
-                    showDoc: widget.showDoc,
-                  ),
-                ));
-          },
-          borderRadius: 4,
-        ),
-      ],
+              CustomTextField(
+                hint: 'أدخل رقم تلفونك',
+                controller: phoneController,
+              ),
+              const SizedBox(
+                height: 32,
+              ),
+              state is ReservationLoaded
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : CustomButtonHome(
+                      text: 'التالي',
+                      color: Colors.blue,
+                      textColor: Colors.white,
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DoctorReservation(
+                                showDoc: showDoc,
+                                username: nameController.text,
+                                phone: phoneController.text,
+                                age: ageController.text,
+                                sex: sexController.text,
+                                doctorId: doctorId,
+                              ),
+                            ),
+                          );
+                        }
+                      },
+                      borderRadius: 4,
+                    ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

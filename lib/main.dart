@@ -10,7 +10,8 @@ import 'package:gluco/features/appointments/presentation/manager/add_medicine_cu
 import 'package:gluco/features/appointments/presentation/manager/get_medicine_cubit/get_medicine_cubit.dart';
 import 'package:gluco/features/auth/data/auth.dart';
 import 'package:gluco/features/auth/presentation/view/login.dart';
-import 'package:gluco/features/home/presentation/manager/cubit/doctor_cubit.dart';
+import 'package:gluco/features/home/presentation/manager/dooctor_cubit/doctor_cubit.dart';
+import 'package:gluco/features/home/presentation/manager/reservation_cubit/reservation_cubit.dart';
 import 'package:gluco/features/layout/presentation/view/glocu_layout.dart';
 import 'package:gluco/features/social/presentation/manager/get_posts/social_cubit.dart';
 
@@ -29,7 +30,9 @@ void main() async {
   if (onBoarding != null) {
     if (userToken != null) {
       Auth auth = Auth(/* Initialize Auth object with required parameters */);
-      widget =  GlucoLayout(auth: auth,);
+      widget = GlucoLayout(
+        auth: auth,
+      );
     } else {
       widget = const LoginScreen();
     }
@@ -71,8 +74,11 @@ class Gluco extends StatelessWidget {
         BlocProvider(
           create: (context) => GetMedicineCubit()..getMedicines(),
         ),
-         BlocProvider(
+        BlocProvider(
           create: (context) => AddMedicineCubit(),
+        ),
+        BlocProvider<ReservationCubit>(
+          create: (context) => ReservationCubit(),
         ),
       ],
       child: MaterialApp(

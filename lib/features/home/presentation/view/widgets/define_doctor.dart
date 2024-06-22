@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
+import 'package:gluco/features/home/data/doctor/doctor.model.dart';
 
 class defineDoctor extends StatelessWidget {
   const defineDoctor({
@@ -35,7 +35,7 @@ class defineDoctor extends StatelessWidget {
                       color: Color(0xFF000000)),
                 ),
                 Text(
-                  showDoc.doctorSpecialization.toString(),
+                  showDoc.doctorspecialization.toString(),
                   style: const TextStyle(
                       fontWeight: FontWeight.w600,
                       fontStyle: FontStyle.normal,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
+import 'package:gluco/features/home/data/doctor/doctor.model.dart';
 
 class DoctorCard extends StatelessWidget {
   const DoctorCard({super.key, required this.doc});
@@ -14,7 +14,7 @@ class DoctorCard extends StatelessWidget {
           children: [
             Image.asset("assets/DoctorSaied.png"),
             Text(doc.userName.toString()),
-            Text(doc.doctorSpecialization.toString()),
+            Text(doc.doctorspecialization.toString()),
             Text(doc.address.toString()),
             Text(doc.appointment.toString()),
           ],

@@ -21,7 +21,7 @@ class AddPostCubit extends Cubit<AddPostState> {
     emit(PostSocialLoaded());
     DioHelper()
         .postData(
-            url: GET_POSTS,
+            url: POSTS,
             data: {
               'content': content,
             },

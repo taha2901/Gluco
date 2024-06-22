@@ -16,7 +16,7 @@ class SocialCubit extends Cubit<SocialState> {
 
   void getPosts() {
     emit(GetSocialLoaded());
-    DioHelper().getData(url: GET_POSTS, token: userToken).then((value) {
+    DioHelper().getData(url: POSTS, token: userToken).then((value) {
       socialModel = (value.data as List)
           .map((social) => SocialModel.fromJson(social))
           .toList();

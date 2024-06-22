@@ -4,10 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/features/activities/presentation/view/Activities.dart';
 import 'package:gluco/features/appointments/presentation/view/show_appintment.dart';
 import 'package:gluco/features/chat_bot/my_bot.dart';
-import 'package:gluco/features/favourite/presentation/view/favourite.dart';
 import 'package:gluco/features/home/presentation/view/home_view.dart';
-import 'package:gluco/features/settings/presentation/view/profile_screen.dart';
-import 'package:gluco/features/social/presentation/view/social_view.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 part 'layout_state.dart';
@@ -19,12 +16,10 @@ class LayoutCubit extends Cubit<LayoutState> {
   int currentIndex = 0;
   List<Widget> screens = [
     const HomeView(),
-    // const Category(),
-    const Favourite(),
+     Container(),
     const ShowAppointment(),
     const Activities(),
     const MyBot(),
-    // const SocialView(),
   ];
 
   void changeBottomNavBar(int index) {
@@ -38,8 +33,8 @@ class LayoutCubit extends Cubit<LayoutState> {
       label: 'الرئيسيه',
     ),
     const BottomNavigationBarItem(
-      icon: Icon(Icons.favorite),
-      label: 'المفضله',
+      icon: Icon(Icons.camera_alt_rounded),
+      label: 'camera',
     ),
     const BottomNavigationBarItem(
       icon: Icon(Iconsax.timer_start_copy),
@@ -53,9 +48,5 @@ class LayoutCubit extends Cubit<LayoutState> {
       icon: Icon(Icons.chat),
       label: 'جلوكو بوت',
     ),
-    // const BottomNavigationBarItem(
-    //   icon: Icon(Iconsax.face),
-    //   label: 'social',
-    // ),
   ];
 }

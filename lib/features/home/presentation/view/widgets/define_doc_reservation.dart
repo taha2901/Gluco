@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
+import 'package:gluco/features/home/data/doctor/doctor.model.dart';
 
 class DefineInReservation extends StatelessWidget {
   const DefineInReservation({
@@ -28,7 +28,7 @@ class DefineInReservation extends StatelessWidget {
                 ],
               ),
               Text(
-                showDoc.doctorSpecialization.toString(),
+                showDoc.doctorspecialization.toString(),
                 style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
               Row(

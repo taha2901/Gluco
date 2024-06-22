@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
+import 'package:gluco/features/home/data/doctor/doctor.model.dart';
 import 'package:gluco/features/home/presentation/view/widgets/confirm_reservation.dart';
 import 'package:gluco/features/home/presentation/view/widgets/cusrom_button.dart';
 
 class DoctorDetials extends StatelessWidget {
-  const DoctorDetials({super.key, required this.docDetails});
+  const DoctorDetials({super.key, required this.docDetails, required this.doctorId});
   final DoctorModel docDetails;
+  final int doctorId;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,7 +38,7 @@ class DoctorDetials extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(docDetails.userName.toString()),
-                      Text(docDetails.doctorSpecialization.toString()),
+                      Text(docDetails.doctorspecialization.toString()),
                       const Text('4.1  تقييم الزوار'),
                     ],
                   ),
@@ -119,7 +120,7 @@ class DoctorDetials extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) =>  ConfirmReservation(showDoc: docDetails,),
+                    builder: (context) =>  ConfirmReservation(showDoc: docDetails,doctorId: doctorId,),
                   ),
                 );
               },

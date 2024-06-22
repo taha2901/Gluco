@@ -19,6 +19,7 @@ class MyCalenderTwo extends StatelessWidget {
 
   EasyDateTimeLine _localeExample() {
     return EasyDateTimeLine(
+      
       initialDate: DateTime.now(),
       onDateChange: (selectedDate) {
         //`selectedDate` the new date selected.
