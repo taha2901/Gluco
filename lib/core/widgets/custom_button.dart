@@ -11,9 +11,10 @@ class CustomButton extends StatelessWidget {
       this.icon,
       this.width = double.infinity,
       this.height = 60.0,
-      this.circular = 30.0})
+      this.circular = 30.0,  this.controller})
       : super(key: key);
   String? text;
+  final TextEditingController? controller;
   Color? color;
   Color? textcolor;
   VoidCallback? onTap;

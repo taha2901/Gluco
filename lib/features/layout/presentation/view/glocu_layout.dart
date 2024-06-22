@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/features/chat/presentation/view/chat_home_screen.dart';
@@ -6,9 +8,13 @@ import 'package:gluco/features/settings/presentation/view/profile_screen.dart';
 import 'package:gluco/features/social/presentation/view/social_view.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:gluco/features/auth/data/auth.dart';
+
 class GlucoLayout extends StatelessWidget {
   final Auth auth;
-  const GlucoLayout({super.key, required this.auth});
+  final String? imagePath; // استلام مسار الصورة هنا
+
+  const GlucoLayout({super.key, required this.auth, this.imagePath});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -32,9 +38,13 @@ class GlucoLayout extends StatelessWidget {
                           ),
                         );
                       },
-                      child: const CircleAvatar(
+                      child: CircleAvatar(
                         radius: 20,
-                        // child: Image.asset('assets/1.jpg'),
+                        backgroundImage:
+                            imagePath != null ? FileImage(File(imagePath!)) : null,
+                        child: imagePath == null
+                            ? const Icon(Icons.person)
+                            : null,
                       ),
                     ),
                   ),

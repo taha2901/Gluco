@@ -1,4 +1,3 @@
-
 // import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -109,11 +108,8 @@
 //   }
 // }
 
-
-
-
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gluco/features/home/presentation/manager/cubit/doctor_cubit.dart';
 import 'package:gluco/features/home/presentation/view/widgets/BarApp.dart';
@@ -121,6 +117,7 @@ import 'package:gluco/features/home/presentation/view/widgets/DoctorCard.dart';
 import 'package:gluco/features/home/presentation/view/widgets/DoctorList.dart';
 import 'package:gluco/features/home/presentation/view/widgets/custom_text_field_center_text.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+
 class Doctor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -164,18 +161,27 @@ class Doctor extends StatelessWidget {
                   ),
                 ),
               ),
-              SliverToBoxAdapter(
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.24,
-                  child: ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: DoctorCubit.get(context).doctorModels.length,
-                    itemBuilder: (context, index) {
-                      return DoctorCard(doc: DoctorCubit.get(context).doctorModels[index]);
-                    },
-                  ),
-                ),
+              BlocConsumer<DoctorCubit, DoctorState>(
+                listener: (context, state) {
+                  // TODO: implement listener
+                },
+                builder: (context, state) {
+                  return  SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.24,
+                      child:State is DoctorssLoadingState ? const Center(child: CircularProgressIndicator(),) : ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: DoctorCubit.get(context).doctorModels.length,
+                        itemBuilder: (context, index) {
+                          return DoctorCard(
+                              doc:
+                                  DoctorCubit.get(context).doctorModels[index]);
+                        },
+                      ),
+                    ),
+                  );
+                },
               ),
               const SliverToBoxAdapter(
                 child: SizedBox(
@@ -202,4 +208,3 @@ class Doctor extends StatelessWidget {
     );
   }
 }
-

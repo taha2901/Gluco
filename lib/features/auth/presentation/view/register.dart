@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/core/helper/cach.dart';
@@ -9,15 +11,38 @@ import 'package:gluco/features/auth/presentation/manager/register/register_state
 import 'package:gluco/features/auth/presentation/view/widget/text_field.dart';
 import 'package:gluco/features/layout/presentation/view/glocu_layout.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 
 // ignore: must_be_immutable
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   RegisterScreen({super.key});
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  File? _file;
+  Future pickercamera() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? myfile = await picker.pickImage(source: ImageSource.camera);
+    setState(() {
+      _file = File(myfile!.path);
+    });
+  }
+
+  var imageController = TextEditingController();
+
   var emailController = TextEditingController();
+
   var passWordController = TextEditingController();
+
   var nameController = TextEditingController();
+
   var phoneController = TextEditingController();
+
   var confirmPassController = TextEditingController();
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
@@ -138,6 +163,15 @@ class RegisterScreen extends StatelessWidget {
                         },
                       ),
                       const SizedBox(
+                        height: 15.0,
+                      ),
+                      CustomButton(
+                        text: 'Upload Image',
+                        onTap: pickercamera,
+                        color: Colors.indigo,
+                        textcolor: Colors.white,
+                      ),
+                      const SizedBox(
                         height: 30.0,
                       ),
                       state is RegisterLoaded
@@ -152,12 +186,14 @@ class RegisterScreen extends StatelessWidget {
                               onTap: () {
                                 if (formKey.currentState!.validate()) {
                                   RegisterCubit.get(context).userRegister(
-                                      confirmpPassword:
-                                          confirmPassController.text,
-                                      phone: phoneController.text,
-                                      username: nameController.text,
-                                      email: emailController.text,
-                                      password: passWordController.text);
+                                    confirmpPassword:
+                                        confirmPassController.text,
+                                    phone: phoneController.text,
+                                    username: nameController.text,
+                                    email: emailController.text,
+                                    password: passWordController.text,
+                                    image: _file != null ? _file!.path : '',
+                                  );
                                 }
                               },
                             ),
