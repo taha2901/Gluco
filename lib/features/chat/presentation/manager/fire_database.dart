@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gluco/core/helper/cach.dart';
+import 'package:gluco/features/chat/data/msg_model.dart';
 import 'package:gluco/features/chat/data/room_model.dart';
+import 'package:uuid/uuid.dart';
 
 class FireData {
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -38,22 +40,22 @@ class FireData {
     }
   }
 
-  // Future sendMessage(
-  //     String uid, String message, String roomId, {String? type}) async {
-  //   String msgId = const Uuid().v1();
-  //   MessageModel msg = MessageModel(
-  //       id: msgId,
-  //       fromId: myUid,
-  //       msg: message,
-  //       createdAt: DateTime.now().millisecondsSinceEpoch.toString(),
-  //       read: "",
-  //       toId: uid,
-  //       type: type ?? 'text');
-  //   await firestore
-  //       .collection('rooms')
-  //       .doc(roomId)
-  //       .collection('messages')
-  //       .doc(msgId)
-  //       .set(msg.toJson());
-  // }
+  Future sendMessage(
+      String uid, String message, String roomId, {String? type}) async {
+    String msgId = const Uuid().v1();
+    MessageModel msg = MessageModel(
+        id: msgId,
+        fromId: myUid,
+        msg: message,
+        createdAt: DateTime.now().millisecondsSinceEpoch.toString(),
+        read: "",
+        toId: uid,
+        type: type ?? 'text');
+    await firestore
+        .collection('rooms')
+        .doc(roomId)
+        .collection('messages')
+        .doc(msgId)
+        .set(msg.toJson());
+  }
 }

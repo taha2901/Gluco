@@ -1,14 +1,21 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:gluco/features/chat/data/msg_model.dart';
+import 'package:gluco/features/chat/data/user_model.dart';
+import 'package:gluco/features/chat/presentation/manager/fire_database.dart';
+import 'package:gluco/features/chat/presentation/view/widgets/chat_msg_card.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({super.key, required this.roomId});
+  const ChatScreen({super.key, required this.roomId, required this.chatUser});
   final String roomId;
+  final ChatUser chatUser;
   @override
   State<ChatScreen> createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  TextEditingController msgCont = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,9 +23,9 @@ class _ChatScreenState extends State<ChatScreen> {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Nabil"),
+            Text(widget.chatUser.name.toString()),
             Text(
-              "Last Seen 11:28 am",
+              "Last Seen ${widget.chatUser.lastActivated}",
               style: Theme.of(context).textTheme.labelLarge,
             ),
           ],
@@ -39,46 +46,79 @@ class _ChatScreenState extends State<ChatScreen> {
         child: Column(
           children: [
             Expanded(
-                // child: ListView.builder(
-                //   reverse: true,
-                //   itemCount: 6,
-                //   itemBuilder: (context, index) {
-                //     return ChatMessageCard(
-                //       index: index,
-                //     );
-                //   },
-                // ),
-                child: Center(
-              child: GestureDetector(
-                child: Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "👋",
-                          style: Theme.of(context).textTheme.displayMedium,
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        Text(
-                          "السلام عليكم",
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            )),
+              child: StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection('rooms')
+                      .doc(widget.roomId)
+                      .collection('messages')
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      List<MessageModel> messageItems = snapshot.data!.docs
+                          .map((e) => MessageModel.fromJson(e.data()))
+                          .toList()
+                        ..sort((a, b) => b.createdAt!.compareTo(a.createdAt!));
+                      return messageItems.isNotEmpty
+                          ? ListView.builder(
+                              reverse: true,
+                              itemCount: messageItems.length,
+                              itemBuilder: (context, index) {
+                                return ChatMessageCard(
+                                  messageModel: messageItems[index],
+                                  index: index,
+                                );
+                              },
+                            )
+                          : Center(
+                              child: GestureDetector(
+                                onTap: () {
+                                  FireData().sendMessage(
+                                      widget.chatUser.id.toString(),
+                                      " 👋 السلام عليكم",
+                                      widget.roomId);
+                                },
+                                child: Card(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "👋",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .displayMedium,
+                                        ),
+                                        const SizedBox(
+                                          height: 16,
+                                        ),
+                                        Text(
+                                          "السلام عليكم",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  }),
+            ),
             Row(
               children: [
                 Expanded(
                   child: Card(
                     child: TextField(
+                      controller: msgCont,
                       maxLines: 5,
                       minLines: 1,
                       decoration: InputDecoration(
@@ -103,7 +143,20 @@ class _ChatScreenState extends State<ChatScreen> {
                     ),
                   ),
                 ),
-                IconButton.filled(onPressed: () {}, icon: const Icon(Iconsax.send_1))
+                IconButton.filled(
+                    onPressed: () {
+                      if (msgCont.text.isNotEmpty) {
+                        FireData()
+                            .sendMessage(widget.chatUser.id.toString(),
+                                msgCont.text, widget.roomId)
+                            .then((onValue) {
+                          setState(() {
+                            msgCont.text = '';
+                          });
+                        });
+                      }
+                    },
+                    icon: const Icon(Iconsax.send_1))
               ],
             )
           ],

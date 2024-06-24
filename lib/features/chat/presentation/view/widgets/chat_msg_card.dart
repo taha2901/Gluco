@@ -1,31 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:gluco/core/helper/cach.dart';
+import 'package:gluco/features/chat/data/msg_model.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:intl/intl.dart';
 
 class ChatMessageCard extends StatelessWidget {
   final int index;
+  final MessageModel messageModel;
   const ChatMessageCard({
     super.key,
     required this.index,
+    required this.messageModel,
   });
 
   @override
   Widget build(BuildContext context) {
+    final userId = ChachHelper.getData(key: 'id');
+    bool isMe = messageModel.fromId == userId;
     return Row(
-      mainAxisAlignment:
-          index % 2 == 0 ? MainAxisAlignment.end : MainAxisAlignment.start,
+      mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
       children: [
-        index % 2 == 0
-            ? IconButton(onPressed: () {}, icon: const Icon(Iconsax.message_edit))
+        isMe
+            ? IconButton(
+                onPressed: () {}, icon: const Icon(Iconsax.message_edit))
             : const SizedBox(),
         Card(
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(index % 2 == 0 ? 16 : 0),
-            bottomRight: Radius.circular(index % 2 == 0 ? 0 : 16),
+            bottomLeft: Radius.circular(isMe ? 16 : 0),
+            bottomRight: Radius.circular(isMe ? 0 : 16),
             topLeft: const Radius.circular(16),
             topRight: const Radius.circular(16),
           )),
-          color: index % 2 == 0
+          color: isMe
               ? Theme.of(context).colorScheme.background
               : Theme.of(context).colorScheme.primaryContainer,
           child: Padding(
@@ -36,11 +43,11 @@ class ChatMessageCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Messagejsdhkjhdks"),
+                  Text(messageModel.msg.toString()),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      index % 2 == 0
+                      isMe
                           ? const Icon(
                               Iconsax.tick_circle,
                               color: Colors.blueAccent,
@@ -48,7 +55,10 @@ class ChatMessageCard extends StatelessWidget {
                             )
                           : const SizedBox(),
                       Text(
-                        "06:16 pm",
+                        DateFormat.yMMMEd()
+                            .format(DateTime.fromMicrosecondsSinceEpoch(
+                                int.parse(messageModel.createdAt!)))
+                            .toString(),
                         style: Theme.of(context).textTheme.labelSmall,
                       ),
                       const SizedBox(
