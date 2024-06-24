@@ -4,7 +4,7 @@ import 'package:gluco/features/activities/presentation/view/widgets/ChartSteps.d
 import 'package:gluco/features/home/presentation/view/widgets/time_line_cal_one.dart';
 
 class NumOfSteps extends StatelessWidget {
-  const NumOfSteps({Key? key}) : super(key: key);
+   NumOfSteps();
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class NumOfSteps extends StatelessWidget {
             ),
           ],
         ),
-        const MyTimeLineCalender1(),
+         MyTimeLineCalender1(),
         SizedBox(
             height: 212,
             child: ChartSteps(

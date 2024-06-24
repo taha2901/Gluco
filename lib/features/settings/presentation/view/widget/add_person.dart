@@ -17,10 +17,9 @@ class AddPerson extends StatelessWidget {
       create: (context) => ObserverCubit(),
       child: BlocConsumer<ObserverCubit, ObserverState>(
         listener: (context, state) {
-          if (state is ObserverLoaded) {
+          if (state is ObserverSuccess) {
             showToast(msg: 'Added Succesfully', state: ToastStates.SUCCESS);
-            Navigator.pop(context);
-          } else  {
+          } else if(state is ObserverFailure) {
             showToast(msg: 'Failed Succesfully', state: ToastStates.ERROR);
           }
         },

@@ -1,24 +1,24 @@
-
 import 'package:flutter/material.dart';
+import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
 
 class AboutDoctor extends StatelessWidget {
   const AboutDoctor({
     super.key,
+    required this.docs,
   });
-
+  final DoctorModel docs;
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           "عن الطبيب",
-          style: TextStyle(
-              fontSize: 16, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
-        Text(" الزيارات : (150) "),
+        // Text(" الزيارات : (150) "),
         Text(
-          "سعيد الحسيني: طبيب استشاري أمراض الجهاز الهضمي والكبد في مستشفى القصر العيني بالقاهرة. تخرج من كلية الطب بجامعة القاهرة عام 2017 ، وحصل على درجة الماجستير في أمراض الجهاز الهضمي والكبد عام 2020.",
+          docs.about.toString(),
         ),
       ],
     );

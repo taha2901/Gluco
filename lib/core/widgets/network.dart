@@ -14,4 +14,6 @@ const Add_Reservation = 'Doctors/Reservation';
 
 const Add_Observer = 'AddObserver/AddObserver';
 
+const UPDATE_PROFILE = 'profiles/update';
+
 String? userToken = '';

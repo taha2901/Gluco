@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/core/helper/api.dart';
 import 'package:gluco/core/widgets/network.dart';
-import 'package:gluco/features/home/data/doctor/doctor.model.dart';
+import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
 import 'package:meta/meta.dart';
 
 part 'doctor_state.dart';

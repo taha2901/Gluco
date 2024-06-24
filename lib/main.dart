@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/core/helper/api.dart';
@@ -6,6 +7,9 @@ import 'package:gluco/core/widgets/network.dart';
 import 'package:gluco/core/widgets/onboarding.dart';
 // import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:gluco/features/activities/presentation/manager/pressure_check_cubit.dart';
+import 'package:gluco/features/activities/presentation/manager/sugar_check_cubit.dart';
+import 'package:gluco/features/activities/presentation/manager/weight_check_cubit.dart';
 import 'package:gluco/features/appointments/presentation/manager/add_medicine_cubit/add_medicine_cubit.dart';
 import 'package:gluco/features/appointments/presentation/manager/get_medicine_cubit/get_medicine_cubit.dart';
 import 'package:gluco/features/auth/data/auth.dart';
@@ -13,13 +17,17 @@ import 'package:gluco/features/auth/presentation/view/login.dart';
 import 'package:gluco/features/home/presentation/manager/dooctor_cubit/doctor_cubit.dart';
 import 'package:gluco/features/home/presentation/manager/reservation_cubit/reservation_cubit.dart';
 import 'package:gluco/features/layout/presentation/view/glocu_layout.dart';
+import 'package:gluco/features/settings/presentation/manager/update_cubit/update_profile_cubit.dart';
 import 'package:gluco/features/social/presentation/manager/get_posts/social_cubit.dart';
+import 'package:gluco/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // final savedThemeMode = await AdaptiveTheme.getThemeMode();
   DioHelper.init();
   await ChachHelper.init();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   userToken = ChachHelper.getData(key: 'token');
   debugPrint('Token in main is $userToken');
@@ -80,6 +88,14 @@ class Gluco extends StatelessWidget {
         BlocProvider<ReservationCubit>(
           create: (context) => ReservationCubit(),
         ),
+        BlocProvider(
+          create: (context) => UpdateProfileCubit(),
+        ),
+        BlocProvider(
+          create: (context) => SugarCheckCubit(),
+        ),
+        BlocProvider(create: (context) => PresssureCheckCubit()),
+        BlocProvider(create: (context) => WeightCheckCubit()),
       ],
       child: MaterialApp(
         locale: const Locale('ar'),

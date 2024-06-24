@@ -1,18 +1,21 @@
 
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:gluco/features/activities/presentation/view/widgets/Chart.dart';
-import 'package:gluco/features/home/presentation/view/widgets/time_line_cal_one.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gluco/features/activities/presentation/manager/weight_check_cubit.dart';
+import 'package:gluco/features/activities/presentation/manager/weight_check_states.dart';
+import 'package:gluco/features/activities/presentation/view/widgets/WeightCalender.dart';
+import 'package:gluco/features/activities/presentation/view/widgets/WeightChart.dart';
+import 'package:gluco/features/activities/presentation/view/widgets/chartempty.dart';
 
 class Weight extends StatelessWidget {
-  const Weight({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 15, top: 20, left: 15),
       child: ListView(
         children: [
-          const MyTimeLineCalender1(),
+           Weightcalender(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -37,17 +40,87 @@ class Weight extends StatelessWidget {
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: chart(0, 9, 50, 90, "اليوم", "الوزن"),
-              ),
-              const Text(
-                "تفاصيل اخرى",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              const Text(
-                  "يتم فيها اضافه كل التفاصيل المدخله بمعنى قام المستخدم بإدخال قياس السكر قبل الغداء وكانت النسبه 120 تعرض هذه التفاصيل كلها وعدد المرات التى قام المريض بقياس السكر فيها ")
-           
+              BlocConsumer<WeightCheckCubit,WeightCheckStates>(
+                builder:(context,state){
+                  if(state is WeightCheckinitial)
+                  {
+                    return Center(child: CircularProgressIndicator(),);
+                  }
+                  else if(state is haveData)
+                  {
+                    List<FlSpot> spots = state.weight.asMap().entries.map((entry) {
+                        int index = entry.key;
+                        double value = entry.value.toDouble();
+                        return FlSpot(index.toDouble(), value);
+                      }).toList();
+                      print(spots);
+                    return Column(
+                        children: [
+                          SizedBox(
+                             width: double.infinity, // تحديد العرض
+                            height: 300,
+                            child: Weightchart(spots)
+                            ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                              "تفاصيل اخرى",
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                             ),
+                              ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount:state.weightdata.length ,
+                            itemBuilder:(context,index){
+                              return Padding(
+                                padding: const EdgeInsets.only(top:10),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey,
+                                   borderRadius: BorderRadius.circular(10)
+                                  ),
+                                  padding: EdgeInsets.all(10),
+                                  child:Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          const Text("الوزن"),
+                                          Text(state.weightdata[index].weight.toString()),
+                                          const Padding(padding:EdgeInsets.only(right: 50)),
+                                          const Text("الرياضه:"),
+                                          Text(state.weightdata[index].sport.toString()),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          const Text("الوقت:"),
+                                          Text(state.weightdata[index].time!.minute.toString()),
+                                          Text(":"),
+                                          Text(state.weightdata[index].time!.hour.toString()),
+                                
+                                        ],
+                                      ),
+                                      
+                                    ],
+                                  ) ,
+                                ),
+                              );
+                            }
+                            )
+                            ],)
+                        ],);
+                  }
+                  else{
+                    return SizedBox(
+                        width: double.infinity, // تحديد العرض
+                        height: 300,
+                        child: Chartempty()
+                        );
+                  }
+                }, 
+                listener: (context,state){}),
+              
             ],
           )
         ],

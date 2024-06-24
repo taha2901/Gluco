@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gluco/features/home/data/doctor/doctor.model.dart';
+import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
 import 'package:gluco/features/home/presentation/view/widgets/confirm_reservation.dart';
 import 'package:gluco/features/home/presentation/view/widgets/cusrom_button.dart';
 
@@ -9,11 +9,11 @@ class DoctorDetials extends StatelessWidget {
   final int doctorId;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.grey,
-        borderRadius: BorderRadius.circular(15),
-      ),
+    return Card(
+      // decoration: BoxDecoration(
+      //   color: Colors.grey,
+      //   borderRadius: BorderRadius.circular(15),
+      // ),
       child: Padding(
         padding: const EdgeInsets.only(),
         child: Column(
@@ -27,8 +27,9 @@ class DoctorDetials extends StatelessWidget {
                 const SizedBox(
                   width: 8,
                 ),
-                const CircleAvatar(
+                 CircleAvatar(
                   radius: 40,
+                  backgroundImage: NetworkImage(docDetails.photo.toString()),
                 ),
                 const SizedBox(
                   width: 12,
@@ -90,7 +91,7 @@ class DoctorDetials extends StatelessWidget {
                 const SizedBox(
                   width: 8,
                 ),
-                Text('سعر الكشف::  ${docDetails.detectionPrice} ج'),
+                Text('سعر الكشف:  ${docDetails.detectionPrice} ج'),
               ],
             ),
             const Row(

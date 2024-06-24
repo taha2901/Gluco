@@ -5,7 +5,9 @@ import 'package:gluco/features/activities/presentation/view/Activities.dart';
 import 'package:gluco/features/appointments/presentation/view/show_appintment.dart';
 import 'package:gluco/features/chat_bot/my_bot.dart';
 import 'package:gluco/features/home/presentation/view/home_view.dart';
+import 'package:gluco/features/pic_products/presentation/view/pic_products.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'dart:io';
 
 part 'layout_state.dart';
 
@@ -14,9 +16,11 @@ class LayoutCubit extends Cubit<LayoutState> {
   static LayoutCubit get(context) => BlocProvider.of(context);
 
   int currentIndex = 0;
+  File? selectedImage;
+
   List<Widget> screens = [
     const HomeView(),
-     Container(),
+    const PicProductsView(),
     const ShowAppointment(),
     const Activities(),
     const MyBot(),
@@ -24,7 +28,7 @@ class LayoutCubit extends Cubit<LayoutState> {
 
   void changeBottomNavBar(int index) {
     currentIndex = index;
-    emit(ShopBottomNavbar());
+    emit(LayoutChangeBottomNavBarState());
   }
 
   List<BottomNavigationBarItem> bottomItem = [
@@ -49,4 +53,5 @@ class LayoutCubit extends Cubit<LayoutState> {
       label: 'جلوكو بوت',
     ),
   ];
+
 }

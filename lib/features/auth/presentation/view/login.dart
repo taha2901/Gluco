@@ -160,6 +160,7 @@ import 'package:gluco/features/auth/presentation/manager/login/login_cubit.dart'
 import 'package:gluco/features/auth/presentation/manager/login/login_state.dart';
 import 'package:gluco/features/auth/presentation/view/register.dart';
 import 'package:gluco/features/auth/presentation/view/widget/text_field.dart';
+import 'package:gluco/features/chat/presentation/manager/fire_auth.dart';
 import 'package:gluco/features/layout/presentation/view/glocu_layout.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
@@ -179,8 +180,9 @@ class LoginScreen extends StatelessWidget {
           if (state is LoginSuccess) {
             if (state.login.isAuthenticated!) {
               ChachHelper.saveData(key: 'token', value: state.login.token).then(
-                (value) {
+                (value) async{
                   userToken = state.login.token;
+                  await FireAuth().createUser(state.login);
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(

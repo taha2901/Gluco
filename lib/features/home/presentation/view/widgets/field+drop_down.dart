@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 
-class CustomTextFieldDropdown extends StatefulWidget {
-  CustomTextFieldDropdown();
+class CustomTextFieldDropdown extends StatelessWidget {
+  CustomTextFieldDropdown({this.mealname});
 
-  @override
-  State<CustomTextFieldDropdown> createState() => _CustomTextFieldDropdownState();
-}
-
-class _CustomTextFieldDropdownState extends State<CustomTextFieldDropdown> {
   @override
   String? selectedItem;
+Function(String?)? mealname;
+
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
@@ -34,7 +31,17 @@ class _CustomTextFieldDropdownState extends State<CustomTextFieldDropdown> {
              value: e,
            );
          }).toList(),
-          onChanged: (value){}),
+          onChanged: (value){
+            mealname!(value);
+
+          },
+          validator: (value){
+              if (value == null) {
+                return 'Please select an option';
+              }
+              return null; 
+            }
+          ),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gluco/features/activities/presentation/view/widgets/AlertFirst.dart';
+
 import 'package:gluco/features/activities/presentation/view/widgets/NumberOfSteps.dart';
 import 'package:gluco/features/activities/presentation/view/widgets/Pressure.dart';
 import 'package:gluco/features/activities/presentation/view/widgets/Weight.dart';
@@ -28,7 +29,7 @@ static String id = 'Activities';
                   Tab(child: Text("عدد الخطوات"),)
                 ]),
           ),
-          body: const TabBarView(
+          body: TabBarView(
               children: [
                 AlertFirst(),
                 Pressure(),

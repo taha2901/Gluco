@@ -1,10 +1,10 @@
 part of 'layout_cubit.dart';
 
-sealed class LayoutState  {
-  
-}
 
-final class LayoutInitial extends LayoutState {}
+abstract class LayoutState {}
 
-final class ShopBottomNavbar extends LayoutState {}
+class LayoutInitial extends LayoutState {}
+
+class LayoutChangeBottomNavBarState extends LayoutState {}
+
 

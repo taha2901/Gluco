@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gluco/features/home/data/doctor/doctor.model.dart';
+import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
 
 class defineDoctor extends StatelessWidget {
   const defineDoctor({
@@ -11,13 +11,17 @@ class defineDoctor extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.only(left: 15, top: 15, bottom: 15),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: Image.asset(
-                "assets/DoctorSaied.png",
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.network(
+                  showDoc.photo.toString(),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             const SizedBox(
@@ -80,14 +84,6 @@ class defineDoctor extends StatelessWidget {
                           fontSize: 15,
                           color: Color(0xFF000000)),
                     ),
-                    // Text(
-                    //   " : 7:00 مساءا  ",
-                    //   style: TextStyle(
-                    //       fontWeight: FontWeight.w500,
-                    //       fontStyle: FontStyle.normal,
-                    //       fontSize: 15,
-                    //       color: Color(0xFF000000)),
-                    // ),
                   ],
                 ),
                 Row(

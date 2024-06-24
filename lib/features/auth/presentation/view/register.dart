@@ -9,11 +9,11 @@ import 'package:gluco/core/widgets/network.dart';
 import 'package:gluco/features/auth/presentation/manager/register/register_cubit.dart';
 import 'package:gluco/features/auth/presentation/manager/register/register_state.dart';
 import 'package:gluco/features/auth/presentation/view/widget/text_field.dart';
+import 'package:gluco/features/chat/presentation/manager/fire_auth.dart';
 import 'package:gluco/features/layout/presentation/view/glocu_layout.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 
-// ignore: must_be_immutable
 class RegisterScreen extends StatefulWidget {
   RegisterScreen({super.key});
 
@@ -23,6 +23,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   File? _file;
+
   Future pickercamera() async {
     final ImagePicker picker = ImagePicker();
     final XFile? myfile = await picker.pickImage(source: ImageSource.camera);
@@ -32,15 +33,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   var imageController = TextEditingController();
-
   var emailController = TextEditingController();
-
   var passWordController = TextEditingController();
-
   var nameController = TextEditingController();
-
   var phoneController = TextEditingController();
-
   var confirmPassController = TextEditingController();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -50,18 +46,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return BlocProvider(
       create: (context) => RegisterCubit(),
       child: BlocConsumer<RegisterCubit, RegisterState>(
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state is RegisterSuccess) {
             if (state.registerModel.isAuthenticated == true) {
               print(state.registerModel.isAuthenticated);
               print(state.registerModel.token);
-              print(state.registerModel.email);
+              print('emaaaaaaail issssss${state.registerModel.email}');
 
-              ChachHelper.saveData(
+              await ChachHelper.saveData(
                       key: 'token', value: state.registerModel.token)
                   .then(
-                (value) {
+                (value) async {
                   userToken = '${state.registerModel.token}';
+                  await FireAuth().createUser(state.registerModel);
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
@@ -73,9 +70,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   );
                 },
               );
-              showToast(msg: 'success', state: ToastStates.SUCCESS);
+              showToast(
+                  msg: state.registerModel.message.toString(),
+                  state: ToastStates.SUCCESS);
             } else {
-              showToast(msg: 'no', state: ToastStates.ERROR);
+              showToast(
+                  msg: state.registerModel.message.toString(),
+                  state: ToastStates.ERROR);
             }
           }
         },
@@ -151,7 +152,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         showBorder: false,
                         obscure: RegisterCubit.get(context).isObsecure,
                         controller: confirmPassController,
-                        lable: "ادخل الرقم السري مره اخري",
+                        lable: "أكد الرقم السري",
                         icon: Iconsax.password_check,
                         isPass: true,
                         onSubmitted: (value) {
@@ -165,38 +166,51 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       const SizedBox(
                         height: 15.0,
                       ),
-                      CustomButton(
-                        text: 'Upload Image',
-                        onTap: pickercamera,
-                        color: Colors.indigo,
-                        textcolor: Colors.white,
+                      Container(
+                        height: 80,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.grey[300],
+                        ),
+                        child: InkWell(
+                          onTap: () {
+                            pickercamera();
+                          },
+                          child: _file == null
+                              ? const Center(
+                                  child: Text('من فضلك اختار صورة',
+                                      style: TextStyle(color: Colors.blue)))
+                              : Image.file(
+                                  _file!,
+                                  fit: BoxFit.cover,
+                                ),
+                        ),
                       ),
                       const SizedBox(
-                        height: 30.0,
+                        height: 15.0,
                       ),
-                      state is RegisterLoaded
-                          ? const Center(
-                              child: CircularProgressIndicator(),
-                            )
-                          : CustomButton(
-                              text: 'Register',
-                              color: Colors.blue,
-                              textcolor: Colors.white,
-                              circular: 30.0,
-                              onTap: () {
-                                if (formKey.currentState!.validate()) {
-                                  RegisterCubit.get(context).userRegister(
-                                    confirmpPassword:
-                                        confirmPassController.text,
-                                    phone: phoneController.text,
-                                    username: nameController.text,
-                                    email: emailController.text,
-                                    password: passWordController.text,
-                                    image: _file != null ? _file!.path : '',
-                                  );
-                                }
-                              },
-                            ),
+                      if (state is! RegisterLoaded)
+                        CustomButton(
+                          color: Colors.blue,
+                          text: 'تسجيل',
+                          onTap: () {
+                            if (formKey.currentState!.validate()) {
+                              RegisterCubit.get(context).userRegister(
+                                username: nameController.text,
+                                email: emailController.text,
+                                password: passWordController.text,
+                                confirmpPassword: confirmPassController.text,
+                                phone: phoneController.text,
+                                image: _file!,
+                              );
+                            }
+                          },
+                        ),
+                      if (state is RegisterLoaded)
+                        const Center(
+                          child: CircularProgressIndicator(),
+                        ),
                     ],
                   ),
                 ),

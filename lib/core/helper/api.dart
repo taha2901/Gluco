@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:dio/dio.dart';
 
 class DioHelper {
@@ -6,7 +7,7 @@ class DioHelper {
   static void init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'http://nouraapi.runasp.net/api/', 
+        baseUrl: 'http://nouraapi.runasp.net/api/',
         receiveDataWhenStatusError: true,
       ),
     );
@@ -30,16 +31,15 @@ class DioHelper {
         queryParameters: query,
       );
     } on DioError catch (e) {
-      // معالجة الأخطاء وعرض رسالة مناسبة للمستخدم
       print('Error: ${e.response?.statusCode} - ${e.message}');
-      throw e; // إعادة رمي الاستثناء للتعامل معه في مكان آخر إذا لزم الأمر
+      throw e;
     }
   }
 
   Future<Response> postData({
     required String url,
     Map<String, dynamic>? query,
-    required Map<String, dynamic> data,
+    required dynamic data,
     bool isMultipart = false,
     String lang = 'ar',
     String? token,
@@ -51,15 +51,18 @@ class DioHelper {
     };
 
     try {
-      return await dio!.post(
+      var response = await dio!.post(
         url,
         queryParameters: query,
-        data: isMultipart ? FormData.fromMap(data) : data,
+        data: data,
       );
+      return response;
     } on DioError catch (e) {
-      // معالجة الأخطاء وعرض رسالة مناسبة للمستخدم
       print('Error: ${e.response?.statusCode} - ${e.message}');
-      throw e; // إعادة رمي الاستثناء للتعامل معه في مكان آخر إذا لزم الأمر
+      if (e.response != null) {
+        print('Response data: ${e.response?.data}');
+      }
+      throw e;
     }
   }
 
@@ -83,9 +86,97 @@ class DioHelper {
         data: data,
       );
     } on DioError catch (e) {
-      // معالجة الأخطاء وعرض رسالة مناسبة للمستخدم
       print('Error: ${e.response?.statusCode} - ${e.message}');
-      throw e; // إعادة رمي الاستثناء للتعامل معه في مكان آخر إذا لزم الأمر
+      throw e;
+    }
+  }
+
+  Future<Response> addData({
+    required String url,
+    required Map<String,dynamic> body,
+    required String Contenttype,
+    required String token
+  })async
+  {
+    Response<dynamic> response;
+    
+      Options option=Options(
+      headers: {
+        'Content-Type': Contenttype,
+        'Authorization': 'Bearer $token'
+      },validateStatus: (status) => true,
+    );
+    try{
+      response= await Dio().post(
+        url,
+        data: body,
+        options: option,
+        );
+        return response;
+    }
+    on DioException catch(e)
+    {
+      throw e;
+    }
+    catch(e)
+    {
+      print(e);
+      throw e;
+    }
+    
+  }
+  Future<Response> fetchData
+  ({ required String url, required String token})
+  async{
+    Response response;
+    try{
+      Options options=Options(
+      headers: {
+        'Authorization':'Bearer $token'
+      }
+    );
+      response= await Dio().get(
+        url,
+        options:options
+      );
+      return response;
+    }
+    catch(e){
+      throw Exception(e);
+
+    }
+  }
+
+  Future<Response> uploadImage({
+    required String url,
+    required File image,
+    String lang = 'ar',
+    String? token,
+  }) async {
+    dio?.options.headers = {
+      'Content-Type': 'multipart/form-data',
+      'lang': lang,
+      'Authorization': token ?? '',
+    };
+
+    FormData formData = FormData.fromMap({
+      'file': await MultipartFile.fromFile(image.path,
+          filename: image.path.split('/').last),
+    });
+
+    try {
+      var response = await dio!.post(
+        url,
+        data: formData,
+      );
+      print('Response: ${response.data}');
+      return response;
+    } on DioError catch (e) {
+      print('Error: ${e.response?.statusCode} - ${e.message}');
+      if (e.response != null) {
+        print('Response data: ${e.response?.data}');
+      }
+      throw e;
     }
   }
 }

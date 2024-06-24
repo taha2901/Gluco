@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:gluco/core/helper/cach.dart';
 import 'package:gluco/features/auth/presentation/view/widget/text_field.dart';
+import 'package:gluco/features/chat/data/room_model.dart';
+import 'package:gluco/features/chat/presentation/manager/fire_database.dart';
 import 'package:gluco/features/chat/presentation/view/widgets/chat_card.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
@@ -15,6 +19,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final userId = ChachHelper.getData(key: 'id');
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -55,7 +60,14 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                                 borderRadius: BorderRadius.circular(12)),
                             backgroundColor:
                                 Theme.of(context).colorScheme.primaryContainer),
-                        onPressed: () {},
+                        onPressed: () {
+                          FireData().createRoom(emailCon.text).then((onValue) {
+                            setState(() {
+                              emailCon.text = "";
+                            });
+                            Navigator.pop(context);
+                          });
+                        },
                         child: const Center(
                           child: Text("Create Chat"),
                         ))
@@ -75,10 +87,30 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
         child: Column(
           children: [
             Expanded(
-              child: ListView.builder(
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return const ChatCard();
+              child: StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection('rooms')
+                      .where('member', arrayContains: userId)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      List<ChatRoom> items = snapshot.data!.docs
+                          .map((e) => ChatRoom.fromJson(e.data()))
+                          .toList()
+                        ..sort(
+                          (a, b) =>
+                              b.lastMessageTime!.compareTo(a.lastMessageTime!),
+                        );
+                      return ListView.builder(
+                          itemCount: items.length,
+                          itemBuilder: (context, index) {
+                            return ChatCard(item: items[index],);
+                          });
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
                   }),
             ),
           ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/core/widgets/custom_text_field.dart';
-import 'package:gluco/features/home/data/doctor/doctor.model.dart';
+import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
 import 'package:gluco/features/home/presentation/manager/reservation_cubit/reservation_cubit.dart';
 import 'package:gluco/features/home/presentation/view/widgets/DoctorReservation.dart';
 import 'package:gluco/features/home/presentation/view/widgets/cusrom_button.dart';

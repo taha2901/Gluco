@@ -6,6 +6,8 @@ class Auth {
 	List<dynamic>? roles;
 	String? token;
 	String? expiresOn;
+	String? photoUrl;
+	dynamic phone;
 
 	Auth({
 		this.message, 
@@ -15,6 +17,8 @@ class Auth {
 		this.roles, 
 		this.token, 
 		this.expiresOn, 
+		this.photoUrl, 
+		this.phone, 
 	});
 
 	factory Auth.fromJson(Map<String, dynamic> json) => Auth(
@@ -25,6 +29,8 @@ class Auth {
 				roles: json['roles'] as List<dynamic>?,
 				token: json['token'] as String?,
 				expiresOn: json['expiresOn'] as String?,
+				photoUrl: json['photoUrl'] as String?,
+				phone: json['phone'] as dynamic,
 			);
 
 	Map<String, dynamic> toJson() => {
@@ -35,5 +41,7 @@ class Auth {
 				'roles': roles,
 				'token': token,
 				'expiresOn': expiresOn,
+				'photoUrl': photoUrl,
+				'phone': phone,
 			};
 }
