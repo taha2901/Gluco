@@ -8,7 +8,7 @@ class Chartempty extends StatelessWidget {
       padding: const EdgeInsets.only(top: 40, left: 10),
       child: LineChart(
         LineChartData(
-          titlesData: FlTitlesData(
+          titlesData: const FlTitlesData(
             leftTitles: AxisTitles(
               sideTitles: SideTitles(showTitles: false),
             ),
@@ -31,7 +31,7 @@ class Chartempty extends StatelessWidget {
               ),
             ),
           ),
-          gridData: FlGridData(
+          gridData: const FlGridData(
             show: true,
           ),
           borderData: FlBorderData(

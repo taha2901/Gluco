@@ -66,6 +66,8 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                               emailCon.text = "";
                             });
                             Navigator.pop(context);
+                          }).catchError((error) {
+                            print("Error: $error");
                           });
                         },
                         child: const Center(
@@ -101,11 +103,25 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                           (a, b) =>
                               b.lastMessageTime!.compareTo(a.lastMessageTime!),
                         );
-                      return ListView.builder(
-                          itemCount: items.length,
-                          itemBuilder: (context, index) {
-                            return ChatCard(item: items[index],);
-                          });
+                      if (items.isEmpty) {
+                        return const Center(
+                          child: Text("No chat rooms found"),
+                        );
+                      } else {
+                        print("Number of chat rooms: ${items.length}");
+                        return ListView.builder(
+                            itemCount: items.length,
+                            itemBuilder: (context, index) {
+                              return ChatCard(
+                                item: items[index],
+                              );
+                            });
+                      }
+                    } else if (snapshot.hasError) {
+                      print("StreamBuilder Error: ${snapshot.error}");
+                      return const Center(
+                        child: Text("Error loading chat rooms"),
+                      );
                     } else {
                       return const Center(
                         child: CircularProgressIndicator(),

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class Weightchart extends StatelessWidget {
   final List<FlSpot> spots;
 
-  Weightchart(this.spots);
+  const Weightchart(this.spots);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class Weightchart extends StatelessWidget {
               belowBarData: BarAreaData(show: true, color: Colors.blue.withOpacity(0.3)),
             ),
           ],
-          titlesData: FlTitlesData(
+          titlesData: const FlTitlesData(
             leftTitles: AxisTitles(
               sideTitles: SideTitles(showTitles: false),
             ),
@@ -44,7 +44,7 @@ class Weightchart extends StatelessWidget {
                 ),
             ),
           ),
-          gridData: FlGridData(
+          gridData: const FlGridData(
             show: true,
             ),
           borderData: FlBorderData(

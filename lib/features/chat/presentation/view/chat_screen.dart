@@ -19,6 +19,12 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // floatingActionButton:  FloatingActionButton(
+      //   onPressed: () {
+      //     FireData().sendNotification( widget.chatUser, "msg");
+      //   },
+      //   child: const Icon(Iconsax.send_1),
+      // ),
       appBar: AppBar(
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

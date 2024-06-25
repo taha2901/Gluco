@@ -6,10 +6,8 @@ import 'package:gluco/features/chat/data/user_model.dart';
 
 class FireAuth {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  // عملنا ستاتيك عشان يتيح الوصول ل اي مكان  ولو حشتها هيحصل مشكله ف ال سطر السادس ف ال auth
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  // static User user = auth.currentUser!;
   Future<void> createUser(Auth auth) async {
     final userId = ChachHelper.getData(key: 'id');
     ChatUser chatUser = ChatUser(
@@ -21,9 +19,8 @@ class FireAuth {
         image: '',
         lastActivated: DateTime.now().millisecondsSinceEpoch.toString(),
         online: false,
-        pushToken: '');
+        pushToken: auth.token ?? '');
     await _firestore.collection('users').doc(userId).set(chatUser.toJson());
   }
 }
 
-// user.uid هنا ممكن يحصل ايرور علشا نهتبقا عاوز تعمل اي دي لكل يوزر 

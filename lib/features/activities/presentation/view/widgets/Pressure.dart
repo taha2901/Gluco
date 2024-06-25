@@ -1,8 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gluco/features/activities/presentation/manager/presssure_check_states.dart';
-import 'package:gluco/features/activities/presentation/manager/pressure_check_cubit.dart';
+import 'package:gluco/features/activities/presentation/manager/pressure_cubit/presssure_check_states.dart';
+import 'package:gluco/features/activities/presentation/manager/pressure_cubit/pressure_check_cubit.dart';
 import 'package:gluco/features/activities/presentation/view/widgets/PressureCalender.dart';
 import 'package:gluco/features/activities/presentation/view/widgets/PressureChart.dart';
 import 'package:gluco/features/activities/presentation/view/widgets/chartempty.dart';

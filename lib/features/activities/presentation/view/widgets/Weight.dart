@@ -2,8 +2,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gluco/features/activities/presentation/manager/weight_check_cubit.dart';
-import 'package:gluco/features/activities/presentation/manager/weight_check_states.dart';
+import 'package:gluco/features/activities/presentation/manager/weight_cubit/weight_check_cubit.dart';
+import 'package:gluco/features/activities/presentation/manager/weight_cubit/weight_check_states.dart';
 import 'package:gluco/features/activities/presentation/view/widgets/WeightCalender.dart';
 import 'package:gluco/features/activities/presentation/view/widgets/WeightChart.dart';
 import 'package:gluco/features/activities/presentation/view/widgets/chartempty.dart';
@@ -42,9 +42,9 @@ class Weight extends StatelessWidget {
               ),
               BlocConsumer<WeightCheckCubit,WeightCheckStates>(
                 builder:(context,state){
-                  if(state is WeightCheckinitial)
+                  if(state is WeightCheckloading)
                   {
-                    return Center(child: CircularProgressIndicator(),);
+                    return const Center(child: CircularProgressIndicator(),);
                   }
                   else if(state is haveData)
                   {
@@ -57,7 +57,7 @@ class Weight extends StatelessWidget {
                     return Column(
                         children: [
                           SizedBox(
-                             width: double.infinity, // تحديد العرض
+                             width: double.infinity,
                             height: 300,
                             child: Weightchart(spots)
                             ),
@@ -80,7 +80,7 @@ class Weight extends StatelessWidget {
                                     color: Colors.grey,
                                    borderRadius: BorderRadius.circular(10)
                                   ),
-                                  padding: EdgeInsets.all(10),
+                                  padding: const EdgeInsets.all(10),
                                   child:Column(
                                     children: [
                                       Row(
@@ -96,7 +96,7 @@ class Weight extends StatelessWidget {
                                         children: [
                                           const Text("الوقت:"),
                                           Text(state.weightdata[index].time!.minute.toString()),
-                                          Text(":"),
+                                          const Text(":"),
                                           Text(state.weightdata[index].time!.hour.toString()),
                                 
                                         ],
@@ -113,7 +113,7 @@ class Weight extends StatelessWidget {
                   }
                   else{
                     return SizedBox(
-                        width: double.infinity, // تحديد العرض
+                        width: double.infinity,
                         height: 300,
                         child: Chartempty()
                         );

@@ -1,12 +1,10 @@
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gluco/core/helper/api.dart';
-import 'package:gluco/features/activities/presentation/manager/sugar_check_cubit.dart';
-import 'package:gluco/features/activities/presentation/manager/weight_check_cubit.dart';
+import 'package:gluco/features/activities/presentation/manager/weight_cubit/weight_check_cubit.dart';
 
 class Weightcalender extends StatelessWidget {
-  Weightcalender();
+  Weightcalender({super.key});
   String? formattedDate;
   @override
   Widget build(BuildContext context) {

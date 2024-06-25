@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/core/widgets/custom_button.dart';
 import 'package:gluco/core/widgets/custom_show_toast.dart';
-import 'package:gluco/features/activities/presentation/manager/sugar_check_cubit.dart';
+import 'package:gluco/features/activities/presentation/manager/suger_cubit/sugar_check_cubit.dart';
 import 'package:gluco/features/home/presentation/manager/pressure_cubit/pressure_cubit.dart';
 import 'package:gluco/features/home/presentation/manager/pressure_cubit/pressure_state.dart';
 import 'package:gluco/features/home/presentation/view/widgets/TextFieldNumber.dart';

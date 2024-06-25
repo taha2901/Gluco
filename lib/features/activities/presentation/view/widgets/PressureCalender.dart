@@ -2,8 +2,8 @@ import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/core/helper/api.dart';
-import 'package:gluco/features/activities/presentation/manager/pressure_check_cubit.dart';
-import 'package:gluco/features/activities/presentation/manager/sugar_check_cubit.dart';
+import 'package:gluco/features/activities/presentation/manager/pressure_cubit/pressure_check_cubit.dart';
+import 'package:gluco/features/activities/presentation/manager/suger_cubit/sugar_check_cubit.dart';
 
 class Pressurecalender extends StatelessWidget {
   Pressurecalender();
