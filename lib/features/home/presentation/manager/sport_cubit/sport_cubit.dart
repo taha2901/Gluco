@@ -2,6 +2,7 @@
 import 'package:gluco/core/helper/api.dart';
 import 'package:gluco/core/helper/serverfailure.dart';
 import 'package:dio/dio.dart';
+import 'package:gluco/core/widgets/network.dart';
 import 'package:gluco/features/home/presentation/manager/sport_cubit/sport_state.dart';
 class SportCubit extends Cubit<SportState> {
   SportCubit() : super(Sportsuccess());
@@ -18,7 +19,7 @@ class SportCubit extends Cubit<SportState> {
           "sport": true
         }, 
         Contenttype: 'application/json', 
-        token: 'ciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjFhNDJkNzQ2LTZjOTgtNDY4Ny04MjE4LWJiMjJkZmIzYTZhYSIsInN1YiI6IkhlbmRhYmRlbG1vbmVtIiwianRpIjoiNTBlNDZkY2UtMTNhMS00OTIyLThjOWEtYmY0ZWMzNGEzNzc2IiwiZW1haWwiOiJoZW5kYWJkZWxtb25lbUBnbWFpbC5jb20iLCJ1aWQiOiIxYTQyZDc0Ni02Yzk4LTQ2ODctODIxOC1iYjIyZGZiM2E2YWEiLCJyb2xlcyI6WyJGb2xsb3dlciIsIlVzZXIiXSwiZXhwIjoxNzIxNzQ4NDQ4LCJpc3MiOiJTZWN1cmVBcGkiLCJhdWQiOiJTZWN1cmVBcGlVc2VyIn0.U0zJKjFOmGpT3v_n6zeVt0A_vC7uW2q8WQtNOq3K5sw');
+        token: userToken!);
         if(data.statusCode==201)
         {
           emit(Sportsuccess());

@@ -37,6 +37,7 @@ class GlucoLayout extends StatelessWidget {
                             builder: (context) => ProfileScreen(imagePath: imagePath),
                           ),
                         );
+                        
                       },
                       child: CircleAvatar(
                         radius: 20,

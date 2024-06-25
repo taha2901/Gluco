@@ -1,14 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gluco/core/helper/api.dart';
 import 'package:gluco/core/widgets/custom_button.dart';
 import 'package:gluco/core/widgets/custom_show_toast.dart';
 import 'package:gluco/features/home/presentation/manager/sport_cubit/sport_cubit.dart';
 import 'package:gluco/features/home/presentation/manager/sport_cubit/sport_state.dart';
 import 'package:gluco/features/home/presentation/view/widgets/TextFieldNumber.dart';
 import 'package:gluco/features/home/presentation/view/widgets/drop_down_activity.dart';
-import 'package:gluco/features/home/presentation/view/widgets/field_ma.dart';
 
 class PartScreenWeight extends StatelessWidget {
   String? Text1;
@@ -49,8 +47,8 @@ GlobalKey<FormState> valid=GlobalKey();
         children: [
           CustomButton(
             text: 'حفظ',
-            circular: 10,
-            color: Colors.black,
+            circular: 5,
+            color: Colors.blue,
             textcolor: Colors.white,
             onTap: () {
               if(valid.currentState!.validate())

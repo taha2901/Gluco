@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gluco/features/home/presentation/view/widgets/data_picker_screen.dart';
 import 'package:gluco/features/home/presentation/view/widgets/part_screen_pressure.dart';
 import 'package:gluco/features/home/presentation/view/widgets/part_screen_suger.dart';
@@ -51,18 +52,15 @@ class _MyAppState extends State<GlucoseMeasurement> {
         backgroundColor: Theme.of(context).colorScheme.background,
         centerTitle: true,
         title: AppBarTitle(),
-        actions: const [
-          Icon(Icons.arrow_forward_ios),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(child: MyDatePickerScreen()),
-            const SliverToBoxAdapter(
+             SliverToBoxAdapter(
                 child: SizedBox(
-              height: 16,
+              height: MediaQuery.of(context).size.height * 0.05,
             )),
             SliverToBoxAdapter(
                 child: Row(
@@ -79,6 +77,7 @@ class _MyAppState extends State<GlucoseMeasurement> {
                         borderRadius: BorderRadius.circular(40),
                       ),
                       child: IconButton(
+                       
                           onPressed: () {
                             index = 0;
                             _toggleColor(1);
@@ -151,9 +150,9 @@ class _MyAppState extends State<GlucoseMeasurement> {
 
   void _toggleColor(int buttonNumber) {
     setState(() {
-      _color1 = (buttonNumber == 1) ? Colors.black : Colors.grey;
-      _color2 = (buttonNumber == 2) ? Colors.black : Colors.grey;
-      _color3 = (buttonNumber == 3) ? Colors.black : Colors.grey;
+      _color1 = (buttonNumber == 1) ? Colors.blue : Colors.grey;
+      _color2 = (buttonNumber == 2) ? Colors.blue : Colors.grey;
+      _color3 = (buttonNumber == 3) ? Colors.blue : Colors.grey;
     });
   }
 }

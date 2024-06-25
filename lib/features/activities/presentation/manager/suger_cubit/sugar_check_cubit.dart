@@ -28,19 +28,23 @@ class SugarCheckCubit extends Cubit<SugarCheckStates> {
   }
 
   Future<void> getsugarlevel(String date) async {
+    
     emit(SugarCheckloading());
     List<Sugarcheck> sugardata = [];
     List<int> sugarlevel = [];
+    
     sugardata = await fetchsugardata(date);
     for (int i = 0; i < sugardata.length; i++) {
       // Use '<' instead of '<='
       sugarlevel.add(sugardata[i].sugar_reading!);
     }
+    
     if (sugardata.isNotEmpty) {
       List<double> sugardataDouble =
           sugarlevel.map((e) => e.toDouble()).toList();
           print('token in suger cubit $userToken');
       emit(haveData(sugardataDouble, sugardata));
+      
     } else {
       emit(nothaveData());
     }

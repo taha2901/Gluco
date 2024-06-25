@@ -1,10 +1,9 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:gluco/features/settings/presentation/view/widget/form_profile.dart';
 
 class ProfileScreen extends StatelessWidget {
-  final String? imagePath; // استلام مسار الصورة هنا
+  final String? imagePath;
 
   const ProfileScreen({Key? key, this.imagePath}) : super(key: key);
 
@@ -21,12 +20,11 @@ class ProfileScreen extends StatelessWidget {
               CircleAvatar(
                 radius: 60,
                 backgroundColor: Colors.white,
-                child: imagePath != null
-                    ? CircleAvatar(
-                        radius: 60,
-                        backgroundImage: FileImage(File(imagePath!)),
-                      )
-                    : const Icon(Icons.person),
+                backgroundImage:
+                    imagePath != null ? FileImage(File(imagePath!)) : null,
+                child: imagePath == null
+                    ? const Icon(Icons.person, size: 60)
+                    : null,
               ),
               const SizedBox(
                 width: 10,
@@ -36,7 +34,6 @@ class ProfileScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text('01274975650'),
-
                   SizedBox(
                     width: 25,
                   ),
@@ -44,14 +41,12 @@ class ProfileScreen extends StatelessWidget {
                     'ياسر ابراهيم ',
                     style: TextStyle(fontSize: 15),
                   ),
-
                 ],
               ),
               const SizedBox(
                 height: 20,
               ),
               const FormProfile(),
-
             ],
           ),
         ),

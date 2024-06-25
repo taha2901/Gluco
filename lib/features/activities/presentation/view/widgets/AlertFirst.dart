@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/core/widgets/custom_show_toast.dart';
 import 'package:gluco/features/activities/presentation/manager/suger_cubit/sugar_check_cubit.dart';
 import 'package:gluco/features/activities/presentation/manager/suger_cubit/sugar_check_states.dart';
+import 'package:gluco/features/activities/presentation/view/widgets/SugarCalender.dart';
 import 'package:gluco/features/activities/presentation/view/widgets/SugarChart.dart';
 import 'package:gluco/features/activities/presentation/view/widgets/chartempty.dart';
 import 'package:gluco/features/home/presentation/view/widgets/time_line_cal_one.dart';
@@ -18,7 +19,7 @@ class AlertFirst extends StatelessWidget {
         padding: const EdgeInsets.only(right: 15, top: 20, left: 15),
         child: ListView(
           children: [
-            const MyTimeLineCalender1(),
+           Sugarcalender(),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

@@ -65,8 +65,8 @@ class PartScreenSuger extends StatelessWidget {
         children: [
           CustomButton(
             text: 'حفظ',
-            circular: 10,
-            color: Colors.black,
+            circular: 5,
+            color: Colors.blue,
             textcolor: Colors.white,
             onTap: (){
               if(valid.currentState!.validate())

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gluco/core/widgets/custom_show_toast.dart';
 import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
 import 'package:gluco/features/home/presentation/view/widgets/Comments.dart';
-import 'package:gluco/features/home/presentation/view/widgets/about_doctor.dart';
 import 'package:gluco/features/home/presentation/view/widgets/bar_app_one_doc.dart';
 import 'package:gluco/features/home/presentation/view/widgets/cusrom_button.dart';
 import 'package:gluco/features/home/presentation/view/widgets/custom_icon.dart';
@@ -30,16 +29,6 @@ class DoctorReservation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final List<String> times = [
-    //   "8:00م",
-    //   "9:00م",
-    //   "10:00م",
-    //   "11:00م",
-    //   "12:00ص",
-    //   "1:00ص",
-    //   "11:00م",
-    //   "12:00ص",
-    // ];
 
     TextEditingController dateController = TextEditingController();
 
@@ -82,9 +71,6 @@ class DoctorReservation extends StatelessWidget {
                         ),
                         child: DefineInReservation(showDoc: showDoc),
                       ),
-                      // AboutDoctor(
-                      //   docs: showDoc,
-                      // ),
                       const SizedBox(
                         height: 24,
                       ),

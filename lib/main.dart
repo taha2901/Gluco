@@ -47,7 +47,6 @@ void main() async {
   } else {
     widget = const OnBoardingScreen();
   }
-
   runApp(
     Gluco(
       startWidget: widget,
