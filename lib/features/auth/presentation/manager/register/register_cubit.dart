@@ -18,10 +18,11 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String password,
     required String confirmpPassword,
     required String phone,
-    required File image, // تعديل النوع إلى File
+    required File image, 
+    required String address,
   }) async {
     emit(RegisterLoaded());
-    print("Started userRegister"); // Debug print
+    print("Started userRegister");
     try {
       FormData formData = FormData.fromMap({
         'Username': username,
@@ -30,15 +31,16 @@ class RegisterCubit extends Cubit<RegisterState> {
         'Photo': await MultipartFile.fromFile(image.path, filename: image.path.split('/').last),
         'Password': password,
         'confirmpassword': confirmpPassword,
+        'Address': address,
       });
-      print("FormData prepared"); // Debug print
-      print("Sending data to server..."); // Debug print
+      print("FormData prepared"); 
+      print("Sending data to server..."); 
       var response = await DioHelper().postData(
         url: REGISTER,
-        // isMultipart: true,
+        isMultipart: true,
         data: formData,
       );
-      print("Response received: ${response.data}"); // Debug print
+      print("Response received: ${response.data}"); 
       final registerModel = Auth.fromJson(response.data);
       print('Registration successful: ${registerModel.message}');
       emit(RegisterSuccess(registerModel: registerModel));

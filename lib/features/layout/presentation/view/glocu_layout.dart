@@ -13,7 +13,7 @@ class GlucoLayout extends StatelessWidget {
   final Auth auth;
   final String? imagePath; // استلام مسار الصورة هنا
 
-  const GlucoLayout({super.key, required this.auth, this.imagePath});
+  const GlucoLayout({Key? key, required this.auth, this.imagePath}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class GlucoLayout extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const ProfileScreen(),
+                            builder: (context) => ProfileScreen(imagePath: imagePath),
                           ),
                         );
                       },

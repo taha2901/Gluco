@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:gluco/features/settings/presentation/view/widget/form_profile.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  final String? imagePath; // استلام مسار الصورة هنا
+
+  const ProfileScreen({Key? key, this.imagePath}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +21,12 @@ class ProfileScreen extends StatelessWidget {
               CircleAvatar(
                 radius: 60,
                 backgroundColor: Colors.white,
-                child: Image.asset('assets/DoctorAhmed.png'),
+                child: imagePath != null
+                    ? CircleAvatar(
+                        radius: 60,
+                        backgroundImage: FileImage(File(imagePath!)),
+                      )
+                    : const Icon(Icons.person),
               ),
               const SizedBox(
                 width: 10,
@@ -47,18 +56,6 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-
-class Codeium extends StatelessWidget {
-  const Codeium({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      
     );
   }
 }

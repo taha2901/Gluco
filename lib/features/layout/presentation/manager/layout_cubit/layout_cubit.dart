@@ -16,7 +16,7 @@ class LayoutCubit extends Cubit<LayoutState> {
   static LayoutCubit get(context) => BlocProvider.of(context);
 
   int currentIndex = 0;
-  File? selectedImage;
+  // File? selectedImage;
 
   List<Widget> screens = [
     const HomeView(),
