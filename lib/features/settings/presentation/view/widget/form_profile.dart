@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gluco/core/widgets/constants.dart';
 import 'package:gluco/features/settings/presentation/view/widget/add_person.dart';
 import 'package:gluco/features/settings/presentation/view/widget/custom_sign_out.dart';
 import 'package:gluco/features/settings/presentation/view/widget/medical_recoer.dart';
@@ -23,6 +24,7 @@ class FormProfile extends StatelessWidget {
             );
           },
           child: const Card(
+            color: kPrimaryLightColor,
             child: ListTile(
               leading: Icon(Iconsax.user),
               title: Text('تفاصيل شخصيه'),
@@ -37,6 +39,7 @@ class FormProfile extends StatelessWidget {
             );
           },
           child: const Card(
+            color: kPrimaryLightColor,
             child: ListTile(
               leading: Icon(
                 Icons.medical_services_rounded,
@@ -53,6 +56,7 @@ class FormProfile extends StatelessWidget {
             );
           },
           child: const Card(
+            color: kPrimaryLightColor,
             child: ListTile(
               leading: Icon(
                 Iconsax.add_square,
@@ -69,6 +73,7 @@ class FormProfile extends StatelessWidget {
             // );
           },
           child: const Card(
+            color: kPrimaryLightColor,
             child: ListTile(
               leading: Icon(
                 FontAwesomeIcons.bell,
@@ -85,6 +90,7 @@ class FormProfile extends StatelessWidget {
             // );
           },
           child: const Card(
+            color: kPrimaryLightColor,
             child: ListTile(
               leading: Icon(
                 FontAwesomeIcons.creditCard,
@@ -101,6 +107,7 @@ class FormProfile extends StatelessWidget {
             // );
           },
           child: const Card(
+            color: kPrimaryLightColor,
             child: ListTile(
               leading: Icon(
                 Iconsax.heart,
@@ -117,6 +124,7 @@ class FormProfile extends StatelessWidget {
             // );
           },
           child: const Card(
+            color: kPrimaryLightColor,
             child: ListTile(
               leading: Icon(
                 Icons.phone,
@@ -130,7 +138,7 @@ class FormProfile extends StatelessWidget {
             signOut(context);
           },
           child: const Card(
-            
+            color: kPrimaryLightColor,
             child: ListTile(
               leading: Icon(
                 Icons.logout,

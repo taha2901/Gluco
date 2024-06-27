@@ -30,6 +30,9 @@ class GlucoLayout extends StatelessWidget {
             appBar: AppBar(
               leading: Row(
                 children: [
+                  // const SizedBox(
+                  //   width: 10,
+                  // ),
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
@@ -86,8 +89,8 @@ class GlucoLayout extends StatelessWidget {
                       );
                     },
                     child: const SizedBox(
-                      width: 40, 
-                      height: 40, 
+                      width: 40,
+                      height: 40,
                       child: CircleAvatar(
                         radius: 19,
                         backgroundColor: kSecondaryColor,

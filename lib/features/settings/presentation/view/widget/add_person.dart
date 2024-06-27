@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gluco/core/widgets/constants.dart';
 import 'package:gluco/core/widgets/custom_button.dart';
 import 'package:gluco/core/widgets/custom_show_toast.dart';
 import 'package:gluco/core/widgets/custom_text_field.dart';
@@ -19,7 +20,7 @@ class AddPerson extends StatelessWidget {
         listener: (context, state) {
           if (state is ObserverSuccess) {
             showToast(msg: 'Added Succesfully', state: ToastStates.SUCCESS);
-          } else if(state is ObserverFailure) {
+          } else if (state is ObserverFailure) {
             showToast(msg: 'Failed Succesfully', state: ToastStates.ERROR);
           }
         },
@@ -36,42 +37,16 @@ class AddPerson extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.1,
                     ),
-                    Stack(
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(right: 16),
-                          child: Text(
-                            'تخطي',
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          left: 0,
-                          right: 16,
-                          child: Container(
-                            height: 2,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 63,
-                    ),
-                    const Center(
-                      child: Text(
-                        'هل تريد احد الاشخاص المقربين ان يتابع معك مستوي السكر و مواعيد الدواء و مستوي الصحه عندك ',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700,
-                        ),
-                        textAlign: TextAlign.center,
+                    const Text(
+                      'هل تريد احد الاشخاص المقربين ان يتابع معك مستوي السكر و مواعيد الدواء و مستوي الصحه عندك ',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
                       ),
+                      textAlign: TextAlign.center,
                     ),
                     const SizedBox(
                       height: 56,
@@ -82,7 +57,11 @@ class AddPerson extends StatelessWidget {
                         hint: 'ادخل اميل  ',
                         controller: emailController,
                         prefixIcon: IconButton(
-                            onPressed: () {}, icon: const Icon(Icons.mail)),
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.mail,
+                              color: kPrimaryColor,
+                            )),
                       ),
                     ),
                     const SizedBox(
@@ -94,7 +73,11 @@ class AddPerson extends StatelessWidget {
                         hint: ' رقم التلفون ',
                         controller: phoneController,
                         prefixIcon: IconButton(
-                            onPressed: () {}, icon: const Icon(Icons.phone)),
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.phone,
+                              color: kPrimaryColor,
+                            )),
                       ),
                     ),
                     const SizedBox(
@@ -107,7 +90,10 @@ class AddPerson extends StatelessWidget {
                         controller: relationController,
                         prefixIcon: IconButton(
                             onPressed: () {},
-                            icon: const Icon(Icons.type_specimen)),
+                            icon: const Icon(
+                              Icons.type_specimen,
+                              color: kPrimaryColor,
+                            )),
                       ),
                     ),
                     const SizedBox(
@@ -120,9 +106,10 @@ class AddPerson extends StatelessWidget {
                         : Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 16),
                             child: CustomButton(
+                              circular: 7,
                               text: 'اضافه',
                               icon: Icons.add,
-                              color: Colors.black,
+                              color: kPrimaryColor,
                               textcolor: Colors.white,
                               onTap: () {
                                 if (formKey.currentState!.validate()) {

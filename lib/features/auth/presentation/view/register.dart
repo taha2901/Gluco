@@ -67,7 +67,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     MaterialPageRoute(
                       builder: (context) => GlucoLayout(
                         auth: state.registerModel,
-                        imagePath: _file?.path, // تمرير مسار الصورة هنا
+                        imagePath: _file?.path, 
                       ),
                     ),
                     (route) => false,

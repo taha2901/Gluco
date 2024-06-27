@@ -11,35 +11,41 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              CircleAvatar(
-                radius: 60,
-                backgroundColor: Colors.white,
-                backgroundImage:
-                    imagePath != null ? FileImage(File(imagePath!)) : null,
-                child: imagePath == null
-                    ? const Icon(Icons.person, size: 60)
-                    : null,
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+              Row(
                 children: [
-                  Text('01274975650'),
-                  SizedBox(
-                    width: 25,
+                  CircleAvatar(
+                    radius: 60,
+                    backgroundColor: Colors.white,
+                    backgroundImage:
+                        imagePath != null ? FileImage(File(imagePath!)) : null,
+                    child: imagePath == null
+                        ? const Icon(Icons.person, size: 60)
+                        : null,
                   ),
-                  Text(
-                    'ياسر ابراهيم ',
-                    style: TextStyle(fontSize: 15),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text('01274975650'),
+                      SizedBox(
+                        width: 25,
+                      ),
+                      Text(
+                        'ياسر ابراهيم ',
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    ],
                   ),
                 ],
               ),
