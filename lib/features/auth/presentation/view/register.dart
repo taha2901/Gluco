@@ -33,7 +33,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
   }
 
-  var imageController = TextEditingController(); // متحكم لحقل النص
+  var imageController = TextEditingController(); 
   var emailController = TextEditingController(); // متحكم لحقل النص
   var passWordController = TextEditingController(); // متحكم لحقل النص
   var nameController = TextEditingController(); // متحكم لحقل النص
@@ -42,12 +42,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var addressController = TextEditingController(); // متحكم لحقل النص
 
   final GlobalKey<FormState> formKey =
-      GlobalKey<FormState>(); // مفتاح لنموذج الإدخال
+      GlobalKey<FormState>(); 
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => RegisterCubit(), // إنشاء كائن من RegisterCubit
+      create: (context) => RegisterCubit(), 
       child: BlocConsumer<RegisterCubit, RegisterState>(
         listener: (context, state) async {
           if (state is RegisterSuccess) {

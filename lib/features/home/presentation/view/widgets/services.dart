@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gluco/core/widgets/constants.dart';
 
 class Services extends StatelessWidget {
   Services({
@@ -19,18 +20,18 @@ class Services extends StatelessWidget {
         height: 68,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: const Color(0xffD9D9D9),
+          color:  kPrimaryColor,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             FaIcon(
               icon,
-              color: Colors.black
+              color: Colors.white
             ),
             Text(
               text!,
-              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700,color: Colors.black),
+              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700,color: Colors.white),
             )
           ],
         ),

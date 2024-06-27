@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gluco/core/helper/cach.dart';
+import 'package:gluco/core/widgets/constants.dart';
+import 'package:gluco/core/widgets/custom_show_toast.dart';
 import 'package:gluco/features/auth/presentation/view/widget/text_field.dart';
 import 'package:gluco/features/chat/data/room_model.dart';
 import 'package:gluco/features/chat/presentation/manager/fire_database.dart';
@@ -22,8 +24,10 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
     final userId = ChachHelper.getData(key: 'id');
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        backgroundColor: kPrimaryColor,
         onPressed: () {
           showModalBottomSheet(
+            
             context: context,
             builder: (context) {
               return Container(
@@ -49,6 +53,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                       controller: emailCon,
                       icon: Iconsax.direct,
                       lable: "Email",
+                      
                     ),
                     const SizedBox(
                       height: 16,
@@ -61,14 +66,21 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                             backgroundColor:
                                 Theme.of(context).colorScheme.primaryContainer),
                         onPressed: () {
-                          FireData().createRoom(emailCon.text).then((onValue) {
-                            setState(() {
-                              emailCon.text = "";
+                          if (emailCon.text.isNotEmpty) {
+                            FireData()
+                                .createRoom(emailCon.text)
+                                .then((onValue) {
+                              setState(() {
+                                emailCon.text = "";
+                              });
+                              
+                              print('emailCon.text $emailCon.text');
+                              Navigator.pop(context);
+                            }).catchError((error) {
+                              print("Error: $error");
                             });
-                            Navigator.pop(context);
-                          }).catchError((error) {
-                            print("Error: $error");
-                          });
+                          }
+                          showToast(msg: 'يرجى أدخال الإيميل', state: ToastStates.ERROR);  
                         },
                         child: const Center(
                           child: Text("Create Chat"),
@@ -110,7 +122,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                       } else {
                         print("Number of chat rooms: ${items.length}");
                         return ListView.builder(
-                            itemCount: items.length,
+                            itemCount: snapshot.data!.docs.length,
                             itemBuilder: (context, index) {
                               return ChatCard(
                                 item: items[index],

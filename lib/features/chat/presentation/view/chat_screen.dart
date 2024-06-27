@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:gluco/core/widgets/constants.dart';
 import 'package:gluco/features/chat/data/msg_model.dart';
 import 'package:gluco/features/chat/data/user_model.dart';
 import 'package:gluco/features/chat/presentation/manager/fire_database.dart';
@@ -162,7 +163,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         });
                       }
                     },
-                    icon: const Icon(Iconsax.send_1))
+                    icon: const Icon(Iconsax.send_1,))
               ],
             )
           ],

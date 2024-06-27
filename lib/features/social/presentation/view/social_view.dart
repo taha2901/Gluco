@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gluco/core/widgets/constants.dart';
 import 'package:intl/intl.dart';
 import 'package:gluco/core/helper/cach.dart';
 import 'package:gluco/features/auth/data/auth.dart';
@@ -123,7 +124,7 @@ class _SocialViewState extends State<SocialView> {
 
                               return Container(
                                 decoration: const BoxDecoration(
-                                  color: Colors.grey,
+                                  color: kPrimaryLightColor,
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10)),
                                 ),

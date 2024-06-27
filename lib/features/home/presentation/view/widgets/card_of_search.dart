@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gluco/core/widgets/constants.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class CardOfSearch extends StatelessWidget {
@@ -19,7 +20,7 @@ class CardOfSearch extends StatelessWidget {
               'بحث',
               style: TextStyle(fontSize: 22),
             ),
-            Icon(Iconsax.square_copy),
+            Icon(Icons.filter_alt_outlined,color: kPrimaryColor,),
           ],
         ),
       ),

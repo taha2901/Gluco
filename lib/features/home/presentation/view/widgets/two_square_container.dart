@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:gluco/core/widgets/constants.dart';
 
 class TwoSquareContainer extends StatelessWidget {
   const TwoSquareContainer({
@@ -15,7 +16,7 @@ class TwoSquareContainer extends StatelessWidget {
             height: 140,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: const Color(0xffD9D9D9),
+              color: kPrimaryLightColor,
             ),
           ),
         ),
@@ -27,9 +28,8 @@ class TwoSquareContainer extends StatelessWidget {
             height: 140,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: const Color(0xffD9D9D9),
+              color: kPrimaryLightColor,
             ),
-            // child: const pedoometer(),
           ),
         ),
       ],

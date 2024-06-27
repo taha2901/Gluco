@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gluco/core/widgets/constants.dart';
 
 class TicksOfHeart extends StatelessWidget {
   const TicksOfHeart({
@@ -7,49 +8,111 @@ class TicksOfHeart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 100,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: const Color(0xffD9D9D9),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Column(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        double containerWidth = constraints.maxWidth * 0.9; // 80% من عرض الشاشة
+        double containerHeight = containerWidth * 0.33; // نسبة الطول إلى العرض
+        double imageSize =
+            containerHeight * 0.55; // حجم الصور كنسبة من الارتفاع
+
+        return Container(
+          width: containerWidth,
+          height: containerHeight,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: kPrimaryLightColor,
+          ),
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Center(
-                child: Text(
-                  'النبص في الدقيقه 68',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500,color: Colors.black),
-                ),
-              ),
-              Row(
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'assets/pulse.png',
+                  const Center(
+                    child: Text(
+                      'النبص في الدقيقه 68',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
+                    ),
                   ),
-                  Image.asset(
-                    'assets/pulse.png',
-                  ),
-                  Image.asset(
-                    'assets/pulse.png',
-                  ),
-                  Image.asset(
-                    'assets/pulse.png',
+                  Row(
+                    // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            // width: imageSize,
+                            // height: imageSize,
+                            child: Image.asset(
+                              'assets/pulse.png',
+                              color: Colors.blue,
+                            ),
+                          ),
+                          SizedBox(
+                            // width: imageSize,
+                            // height: imageSize,
+                            child: Image.asset(
+                              'assets/pulse.png',
+                              color: Colors.blue,
+                            ),
+                          ),
+                          SizedBox(
+                            // width: imageSize,
+                            // height: imageSize,
+                            child: Image.asset(
+                              'assets/pulse.png',
+                              color: Colors.blue,
+                            ),
+                          ),
+                          SizedBox(
+                            // width: imageSize,
+                            // height: imageSize,
+                            child: Image.asset(
+                              'assets/pulse.png',
+                              color: Colors.blue,
+                            ),
+                          ),
+                          SizedBox(
+                            // width: imageSize,
+                            // height: imageSize,
+                            child: Image.asset(
+                              'assets/pulse.png',
+                              color: Colors.blue,
+                            ),
+                          ),
+                          // SizedBox(
+                          //   // width: imageSize,
+                          //   // height: imageSize,
+                          //   child: Image.asset(
+                          //     'assets/pulse.png',
+                          //     color: Colors.blue,
+                          //   ),
+                          // ),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 10, 
+                      ),
+                      SizedBox(
+                        // width: imageSize,
+                        // height: imageSize,
+                        child: Image.asset(
+                          alignment: const AlignmentDirectional(10, 10),
+                          'assets/heart.png',
+                          color: Colors.red,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
             ],
           ),
-          const SizedBox(
-            width: 48,
-          ),
-          Image.asset('assets/heart.png')
-        ],
-      ),
+        );
+      },
     );
   }
 }

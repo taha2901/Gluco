@@ -182,7 +182,7 @@ class LoginScreen extends StatelessWidget {
               ChachHelper.saveData(key: 'token', value: state.login.token).then(
                 (value) async{
                   userToken = state.login.token;
-                  await FireAuth().createUser(state.login);
+                  // await FireAuth().createUser(state.login);
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(

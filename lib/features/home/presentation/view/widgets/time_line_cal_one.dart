@@ -1,5 +1,6 @@
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:gluco/core/widgets/constants.dart';
 
 class MyTimeLineCalender1 extends StatelessWidget {
   const MyTimeLineCalender1({super.key});
@@ -23,34 +24,46 @@ class MyTimeLineCalender1 extends StatelessWidget {
   }
 
   EasyDateTimeLine _changeDayStructureExample() {
-    return EasyDateTimeLine(
-      initialDate: DateTime.now(),
-      onDateChange: (selectedDate) {
-        //`selectedDate` the new date selected.
-      },
-      activeColor: const Color(0xffFFBF9B),
-      headerProps: const EasyHeaderProps(
-        dateFormatter: DateFormatter.monthOnly(),
-      ),
-      dayProps: const EasyDayProps(
-        height: 56.0,
-        width: 56.0,
-        dayStructure: DayStructure.dayNumDayStr,
-        inactiveDayStyle: DayStyle(
-          borderRadius: 48.0,
-          dayNumStyle: TextStyle(
-            fontSize: 18.0,
-          ),
+  return EasyDateTimeLine(
+    initialDate: DateTime.now(),
+    onDateChange: (selectedDate) {
+      //`selectedDate` the new date selected.
+    },
+    activeColor: kSecondaryColor,
+    headerProps: const EasyHeaderProps(
+      dateFormatter: DateFormatter.monthOnly(),
+    ),
+    dayProps: const EasyDayProps(
+      height: 56.0,
+      width: 56.0,
+      dayStructure: DayStructure.dayNumDayStr,
+      inactiveDayStyle: DayStyle(
+        borderRadius: 48.0,
+        dayNumStyle: TextStyle(
+          fontSize: 18.0,
+          color: Colors.black, // تغيير لون النص إلى الأبيض
         ),
-        activeDayStyle: DayStyle(
-          dayNumStyle: TextStyle(
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-          ),
+        dayStrStyle: TextStyle(
+          fontSize: 12.0,
+          color: Colors.black, // تغيير لون النص إلى الأبيض
         ),
       ),
-    );
-  }
+      activeDayStyle: DayStyle(
+        dayNumStyle: TextStyle(
+          fontSize: 18.0,
+          fontWeight: FontWeight.bold,
+          color: Colors.white, // تغيير لون النص إلى الأبيض
+        ),
+        dayStrStyle: TextStyle(
+          fontSize: 12.0,
+          fontWeight: FontWeight.bold,
+          color: Colors.white, // تغيير لون النص إلى الأبيض
+        ),
+      ),
+    ),
+  );
+}
+
 
   EasyDateTimeLine _localeExample() {
     return EasyDateTimeLine(
@@ -58,7 +71,7 @@ class MyTimeLineCalender1 extends StatelessWidget {
       onDateChange: (selectedDate) {
         //`selectedDate` the new date selected.
       },
-      activeColor: const Color(0xffB04759),
+      // activeColor: Colors.grey,
       locale: "ar",
     );
   }
