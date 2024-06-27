@@ -16,4 +16,6 @@ const Add_Observer = 'AddObserver/AddObserver';
 
 const UPDATE_PROFILE = 'Auth/UpdateUser';
 
+const UPDATE_POSTS = 'Posts';
+
 String? userToken = '';

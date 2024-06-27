@@ -9,7 +9,7 @@ final class ProfileInitial extends ProfileState {}
 final class ProfileLoaded extends ProfileState {}
 
 final class ProfileSuccess extends ProfileState {
-  final Profile profileModel;
+  final UserDetails profileModel;
 
   ProfileSuccess(this.profileModel);
 }

@@ -14,7 +14,7 @@ class SocialCubit extends Cubit<SocialState> {
   static SocialCubit get(BuildContext context) => BlocProvider.of(context);
   List<SocialModel>? socialModel = [];
 
-  void getPosts() {
+  Future<void> getPosts() async {
     emit(GetSocialLoaded());
     DioHelper().getData(url: POSTS, token: userToken).then((value) {
       socialModel = (value.data as List)

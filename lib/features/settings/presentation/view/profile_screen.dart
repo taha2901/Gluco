@@ -4,8 +4,7 @@ import 'package:gluco/features/settings/presentation/view/widget/form_profile.da
 
 class ProfileScreen extends StatelessWidget {
   final String? imagePath;
-
-  const ProfileScreen({Key? key, this.imagePath}) : super(key: key);
+  const ProfileScreen({super.key, this.imagePath,});
 
   @override
   Widget build(BuildContext context) {

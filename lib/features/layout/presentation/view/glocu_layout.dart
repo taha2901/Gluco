@@ -40,7 +40,7 @@ class GlucoLayout extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                                ProfileScreen(imagePath: imagePath),
+                                ProfileScreen(imagePath: imagePath,),
                           ),
                         );
                       },

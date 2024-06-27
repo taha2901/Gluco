@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/core/helper/api.dart';
 import 'package:gluco/core/widgets/network.dart';
 import 'package:gluco/features/auth/data/auth.dart';
-import 'package:gluco/features/settings/data/profile/profile.dart';
+import 'package:gluco/features/settings/data/get.user.details.dart';
 import 'package:meta/meta.dart';
 
 part 'profile_state.dart';
@@ -12,12 +12,12 @@ class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit() : super(ProfileInitial());
 
   static ProfileCubit get(context) => BlocProvider.of(context);
-  Profile? profileModel;
+  UserDetails? profileModel;
 
   Future<void> getUserData() async {
     emit(ProfileLoaded());
-    DioHelper().getData(url: 'PROFILE', token: userToken).then((value) {
-      profileModel = Profile.fromJson(value.data);
+    DioHelper().getData(url: 'Auth/Get User Details', token: 'Bearer $userToken').then((value) {
+      profileModel = UserDetails.fromJson(value.data);
       print('token in profile is $userToken');
       emit(ProfileSuccess(profileModel!));
     }).catchError((onError) {
