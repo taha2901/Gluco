@@ -16,11 +16,9 @@ class PersonalDetails extends StatelessWidget {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
     return BlocConsumer<UpdateProfileCubit, UpdateProfileState>(
       listener: (context, state) {
-
-        if(state is UpdateUserSuccess){
+        if (state is UpdateUserSuccess) {
           showToast(msg: 'Update Succesfully', state: ToastStates.SUCCESS);
-        }
-        else if(state is UpdateUserFailure){
+        } else if (state is UpdateUserFailure) {
           showToast(msg: 'Update Failed', state: ToastStates.ERROR);
         }
       },
@@ -56,12 +54,6 @@ class PersonalDetails extends StatelessWidget {
                     hint: 'أدخل إسمك',
                     controller: nameCon,
                   ),
-                  // const SizedBox(
-                  //   height: 16,
-                  // ),
-                  // CustomTextField(
-                  //   hint: 'أدخل عنوانك',
-                  // ),
                   const SizedBox(
                     height: 16,
                   ),

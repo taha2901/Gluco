@@ -5,7 +5,6 @@ import 'package:gluco/core/helper/api.dart';
 import 'package:gluco/core/helper/cach.dart';
 import 'package:gluco/core/widgets/network.dart';
 import 'package:gluco/core/widgets/onboarding.dart';
-// import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:gluco/features/activities/presentation/manager/pressure_cubit/pressure_check_cubit.dart';
 import 'package:gluco/features/activities/presentation/manager/suger_cubit/sugar_check_cubit.dart';
@@ -19,9 +18,12 @@ import 'package:gluco/features/home/presentation/manager/reservation_cubit/reser
 import 'package:gluco/features/layout/presentation/view/glocu_layout.dart';
 import 'package:gluco/features/settings/presentation/manager/fav_cubit/fav_cubit.dart';
 import 'package:gluco/features/settings/presentation/manager/update_cubit/update_profile_cubit.dart';
+import 'package:gluco/features/social/presentation/manager/add_posts_cubit/add_post_cubit.dart';
 import 'package:gluco/features/social/presentation/manager/get_posts/social_cubit.dart';
 import 'package:gluco/features/social/presentation/manager/update_cubit/update_posts_cubit.dart';
 import 'package:gluco/firebase_options.dart';
+import 'package:image_picker/image_picker.dart'; // Add this line
+import 'package:google_generative_ai/google_generative_ai.dart'; // Add this line
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,19 +55,16 @@ void main() async {
     Gluco(
       startWidget: widget,
       token: userToken,
-      // savedThemeMode: savedThemeMode,
     ),
   );
 }
 
 class Gluco extends StatelessWidget {
-  // final AdaptiveThemeMode? savedThemeMode;
   final Widget startWidget;
   final String? token;
 
   const Gluco({
     Key? key,
-    // this.savedThemeMode,
     required this.startWidget,
     this.token,
   }) : super(key: key);
@@ -102,6 +101,9 @@ class Gluco extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => GetFavCubit()..getFavourites(),
+        ),
+        BlocProvider(
+          create: (context) => AddPostCubit(),
         ),
       ],
       child: MaterialApp(

@@ -38,7 +38,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var passWordController = TextEditingController(); // متحكم لحقل النص
   var nameController = TextEditingController(); // متحكم لحقل النص
   var phoneController = TextEditingController(); // متحكم لحقل النص
-  var confirmPassController = TextEditingController(); // متحكم لحقل النص
+  // var confirmPassController = TextEditingController(); // متحكم لحقل النص
   var addressController = TextEditingController(); // متحكم لحقل النص
 
   final GlobalKey<FormState> formKey =
@@ -162,21 +162,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       const SizedBox(
                         height: 15.0,
                       ),
-                      CustomField(
-                        showBorder: false,
-                        obscure: RegisterCubit.get(context).isObsecure,
-                        controller: confirmPassController,
-                        lable: "أكد الرقم السري",
-                        icon: Iconsax.password_check,
-                        isPass: true,
-                        onSubmitted: (value) {
-                          confirmPassController.text = value;
-                        },
-                        suffixIcon: RegisterCubit.get(context).suffix,
-                        suffixPressed: () {
-                          RegisterCubit.get(context).changePasswordVisibility();
-                        },
-                      ),
+                      // CustomField(
+                      //   showBorder: false,
+                      //   obscure: RegisterCubit.get(context).isObsecure,
+                      //   controller: confirmPassController,
+                      //   lable: "أكد الرقم السري",
+                      //   icon: Iconsax.password_check,
+                      //   isPass: true,
+                      //   onSubmitted: (value) {
+                      //     confirmPassController.text = value;
+                      //   },
+                      //   suffixIcon: RegisterCubit.get(context).suffix,
+                      //   suffixPressed: () {
+                      //     RegisterCubit.get(context).changePasswordVisibility();
+                      //   },
+                      // ),
                       const SizedBox(
                         height: 15.0,
                       ),
@@ -219,7 +219,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 email: emailController.text,
                                 address: addressController.text,
                                 password: passWordController.text,
-                                confirmpPassword: confirmPassController.text,
+                                // confirmpPassword: confirmPassController.text,
                                 phone: phoneController.text,
                                 image:
                                     _file!, // تمرير الصورة المختارة عند التسجيل

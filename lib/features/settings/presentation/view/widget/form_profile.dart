@@ -101,10 +101,10 @@ class FormProfile extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) =>  FavouriteDoctors()),
-            // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>  const FavouriteDoctors()),
+            );
           },
           child: const Card(
             color: kPrimaryLightColor,

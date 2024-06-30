@@ -24,7 +24,6 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
       final updateUser = Update.fromJson(value.data);
       print(' update status is ${updateUser.message}');
       print(updateUser.message);
-      // await getUserData();
       emit(UpdateUserSuccess());
     }).catchError((onError) {
       emit(UpdateUserFailure('Server error: ${onError.response?.statusCode}'));

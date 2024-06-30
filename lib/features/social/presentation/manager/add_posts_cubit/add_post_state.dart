@@ -13,6 +13,10 @@ final class PostSocialSuccess extends AddPostState {
   PostSocialSuccess(this.addPostModel);
 }
 
-
 final class PostSocialError extends AddPostState {}
 
+class PostLikesSuccess extends AddPostState {
+  final int postId;
+
+  PostLikesSuccess(this.postId);
+}

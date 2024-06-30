@@ -12,13 +12,19 @@ class GetFavCubit extends Cubit<GetFavState> {
 
   static GetFavCubit get(context) => BlocProvider.of(context);
 
+  List<GetFavourite> favModels = [];
+  
   void getFavourites() {
     emit(GetFavLoadingState());
-    DioHelper().getData(url: 'Favorites/AddFavoriteDoctor', token: 'Bearer $userToken').then((value) {
-      List<GetFavourite> favModels = (value.data as List)
-          .map((fav) => GetFavourite.fromJson(fav))
-          .toList();
+    DioHelper().getData(url: GET_FAVOURITES, token: 'Bearer $userToken').then((value) {
+      favModels = (value.data as List).map((fav) => GetFavourite.fromJson(fav)).toList();
+      print(favModels[0].doctor!.address);
+      print(favModels[0].doctor!.about);
+      print(favModels[0].doctor!.doctorspecialization);
+      print(favModels[0].doctor!.address);
+      print('Favourites fetched: ${favModels.length}');
       emit(GetFavSuccessState(favModels: favModels));
+
     }).catchError((onError) {
       emit(GetFavErrorState(onError.toString()));
     });

@@ -5,12 +5,9 @@ sealed class UpdateProfileState {}
 
 final class UpdateProfileInitial extends UpdateProfileState {}
 
-
 final class UpdateUserLoaded extends UpdateProfileState {}
 
-final class UpdateUserSuccess extends UpdateProfileState {
-  
-}
+final class UpdateUserSuccess extends UpdateProfileState {}
 
 final class UpdateUserFailure extends UpdateProfileState {
   final String errMessage;

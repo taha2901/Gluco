@@ -13,7 +13,7 @@ class UpdatePostsCubit extends Cubit<UpdatePostsState> {
   void updatePost({required String content, required String postId}) {
     emit(UpdatePostsLoaded());
     DioHelper().putData(
-      url: 'http://nouraapi.runasp.net/api/Posts/$postId',
+      url: 'Posts/$postId',
       token: 'Bearer $userToken',
       data: {
         'content': content,

@@ -11,7 +11,7 @@ class ShowAppointMedicine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        color: const Color.fromARGB(255, 214, 211, 211),
+        color: const Color(0xffC8D2D8),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: Row(
@@ -20,18 +20,23 @@ class ShowAppointMedicine extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    medicineModel!.name.toString(),
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal:  16.0),
+                    child: Text(
+                      medicineModel!.name.toString(),
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
                   ),
-                  Row(
-                    children: [
-                      Text(medicineModel!.dosage.toString()),
-                      Text(medicineModel!.date.toString()),
-                      Text(medicineModel!.times.toString()),
-
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 16),
+                    child: Row(
+                      children: [
+                        Text(medicineModel!.dosage.toString()),
+                        const SizedBox(width: 1,),
+                        Text(medicineModel!.times.toString()),
+                      ],
+                    ),
                   ),
                 ],
               ),

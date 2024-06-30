@@ -28,7 +28,7 @@ class AddMedicineCubit extends Cubit<AddMedicineState> {
         'name': name,
         'dosage': dosage,
         'times': times,
-        'date': date,
+        'time': date,
         
       },
     ).then((value) {

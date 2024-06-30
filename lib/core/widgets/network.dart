@@ -18,4 +18,6 @@ const UPDATE_PROFILE = 'Auth/UpdateUser';
 
 const UPDATE_POSTS = 'Posts';
 
+const GET_FAVOURITES = 'Favorites/GetFavoritesDoctors';
+
 String? userToken = '';

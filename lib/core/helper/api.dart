@@ -39,7 +39,7 @@ class DioHelper {
   Future<Response> postData({
     required String url,
     Map<String, dynamic>? query,
-    required dynamic data,
+     dynamic data,
     bool isMultipart = false,
     String lang = 'ar',
     String? token,

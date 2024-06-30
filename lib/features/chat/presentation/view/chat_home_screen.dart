@@ -80,7 +80,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                               print("Error: $error");
                             });
                           }
-                          showToast(msg: 'يرجى أدخال الإيميل', state: ToastStates.ERROR);  
+                          // showToast(msg: 'يرجى أدخال الإيميل', state: ToastStates.ERROR);  
                         },
                         child: const Center(
                           child: Text("Create Chat"),

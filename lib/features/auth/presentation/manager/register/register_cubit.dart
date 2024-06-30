@@ -19,7 +19,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String username,
     required String email,
     required String password,
-    required String confirmpPassword,
+    // required String confirmpPassword,
     required String phone,
     required File image,
     required String address,
@@ -34,7 +34,7 @@ class RegisterCubit extends Cubit<RegisterState> {
         'Photo': await MultipartFile.fromFile(image.path,
             filename: image.path.split('/').last),
         'Password': password,
-        'confirmpassword': confirmpPassword,
+        // 'confirmpassword': confirmpPassword,
         'Address': address,
       });
       print("FormData prepared");
