@@ -142,7 +142,6 @@
 //   }
 // }
 
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
@@ -169,7 +168,7 @@ class _PicProductsViewState extends State<PicProductsView> {
   }
 
   Future<void> _initializeAIModel() async {
-    const apiKey = 'AIzaSyBROYhpNf5cdeHVCnAjEy-4PXfSWEiQjmI'; 
+    const apiKey = 'AIzaSyBROYhpNf5cdeHVCnAjEy-4PXfSWEiQjmI'; // Replace with your Google API key
     _model = GenerativeModel(
       model: 'gemini-1.5-flash',
       apiKey: apiKey,
@@ -179,6 +178,8 @@ class _PicProductsViewState extends State<PicProductsView> {
 
   Future<void> _pickImage() async {
     final image = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (!mounted) return; // Check if widget is still mounted before updating state
 
     setState(() {
       _image = image;
@@ -210,14 +211,24 @@ class _PicProductsViewState extends State<PicProductsView> {
 
     final imagePart = DataPart('image/jpeg', imageBytes);
 
-    final response = await _model.generateContent([
-      Content.multi([prompt, imagePart])
-    ]);
+    try {
+      final response = await _model.generateContent([
+        Content.multi([prompt, imagePart])
+      ]);
 
-    setState(() {
-      _generatedText = response.text.toString();
-      _isSuitable = _checkIfSuitable(response.text.toString()); 
-    });
+      if (!mounted) return; // Check if widget is still mounted before updating state
+
+      setState(() {
+        _generatedText = response.text.toString();
+        _isSuitable = _checkIfSuitable(response.text.toString()); // Replace with your logic
+      });
+    } catch (e) {
+      print('Error generating text: $e');
+      setState(() {
+        _generatedText = 'Error generating text';
+        _isSuitable = false;
+      });
+    }
   }
 
   bool _checkIfSuitable(String generatedText) {
@@ -226,8 +237,17 @@ class _PicProductsViewState extends State<PicProductsView> {
   }
 
   @override
+  void dispose() {
+    // Clean up resources here
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Pic Products View'),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
