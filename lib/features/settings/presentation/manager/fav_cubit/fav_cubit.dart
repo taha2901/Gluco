@@ -16,17 +16,20 @@ class GetFavCubit extends Cubit<GetFavState> {
   
   void getFavourites() {
     emit(GetFavLoadingState());
-    DioHelper().getData(url: GET_FAVOURITES, token: 'Bearer $userToken').then((value) {
-      favModels = (value.data as List).map((fav) => GetFavourite.fromJson(fav)).toList();
-      print(favModels[0].doctor!.address);
-      print(favModels[0].doctor!.about);
-      print(favModels[0].doctor!.doctorspecialization);
-      print(favModels[0].doctor!.address);
-      print('Favourites fetched: ${favModels.length}');
-      emit(GetFavSuccessState(favModels: favModels));
-
-    }).catchError((onError) {
-      emit(GetFavErrorState(onError.toString()));
-    });
+    DioHelper().getData(url: GET_FAVOURITES, token: 'Bearer $userToken')
+      .then((value) {
+        if (value.data is List) {
+          favModels = (value.data as List)
+            .map((fav) => GetFavourite.fromJson(fav))
+            .toList();
+          print('Favourites fetched: ${favModels.length}');
+          emit(GetFavSuccessState(favModels: favModels));
+        } else {
+          emit(GetFavErrorState('Invalid response data'));
+        }
+      })
+      .catchError((onError) {
+        emit(GetFavErrorState(onError.toString()));
+      });
   }
 }

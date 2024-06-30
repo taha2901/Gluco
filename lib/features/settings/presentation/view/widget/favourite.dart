@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gluco/core/widgets/constants.dart';
 import 'package:gluco/features/settings/data/get_favourite/get_favourite.dart';
 import 'package:gluco/features/settings/presentation/manager/fav_cubit/fav_cubit.dart';
 
@@ -52,17 +53,29 @@ class FavWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundImage: NetworkImage(fav.doctor!.photo ?? ''),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        color: kPrimaryLightColor,
+        child: ListTile(
+          trailing: IconButton(
+            icon: const Icon(
+              Icons.delete,
+              color: Colors.red,
+            ),
+            onPressed: () {
+              
+            },
+          ),
+          leading: CircleAvatar(
+            backgroundImage: NetworkImage(fav.doctor!.photo ?? ''),
+          ),
+          title: Text(
+            fav.doctor!.userName ?? '',
+          ),
+          subtitle: Text(fav.doctor!.doctorspecialization ?? ''),
+          onTap: () {},
         ),
-        title: Text(
-          fav.doctor!.userName ?? 'nnn',
-          style: const TextStyle(backgroundColor: Colors.black),
-        ),
-        subtitle: Text(fav.doctor!.doctorspecialization ?? ''),
-        onTap: () {},
       ),
     );
   }
