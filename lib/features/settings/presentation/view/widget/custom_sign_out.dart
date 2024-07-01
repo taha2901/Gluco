@@ -9,7 +9,8 @@ void signOut(context) {
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
-                builder: (context) => const LoginScreen(),
+                builder: (context) => const LoginScreen(
+                ),
               ),
               (route) => false,
             )

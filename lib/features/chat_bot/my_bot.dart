@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 
 class MyBot extends StatefulWidget {
   const MyBot({super.key});
-static String id = 'GlocuBot';
   @override
   State<MyBot> createState() => _MyBotState();
 }
@@ -60,7 +59,12 @@ class _MyBotState extends State<MyBot> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Glocu Bot'),
+        centerTitle: true,
+      ),
       body: DashChat(
+        
         currentUser: mySelf,
         onSend: (ChatMessage m) {
           getData(m);

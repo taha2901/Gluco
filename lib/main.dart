@@ -15,6 +15,7 @@ import 'package:gluco/features/auth/data/auth.dart';
 import 'package:gluco/features/auth/presentation/view/login.dart';
 import 'package:gluco/features/home/presentation/manager/dooctor_cubit/doctor_cubit.dart';
 import 'package:gluco/features/home/presentation/manager/reservation_cubit/reservation_cubit.dart';
+import 'package:gluco/features/layout/presentation/manager/layout_cubit/layout_cubit.dart';
 import 'package:gluco/features/layout/presentation/view/glocu_layout.dart';
 import 'package:gluco/features/settings/presentation/manager/fav_cubit/fav_cubit.dart';
 import 'package:gluco/features/settings/presentation/manager/update_cubit/update_profile_cubit.dart';
@@ -22,8 +23,6 @@ import 'package:gluco/features/social/presentation/manager/add_posts_cubit/add_p
 import 'package:gluco/features/social/presentation/manager/get_posts/social_cubit.dart';
 import 'package:gluco/features/social/presentation/manager/update_cubit/update_posts_cubit.dart';
 import 'package:gluco/firebase_options.dart';
-import 'package:image_picker/image_picker.dart'; // Add this line
-import 'package:google_generative_ai/google_generative_ai.dart'; // Add this line
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,20 +38,22 @@ void main() async {
   Widget widget;
   bool? onBoarding = ChachHelper.getData(key: 'onBoarding');
 
+  Auth auth = Auth(/* Initialize Auth object with required parameters */);
   if (onBoarding != null) {
     if (userToken != null) {
-      Auth auth = Auth(/* Initialize Auth object with required parameters */);
       widget = GlucoLayout(
         auth: auth,
       );
     } else {
-      widget = const LoginScreen();
+      widget =  LoginScreen();
     }
   } else {
     widget = const OnBoardingScreen();
   }
+
   runApp(
     Gluco(
+      auth: auth,
       startWidget: widget,
       token: userToken,
     ),
@@ -62,11 +63,13 @@ void main() async {
 class Gluco extends StatelessWidget {
   final Widget startWidget;
   final String? token;
+  final Auth auth;
 
   const Gluco({
     Key? key,
     required this.startWidget,
     this.token,
+    required this.auth,
   }) : super(key: key);
 
   @override
@@ -100,17 +103,20 @@ class Gluco extends StatelessWidget {
           create: (context) => UpdatePostsCubit(),
         ),
         BlocProvider(
-          create: (context) => GetFavCubit()..getFavourites(),
+          create: (context) => FavCubit()..getFavourites(),
         ),
         BlocProvider(
           create: (context) => AddPostCubit(),
+        ),
+        BlocProvider(
+          create: (context) => LayoutCubit(auth),
         ),
       ],
       child: MaterialApp(
         locale: const Locale('ar'),
         supportedLocales: const [
-          Locale('en'), // English
-          Locale('ar'), // Arabic
+          Locale('en'),
+          Locale('ar'),
         ],
         localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,

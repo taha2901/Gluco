@@ -1,149 +1,6 @@
-// import 'dart:io';
-// import 'package:flutter/material.dart';
-// import 'package:google_generative_ai/google_generative_ai.dart';
-// import 'package:image_picker/image_picker.dart';
-
-// class PicProductsView extends StatefulWidget {
-//   const PicProductsView({super.key});
-
-//   @override
-//   _PicProductsViewState createState() => _PicProductsViewState();
-// }
-
-// class _PicProductsViewState extends State<PicProductsView> {
-//   late GenerativeModel _model;
-//   final ImagePicker _picker = ImagePicker();
-//   XFile? _image;
-//   String _generatedText = 'Press the button to generate text using AI';
-//   bool _isSuitable = false;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     _initializeAIModel();
-//   }
-
-//   Future<void> _initializeAIModel() async {
-//     const apiKey = 'AIzaSyBROYhpNf5cdeHVCnAjEy-4PXfSWEiQjmI';
-//     _model = GenerativeModel(
-//       model: 'gemini-1.5-flash',
-//       apiKey: apiKey,
-//       generationConfig: GenerationConfig(maxOutputTokens: 300),
-//     );
-//   }
-
-//   Future<void> _pickImage() async {
-//     final image = await _picker.pickImage(source: ImageSource.gallery);
-
-//     setState(() {
-//       _image = image;
-//       _generatedText = 'Press the button to generate text using AI';
-//       _isSuitable = false;
-//     });
-//   }
-
-//   Future<void> _generateText() async {
-//     if (_image == null) {
-//       setState(() {
-//         _generatedText = 'Please pick an image first';
-//         _isSuitable = false;
-//       });
-//       return;
-//     }
-
-//     final imageBytes = await _image!.readAsBytes();
-
-//     final prompt = TextPart(
-//       "بصفتك خبيرًا متخصصًا في تقييم ملاءمة الفواكه والأطعمة للأفراد المصابين بمرض السكري، "
-//       "مهمتك تتضمن تحليل الصور الواردة المتعلقة بأصناف مختلفة من الأطعمة. "
-//       "الهدف الأول هو تحديد نوع الفاكهة أو الطعام المتواجد في الصورة. "
-//       "بعد ذلك، يجب عليك تحديد مؤشر السكر الذيمي للعنصر المحدد. "
-//       "بناءً على هذا المؤشر، قدم توصيات حول ما إذا كان بإمكان الأفراد المصابين بالسكري أن يدخلوا الطعام المكتشف في نظامهم الغذائي. "
-//       "إذا كان الطعام مناسبًا، فحدد الكمية الموصى بها للاستهلاك. "
-//       "إذا لم يكن مناسبًا، فأوصي ببديل."
-//     );
-
-//     final imagePart = DataPart('image/jpeg', imageBytes);
-
-//     final response = await _model.generateContent([
-//       Content.multi([prompt, imagePart])
-//     ]);
-
-//     setState(() {
-//       _generatedText = response.text.toString();
-//       _isSuitable = _checkIfSuitable(response.text.toString()); // Replace with your logic
-//     });
-//   }
-
-//   bool _checkIfSuitable(String generatedText) {
-//     // Replace with your logic to determine if the generated text is suitable for diabetics
-//     return generatedText.contains('suitable');
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.stretch,
-//           children: <Widget>[
-//             ElevatedButton(
-//               onPressed: _pickImage,
-//               child: const Text('Pick Image'),
-//             ),
-//             const SizedBox(height: 20),
-//             _image != null
-//                 ? Expanded(
-//                     child: Column(
-//                       children: [
-//                         Expanded(
-//                           flex: 1,
-//                           child: Image.file(File(_image!.path)),
-//                         ),
-//                         const SizedBox(height: 20),
-//                         ElevatedButton(
-//                           onPressed: _generateText,
-//                           child: const Text('Generate Text'),
-//                         ),
-//                         const SizedBox(height: 20),
-//                         Expanded(
-//                           flex: 1,
-//                           child: Text(
-//                             _generatedText,
-//                             textAlign: TextAlign.center,
-//                           ),
-//                         ),
-//                       ],
-//                     ),
-//                   )
-//                 : const SizedBox.shrink(),
-//             const SizedBox(height: 20),
-//             _isSuitable
-//                 ? const Card(
-//                     color: Colors.green,
-//                     child: Padding(
-//                       padding: EdgeInsets.all(8.0),
-//                       child: Text(
-//                         'This food item is suitable for diabetics',
-//                         textAlign: TextAlign.center,
-//                         style: TextStyle(
-//                           color: Colors.white,
-//                           fontWeight: FontWeight.bold,
-//                         ),
-//                       ),
-//                     ),
-//                   )
-//                 : const SizedBox.shrink(),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:gluco/core/widgets/constants.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -168,7 +25,7 @@ class _PicProductsViewState extends State<PicProductsView> {
   }
 
   Future<void> _initializeAIModel() async {
-    const apiKey = 'AIzaSyBROYhpNf5cdeHVCnAjEy-4PXfSWEiQjmI'; // Replace with your Google API key
+    const apiKey = 'AIzaSyBROYhpNf5cdeHVCnAjEy-4PXfSWEiQjmI';
     _model = GenerativeModel(
       model: 'gemini-1.5-flash',
       apiKey: apiKey,
@@ -183,9 +40,14 @@ class _PicProductsViewState extends State<PicProductsView> {
 
     setState(() {
       _image = image;
-      _generatedText = 'Press the button to generate text using AI';
+      _generatedText = 'Generating text using AI...';
       _isSuitable = false;
     });
+
+    // Automatically generate text after picking the image
+    if (_image != null) {
+      await _generateText();
+    }
   }
 
   Future<void> _generateText() async {
@@ -246,16 +108,20 @@ class _PicProductsViewState extends State<PicProductsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pic Products View'),
+        // centerTitle: true,
+        // title: const Text('صور طعامك'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          // crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            ElevatedButton(
-              onPressed: _pickImage,
-              child: const Text('Pick Image'),
+            Center(
+              child: ElevatedButton(
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue)),
+                onPressed: _pickImage,
+                child: const Text('إبحث عن صورة ل طعامك',style: TextStyle(color: Colors.white),),
+              ),
             ),
             const SizedBox(height: 20),
             _image != null
@@ -265,11 +131,6 @@ class _PicProductsViewState extends State<PicProductsView> {
                         Expanded(
                           flex: 1,
                           child: Image.file(File(_image!.path)),
-                        ),
-                        const SizedBox(height: 20),
-                        ElevatedButton(
-                          onPressed: _generateText,
-                          child: const Text('Generate Text'),
                         ),
                         const SizedBox(height: 20),
                         Expanded(

@@ -165,6 +165,7 @@ import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
@@ -179,13 +180,16 @@ class LoginScreen extends StatelessWidget {
           if (state is LoginSuccess) {
             if (state.login.isAuthenticated!) {
               ChachHelper.saveData(key: 'token', value: state.login.token).then(
-                (value) async{
+                (value) async {
                   userToken = state.login.token;
                   // await FireAuth().createUser(state.login);
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => GlucoLayout(auth: state.login),
+                      builder: (context) => GlucoLayout(
+                        auth: state.login,
+                        // imagePath: _file?.path,
+                      ),
                     ),
                     (route) => false,
                   );

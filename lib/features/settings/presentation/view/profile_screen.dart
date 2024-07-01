@@ -1,13 +1,16 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gluco/features/layout/presentation/manager/layout_cubit/layout_cubit.dart';
 import 'package:gluco/features/settings/presentation/view/widget/form_profile.dart';
 
 class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key, this.imagePath, });
   final String? imagePath;
-  const ProfileScreen({super.key, this.imagePath,});
-
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<LayoutCubit>();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -25,6 +28,7 @@ class ProfileScreen extends StatelessWidget {
                     backgroundColor: Colors.white,
                     backgroundImage:
                         imagePath != null ? FileImage(File(imagePath!)) : null,
+                     
                     child: imagePath == null
                         ? const Icon(Icons.person, size: 60)
                         : null,
@@ -32,6 +36,7 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(
                     width: 10,
                   ),
+                  // Display the user's phone number and name.
                   const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -51,6 +56,7 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
+              // Display the user's form to edit their profile.
               const FormProfile(),
             ],
           ),

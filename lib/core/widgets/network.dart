@@ -20,4 +20,6 @@ const UPDATE_POSTS = 'Posts';
 
 const GET_FAVOURITES = 'Favorites/GetFavoritesDoctors';
 
+const Add_Favourite = 'Favorites/AddFavoriteDoctor';
+
 String? userToken = '';

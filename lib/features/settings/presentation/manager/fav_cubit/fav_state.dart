@@ -1,21 +1,34 @@
 part of 'fav_cubit.dart';
 
 @immutable
-sealed class GetFavState {}
+sealed class FavState {}
 
-final class GetFavInitial extends GetFavState {}
+final class GetFavInitial extends FavState {}
 
 
-class GetFavLoadingState extends GetFavState {}
+class GetFavLoadingState extends FavState {}
 
-class GetFavSuccessState extends GetFavState {
+class GetFavSuccessState extends FavState {
   final List<GetFavourite> favModels;
 
   GetFavSuccessState({required this.favModels});
 }
 
-class GetFavErrorState extends GetFavState {
+class GetFavErrorState extends FavState {
   final String error;
 
   GetFavErrorState(this.error);
+}
+
+class AddFavLoadingState extends FavState {}
+
+class AddFavSuccessState extends FavState {
+
+  AddFavSuccessState();
+}
+
+class AddFavErrorState extends FavState {
+  final String error;
+
+  AddFavErrorState(this.error);
 }

@@ -6,7 +6,6 @@ import 'package:gluco/core/widgets/constants.dart';
 import 'package:gluco/features/chat_bot/my_bot.dart';
 import 'package:gluco/features/layout/presentation/manager/layout_cubit/layout_cubit.dart';
 import 'package:gluco/features/settings/presentation/view/profile_screen.dart';
-import 'package:gluco/features/social/presentation/view/social_view.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:gluco/features/auth/data/auth.dart';
 
@@ -39,6 +38,7 @@ class GlucoLayout extends StatelessWidget {
             backgroundColor: Colors.transparent,
             appBar: showAppBar
                 ? AppBar(
+                    backgroundColor: Colors.white,
                     leading: Row(
                       children: [
                         Expanded(
@@ -116,7 +116,7 @@ class GlucoLayout extends StatelessWidget {
                 cubit.changeBottomNavBar(index);
               },
               items: cubit.bottomItem,
-              backgroundColor: const Color.fromRGBO(255, 255, 255, 0.5),
+              backgroundColor:  Colors.white,
               selectedItemColor: Colors.blue,
               unselectedItemColor: Colors.grey,
             ),

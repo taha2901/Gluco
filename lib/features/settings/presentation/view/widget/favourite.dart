@@ -9,7 +9,7 @@ class FavouriteDoctors extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<GetFavCubit, GetFavState>(
+    return BlocConsumer<FavCubit, FavState>(
       listener: (context, state) {
         if (state is GetFavErrorState) {
           ScaffoldMessenger.of(context).showSnackBar(

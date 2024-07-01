@@ -13,6 +13,7 @@ part 'layout_state.dart';
 
 class LayoutCubit extends Cubit<LayoutState> {
   final Auth auth;
+  String? imagePath;
   late final List<Widget> screens;
 
   LayoutCubit(this.auth) : super(LayoutInitial()) {
@@ -34,14 +35,19 @@ class LayoutCubit extends Cubit<LayoutState> {
     emit(LayoutChangeBottomNavBarState());
   }
 
+  void setImagePath(String? path) {
+    imagePath = path;
+    emit(LayoutImageChangedState());
+  }
+
   List<BottomNavigationBarItem> bottomItem = [
     const BottomNavigationBarItem(
       icon: Icon(Iconsax.home),
       label: 'الرئيسيه',
     ),
     const BottomNavigationBarItem(
-      icon: Icon(Icons.camera_alt_rounded),
-      label: 'camera',
+      icon: Icon(Iconsax.camera),
+      label: 'تصوير منتجات',
     ),
     const BottomNavigationBarItem(
       icon: Icon(Iconsax.timer_start_copy),

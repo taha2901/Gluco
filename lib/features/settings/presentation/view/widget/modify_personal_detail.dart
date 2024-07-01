@@ -41,7 +41,7 @@ class PersonalDetails extends StatelessWidget {
                     radius: 50,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(40),
-                      child: Image.asset(
+                      child: Image.network(
                         "assets/DoctorAhmed.png",
                         height: 92,
                         width: 92,

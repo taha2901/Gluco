@@ -162,21 +162,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       const SizedBox(
                         height: 15.0,
                       ),
-                      // CustomField(
-                      //   showBorder: false,
-                      //   obscure: RegisterCubit.get(context).isObsecure,
-                      //   controller: confirmPassController,
-                      //   lable: "أكد الرقم السري",
-                      //   icon: Iconsax.password_check,
-                      //   isPass: true,
-                      //   onSubmitted: (value) {
-                      //     confirmPassController.text = value;
-                      //   },
-                      //   suffixIcon: RegisterCubit.get(context).suffix,
-                      //   suffixPressed: () {
-                      //     RegisterCubit.get(context).changePasswordVisibility();
-                      //   },
-                      // ),
                       const SizedBox(
                         height: 15.0,
                       ),
