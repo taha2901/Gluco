@@ -23,9 +23,9 @@ Function(String?)? mealname;
           ),
         ),
     
-        hint: const Text("اسم الوجبه"),
+        hint: const Text("توقيت الوجبه"),
          value: selectedItem,
-         items: ["فطار","غذاء","عشاء"].map((e){
+         items: ["بعد الوجبه","قبل الوجبه"].map((e){
            return DropdownMenuItem<String>(
              child: Text("$e"),
              value: e,
