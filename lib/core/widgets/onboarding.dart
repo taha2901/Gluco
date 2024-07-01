@@ -174,11 +174,14 @@ class BuildBoardingItem extends StatelessWidget {
                 color: Colors.blue,
                 borderRadius: BorderRadius.circular(15),
               ),
-              child: Image(
-                height: MediaQuery.of(context).size.height / 2,
-                width: double.infinity,
-                fit: BoxFit.fill,
-                image: AssetImage(board.image),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: Image(
+                  height: MediaQuery.of(context).size.height / 2,
+                  width: double.infinity,
+                  fit: BoxFit.fitHeight,
+                  image: AssetImage(board.image),
+                ),
               ),
             ),
             const SizedBox(height: 16),

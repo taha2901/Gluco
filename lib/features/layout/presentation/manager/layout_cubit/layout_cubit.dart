@@ -3,27 +3,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/features/activities/presentation/view/Activities.dart';
 import 'package:gluco/features/appointments/presentation/view/show_appintment.dart';
-import 'package:gluco/features/chat_bot/my_bot.dart';
+import 'package:gluco/features/auth/data/auth.dart';
 import 'package:gluco/features/home/presentation/view/home_view.dart';
 import 'package:gluco/features/pic_products/presentation/view/pic_products.dart';
+import 'package:gluco/features/social/presentation/view/social_view.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
-import 'dart:io';
 
 part 'layout_state.dart';
 
 class LayoutCubit extends Cubit<LayoutState> {
-  LayoutCubit() : super(LayoutInitial());
+  final Auth auth;
+  late final List<Widget> screens;
+
+  LayoutCubit(this.auth) : super(LayoutInitial()) {
+    screens = [
+      const HomeView(),
+      const PicProductsView(),
+      const ShowAppointment(),
+      const Activities(),
+      SocialView(auth: auth),
+    ];
+  }
+
   static LayoutCubit get(context) => BlocProvider.of(context);
 
   int currentIndex = 0;
-
-  List<Widget> screens = [
-    const HomeView(),
-    const PicProductsView(),
-    const ShowAppointment(),
-    const Activities(),
-    const MyBot(),
-  ];
 
   void changeBottomNavBar(int index) {
     currentIndex = index;
@@ -48,9 +52,8 @@ class LayoutCubit extends Cubit<LayoutState> {
       label: 'االانشطه',
     ),
     const BottomNavigationBarItem(
-      icon: Icon(Icons.chat),
-      label: 'جلوكو بوت',
+      icon: Icon(Iconsax.user_octagon_copy),
+      label: 'التواصل', 
     ),
   ];
-
 }

@@ -6,11 +6,11 @@ import 'package:gluco/features/activities/presentation/manager/pressure_cubit/pr
 import 'package:gluco/features/home/presentation/view/widgets/Heart.dart';
 
 class TicksOfHeart extends StatelessWidget {
-   TicksOfHeart({
+  TicksOfHeart({
     super.key,
   });
-   int? heartlenght;
-    String? heartrate;
+  int? heartlenght;
+  String? heartrate;
   @override
   Widget build(BuildContext context) {
     DateTime currentDate = DateTime.now();
@@ -19,13 +19,13 @@ class TicksOfHeart extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => PresssureCheckCubit()..fetchpressuredata(formattedDate),
+          create: (context) =>
+              PresssureCheckCubit()..fetchpressuredata(formattedDate),
         ),
       ],
       child: LayoutBuilder(
         builder: (context, constraints) {
-          double containerWidth =
-              constraints.maxWidth * 0.9; // 80% من عرض الشاشة
+          double containerWidth = constraints.maxWidth * 1; // 80% من عرض الشاشة
           double containerHeight =
               containerWidth * 0.33; // نسبة الطول إلى العرض
           double imageSize =
@@ -41,224 +41,181 @@ class TicksOfHeart extends StatelessWidget {
               );
             },
             child: Container(
-              width: containerWidth,
-              height: containerHeight,
+              // width: containerWidth,
+              // height: containerHeight,
+              height: MediaQuery.of(context).size.height * 0.18,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 color: kPrimaryLightColor,
               ),
-              child: BlocConsumer<PresssureCheckCubit,PresssureCheckStates>(
+              child: BlocConsumer<PresssureCheckCubit, PresssureCheckStates>(
                 listener: (context, state) {
                   // TODO: implement listener
                 },
                 builder: (context, state) {
-                     if(state is haveData)
-                     {
-                       heartlenght=(state.heart.length)-1;
-                       print(state.heart[heartlenght!]);
-                      heartrate=state.heart[heartlenght!].toString();
-            
-                      return Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                           Center(
-                            child: Row(
+                  if (state is haveData) {
+                    heartlenght = (state.heart.length) - 1;
+                    print(state.heart[heartlenght!]);
+                    heartrate = state.heart[heartlenght!].toString();
+
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Center(
+                                child: Row(
                               children: [
-                               const Text(
-                              "النبص في الدقيقه",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black,
-                              ),
-                            ),
-                            Text(
-                             "$heartrate!",
-                              style:const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black,
-                              ),
-                            ),
-            
-                              ],
-                            )
-                          ),
-                          Row(
-                            // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    // width: imageSize,
-                                    // height: imageSize,
-                                    child: Image.asset(
-                                      'assets/pulse.png',
-                                      color: Colors.blue,
-                                    ),
+                                const Text(
+                                  "النبص في الدقيقه",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black,
                                   ),
-                                  SizedBox(
-                                    // width: imageSize,
-                                    // height: imageSize,
-                                    child: Image.asset(
-                                      'assets/pulse.png',
-                                      color: Colors.blue,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    // width: imageSize,
-                                    // height: imageSize,
-                                    child: Image.asset(
-                                      'assets/pulse.png',
-                                      color: Colors.blue,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    // width: imageSize,
-                                    // height: imageSize,
-                                    child: Image.asset(
-                                      'assets/pulse.png',
-                                      color: Colors.blue,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    // width: imageSize,
-                                    // height: imageSize,
-                                    child: Image.asset(
-                                      'assets/pulse.png',
-                                      color: Colors.blue,
-                                    ),
-                                  ),
-                                  // SizedBox(
-                                  //   // width: imageSize,
-                                  //   // height: imageSize,
-                                  //   child: Image.asset(
-                                  //     'assets/pulse.png',
-                                  //     color: Colors.blue,
-                                  //   ),
-                                  // ),
-                                ],
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              SizedBox(
-                                // width: imageSize,
-                                // height: imageSize,
-                                child: Image.asset(
-                                  alignment: const AlignmentDirectional(10, 10),
-                                  'assets/heart.png',
-                                  color: Colors.red,
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  );
-                }
-                else{
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                           const Center(
-                            child: Row(
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "$heartrate",
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            )),
+                            Row(
+                              children: [
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      child: Image.asset(
+                                        'assets/pulse.png',
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      child: Image.asset(
+                                        'assets/pulse.png',
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      child: Image.asset(
+                                        'assets/pulse.png',
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      child: Image.asset(
+                                        'assets/pulse.png',
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      child: Image.asset(
+                                        'assets/pulse.png',
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                SizedBox(
+                                  child: Image.asset(
+                                    alignment:
+                                        const AlignmentDirectional(10, 10),
+                                    'assets/heart.png',
+                                    color: Colors.red,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    );
+                  } else {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Center(
+                                child: Row(
                               children: [
                                 Text(
-                              "النبص في الدقيقه",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black,
-                              ),
-                            ),
-                            
-            
-                              ],
-                            )
-                          ),
-                          Row(
-                            // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    // width: imageSize,
-                                    // height: imageSize,
-                                    child: Image.asset(
-                                      'assets/pulse.png',
-                                      color: Colors.blue,
-                                    ),
+                                  "النبص في الدقيقه",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black,
                                   ),
-                                  SizedBox(
-                                    // width: imageSize,
-                                    // height: imageSize,
-                                    child: Image.asset(
-                                      'assets/pulse.png',
-                                      color: Colors.blue,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    // width: imageSize,
-                                    // height: imageSize,
-                                    child: Image.asset(
-                                      'assets/pulse.png',
-                                      color: Colors.blue,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    // width: imageSize,
-                                    // height: imageSize,
-                                    child: Image.asset(
-                                      'assets/pulse.png',
-                                      color: Colors.blue,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    // width: imageSize,
-                                    // height: imageSize,
-                                    child: Image.asset(
-                                      'assets/pulse.png',
-                                      color: Colors.blue,
-                                    ),
-                                  ),
-                                  // SizedBox(
-                                  //   // width: imageSize,
-                                  //   // height: imageSize,
-                                  //   child: Image.asset(
-                                  //     'assets/pulse.png',
-                                  //     color: Colors.blue,
-                                  //   ),
-                                  // ),
-                                ],
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              SizedBox(
-                                // width: imageSize,
-                                // height: imageSize,
-                                child: Image.asset(
-                                  alignment: const AlignmentDirectional(10, 10),
-                                  'assets/heart.png',
-                                  color: Colors.red,
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  );
-                }
-              },
+                              ],
+                            )),
+                            Row(
+                              children: [
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      child: Image.asset(
+                                        'assets/pulse.png',
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      child: Image.asset(
+                                        'assets/pulse.png',
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      child: Image.asset(
+                                        'assets/pulse.png',
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      child: Image.asset(
+                                        'assets/pulse.png',
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      child: Image.asset(
+                                        'assets/pulse.png',
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                SizedBox(
+                                  child: Image.asset(
+                                    alignment:
+                                        const AlignmentDirectional(10, 10),
+                                    'assets/heart.png',
+                                    color: Colors.red,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    );
+                  }
+                },
               ),
             ),
           );

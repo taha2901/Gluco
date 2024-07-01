@@ -45,7 +45,7 @@ class HomeView extends StatelessWidget {
             ),
             const SliverToBoxAdapter(
               child: SizedBox(
-                height: 24,
+                height: 8,
               ),
             ),
             const SliverToBoxAdapter(
@@ -53,7 +53,7 @@ class HomeView extends StatelessWidget {
             ),
             const SliverToBoxAdapter(
               child: SizedBox(
-                height: 24,
+                height: 12,
               ),
             ),
             SliverToBoxAdapter(
@@ -61,7 +61,7 @@ class HomeView extends StatelessWidget {
             ),
             const SliverToBoxAdapter(
               child: SizedBox(
-                height: 32,
+                height: 18,
               ),
             ),
             const SliverToBoxAdapter(

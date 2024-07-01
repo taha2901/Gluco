@@ -10,13 +10,13 @@ class UpdatePostsCubit extends Cubit<UpdatePostsState> {
   UpdatePostsCubit() : super(UpdatePostsInitial());
   static UpdatePostsCubit get(context) => BlocProvider.of(context);
 
-  void updatePost({required String content, required String postId}) {
+  void updatePost({ required String postId,required String newContent}) {
     emit(UpdatePostsLoaded());
     DioHelper().putData(
       url: 'Posts/$postId',
       token: 'Bearer $userToken',
       data: {
-        'content': content,
+        'content': newContent,
       },
     ).then((value) {
       

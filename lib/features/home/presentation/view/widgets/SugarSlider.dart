@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:gluco/core/widgets/constants.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
+// ignore: must_be_immutable
 class Sugarslider extends StatelessWidget {
-   Sugarslider({this.beforemeal,this.aftermeal,this.before,this.after});
+   Sugarslider({super.key, this.beforemeal,this.aftermeal,this.before,this.after});
 double? beforemeal;
 double? aftermeal;
 String? before;
@@ -21,21 +22,21 @@ String? after;
                 center: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("$before/",style: TextStyle(
-                      color: Colors.red
+                    Text("$before/",style: const TextStyle(
+                      color: Colors.black
                     ),),
-                    Text("$after",style: TextStyle(
-                      color: Color.fromARGB(255, 4, 107, 192)
+                    Text("$after",style: const TextStyle(
+                      color: Colors.black
                     ),)
                   ],
                 ),
-                progressColor: Color.fromARGB(255, 4, 107, 192),
+                progressColor: kSecondaryColor,
               ),
               CircularPercentIndicator(
                 radius: 50.0, // Outer circle with a larger radius
                 lineWidth: 8.0,
                 percent: beforemeal?? 0.0,
-                progressColor: Colors.red,
+                progressColor: const Color.fromARGB(255, 166, 18, 7),
               ),
 
             ],)
