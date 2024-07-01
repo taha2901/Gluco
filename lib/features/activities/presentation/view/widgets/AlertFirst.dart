@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gluco/core/widgets/constants.dart';
 import 'package:gluco/core/widgets/custom_show_toast.dart';
 import 'package:gluco/features/activities/presentation/manager/suger_cubit/sugar_check_cubit.dart';
 import 'package:gluco/features/activities/presentation/manager/suger_cubit/sugar_check_states.dart';
@@ -29,7 +30,7 @@ class AlertFirst extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(right: 5),
                       child: CircleAvatar(
-                        backgroundColor: Colors.black87,
+                        backgroundColor: Colors.red,
                         radius: 5,
                       ),
                     ),
@@ -38,7 +39,7 @@ class AlertFirst extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(right: 5),
                       child: CircleAvatar(
-                        backgroundColor: Colors.black87,
+                        backgroundColor: Colors.blue,
                         radius: 5,
                       ),
                     ),
@@ -59,19 +60,24 @@ class AlertFirst extends StatelessWidget {
                     if (state is SugarCheckinitial) {
                       return const Center(child: CircularProgressIndicator());
                     } else if (state is haveData) {
-                      List<FlSpot> spots =
-                          state.sugar.asMap().entries.map((entry) {
+                      List<FlSpot> beforemeal =
+                          state.beforemeal.asMap().entries.map((entry) {
                         int index = entry.key;
                         double value = entry.value;
                         return FlSpot(index.toDouble(), value);
                       }).toList();
-                      print(spots);
+                      List<FlSpot> aftermeal =
+                          state.aftermeal.asMap().entries.map((entry) {
+                        int index = entry.key;
+                        double value = entry.value;
+                        return FlSpot(index.toDouble(), value);
+                      }).toList();
                       return Column(
                         children: [
                           SizedBox(
                               width: double.infinity,
                               height: 300,
-                              child: Sugarchart(spots)),
+                              child: Sugarchart(beforemeal,aftermeal)),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -89,7 +95,7 @@ class AlertFirst extends StatelessWidget {
                                       padding: const EdgeInsets.only(top: 10),
                                       child: Container(
                                         decoration: BoxDecoration(
-                                            color: Colors.grey,
+                                            color: kPrimaryLightColor,
                                             borderRadius:
                                                 BorderRadius.circular(10)),
                                         padding: const EdgeInsets.all(10),

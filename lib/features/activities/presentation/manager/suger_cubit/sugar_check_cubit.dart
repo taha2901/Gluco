@@ -31,19 +31,31 @@ class SugarCheckCubit extends Cubit<SugarCheckStates> {
     
     emit(SugarCheckloading());
     List<Sugarcheck> sugardata = [];
-    List<int> sugarlevel = [];
+    List<int>  beforemeal= [];
+    List<int>  aftermeal= [];
+    
     
     sugardata = await fetchsugardata(date);
     for (int i = 0; i < sugardata.length; i++) {
-      // Use '<' instead of '<='
-      sugarlevel.add(sugardata[i].sugar_reading!);
+
+      if(sugardata[i].measurement_date=="قبل الوجبه")
+      {
+          beforemeal.add(sugardata[i].sugar_reading!);
+      }
+      else if(sugardata[i].measurement_date=="بعد الوجبه")
+      {
+        aftermeal.add(sugardata[i].sugar_reading!);
+      }
     }
     
     if (sugardata.isNotEmpty) {
-      List<double> sugardataDouble =
-          sugarlevel.map((e) => e.toDouble()).toList();
+      List<double> beforemealdouble =
+          beforemeal.map((e) => e.toDouble()).toList();
+          List<double> aftermealdouble =
+          aftermeal.map((e) => e.toDouble()).toList();
+      
           print('token in suger cubit $userToken');
-      emit(haveData(sugardataDouble, sugardata));
+      emit(haveData(beforemealdouble,aftermealdouble ,sugardata));
       
     } else {
       emit(nothaveData());

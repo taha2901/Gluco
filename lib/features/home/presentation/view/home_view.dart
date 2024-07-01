@@ -56,7 +56,7 @@ class HomeView extends StatelessWidget {
                 height: 24,
               ),
             ),
-            const SliverToBoxAdapter(
+            SliverToBoxAdapter(
               child: TicksOfHeart(),
             ),
             const SliverToBoxAdapter(

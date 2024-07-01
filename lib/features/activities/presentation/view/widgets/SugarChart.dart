@@ -2,9 +2,10 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class Sugarchart extends StatelessWidget {
-  final List<FlSpot> spots;
+  final List<FlSpot> beforemeal;
+  final List<FlSpot> aftermeal;
 
-  Sugarchart(this.spots);
+  Sugarchart(this.beforemeal,this.aftermeal);
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +15,16 @@ class Sugarchart extends StatelessWidget {
         LineChartData(
           lineBarsData: [
             LineChartBarData(
-              spots: spots,
+              spots: beforemeal,
               isCurved: true,
               color: Colors.blue,
+              barWidth: 4,
+              belowBarData: BarAreaData(show: true, color: Colors.blue.withOpacity(0.3)),
+            ),
+            LineChartBarData(
+              spots: aftermeal,
+              isCurved: true,
+              color: Colors.red,
               barWidth: 4,
               belowBarData: BarAreaData(show: true, color: Colors.blue.withOpacity(0.3)),
             ),

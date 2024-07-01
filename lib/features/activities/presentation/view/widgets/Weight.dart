@@ -2,6 +2,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gluco/core/widgets/constants.dart';
 import 'package:gluco/features/activities/presentation/manager/weight_cubit/weight_check_cubit.dart';
 import 'package:gluco/features/activities/presentation/manager/weight_cubit/weight_check_states.dart';
 import 'package:gluco/features/activities/presentation/view/widgets/WeightCalender.dart';
@@ -19,27 +20,6 @@ class Weight extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Row(
-                children: [
-                  Text("بعد النشاط"),
-                  Padding(
-                    padding: EdgeInsets.only(right: 5),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.black87,
-                      radius: 5,
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.only(right: 50)),
-                  Text("قبل النشاط"),
-                  Padding(
-                    padding: EdgeInsets.only(right: 5),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.black87,
-                      radius: 5,
-                    ),
-                  ),
-                ],
-              ),
               BlocConsumer<WeightCheckCubit,WeightCheckStates>(
                 builder:(context,state){
                   if(state is WeightCheckloading)
@@ -77,7 +57,7 @@ class Weight extends StatelessWidget {
                                 padding: const EdgeInsets.only(top:10),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: Colors.grey,
+                                    color: kPrimaryLightColor,
                                    borderRadius: BorderRadius.circular(10)
                                   ),
                                   padding: const EdgeInsets.all(10),
@@ -88,8 +68,7 @@ class Weight extends StatelessWidget {
                                           const Text("الوزن"),
                                           Text(state.weightdata[index].weight.toString()),
                                           const Padding(padding:EdgeInsets.only(right: 50)),
-                                          const Text("الرياضه:"),
-                                          Text(state.weightdata[index].sport.toString()),
+                                          
                                         ],
                                       ),
                                       Row(

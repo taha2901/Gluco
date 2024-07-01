@@ -59,13 +59,13 @@ class _pedoometerState extends State<pedoometer> {
   }
 
   Future<Permission> getMotionPermission() async {
-    if (Platform.isAndroid && await getAndroidSdk() >= 29)
+    if (Platform.isAndroid && (await getAndroidSdk())! >= 29)
       return Permission.activityRecognition;
     else
       return Permission.sensors;
   }
 
-  Future<int> getAndroidSdk() async {
+  Future<int?> getAndroidSdk() async {
     if (Platform.isAndroid) {
       var androidInfo = await DeviceInfoPlugin().androidInfo;
       var sdkInt = androidInfo.version.sdkInt;

@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gluco/core/widgets/constants.dart';
 import 'package:gluco/features/activities/presentation/manager/pressure_cubit/presssure_check_states.dart';
 import 'package:gluco/features/activities/presentation/manager/pressure_cubit/pressure_check_cubit.dart';
 import 'package:gluco/features/activities/presentation/view/widgets/PressureCalender.dart';
@@ -29,7 +30,7 @@ class Pressure extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(right: 5, left: 70),
                       child: CircleAvatar(
-                        backgroundColor: Colors.black87,
+                        backgroundColor: Colors.yellow,
                         radius: 5,
                       ),
                     ),
@@ -37,7 +38,7 @@ class Pressure extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(right: 5, left: 70),
                       child: CircleAvatar(
-                        backgroundColor: Colors.black87,
+                        backgroundColor: Colors.red,
                         radius: 5,
                       ),
                     ),
@@ -45,7 +46,7 @@ class Pressure extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(right: 5),
                       child: CircleAvatar(
-                        backgroundColor: Colors.black87,
+                        backgroundColor: Colors.blue,
                         radius: 5,
                       ),
                     ),
@@ -96,7 +97,7 @@ class Pressure extends StatelessWidget {
                                 padding: const EdgeInsets.only(top:10),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: Colors.grey,
+                                    color: kPrimaryLightColor,
                                    borderRadius: BorderRadius.circular(10)
                                   ),
                                   padding: EdgeInsets.all(10),
@@ -106,7 +107,7 @@ class Pressure extends StatelessWidget {
                                         children: [
                                           const Text("الانقباض:"),
                                           Text(state.pressurdata[index].diastolicpressure.toString()),
-                                          const Padding(padding:EdgeInsets.only(right: 50)),
+                                          const Padding(padding:EdgeInsets.only(left: 150)),
                                           const Text("الانبساط:"),
                                           Text(state.pressurdata[index].systolicpressure.toString()),
                                         ],
@@ -115,7 +116,7 @@ class Pressure extends StatelessWidget {
                                         children: [
                                           const Text("عدد ضربات القلب:"),
                                           Text(state.pressurdata[index].heartrate.toString()),
-                                          const Padding(padding:EdgeInsets.only(right: 50)),
+                                          const Padding(padding:EdgeInsets.only(left: 110)),
                                           const Text("الوقت:"),
                                           Text(state.pressurdata[index].time!.minute.toString()),
                                           Text(":"),

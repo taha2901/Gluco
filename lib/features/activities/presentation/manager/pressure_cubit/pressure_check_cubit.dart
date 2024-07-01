@@ -25,6 +25,7 @@ class PresssureCheckCubit extends Cubit<PresssureCheckStates> {
       for (int i = 0; i < data.length; i++) {
         pressurdata.add(Pressurecheck.fromJson(data[i]));
       }
+      print("pressuredata:$pressurdata");
     }
     if (pressurdata.isNotEmpty) {
       for (int i = 0; i < pressurdata.length; i++) {

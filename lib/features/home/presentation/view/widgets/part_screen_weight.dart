@@ -1,8 +1,13 @@
 
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/core/widgets/custom_button.dart';
 import 'package:gluco/core/widgets/custom_show_toast.dart';
+import 'package:gluco/features/activities/presentation/manager/weight_cubit/weight_check_cubit.dart';
+import 'package:gluco/features/activities/presentation/manager/weight_cubit/weight_check_states.dart';
+import 'package:gluco/features/activities/presentation/view/widgets/WeightChart.dart';
+import 'package:gluco/features/activities/presentation/view/widgets/chartempty.dart';
 import 'package:gluco/features/home/presentation/manager/sport_cubit/sport_cubit.dart';
 import 'package:gluco/features/home/presentation/manager/sport_cubit/sport_state.dart';
 import 'package:gluco/features/home/presentation/view/widgets/TextFieldNumber.dart';
@@ -23,12 +28,24 @@ void _onActivityChanged(String? value) {
   }
 GlobalKey<FormState> valid=GlobalKey();
   @override
+  
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context)=>SportCubit(),
-      child: BlocConsumer<SportCubit,SportState>(
-        builder: (context, state){
-          return ListView(shrinkWrap: true, children: [
+    DateTime currentDate = DateTime.now();
+    String formattedDate =
+        "${currentDate.year}-${currentDate.month}-${currentDate.day}";
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create:(context)=>SportCubit()),
+        BlocProvider(create:(context)=>WeightCheckCubit()..fetchweightdata(formattedDate))
+
+      ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            BlocConsumer<SportCubit,SportState>(
+            builder: (context, state){
+           return Column(
+            children: [
       Form(
         key: valid,
         child: Padding(
@@ -57,14 +74,14 @@ GlobalKey<FormState> valid=GlobalKey();
                   weight.text.toString(), 
                   selectedActivity!
                   );
+                   BlocProvider.of<WeightCheckCubit>(context).fetchweightdata(formattedDate);
                   print(state);
             }
             }
           ),
         ],
       ),
-    ]);
-
+            ]);
         },
         listener: (context, state) {
           if(state is Sportsuccess)
@@ -82,6 +99,45 @@ GlobalKey<FormState> valid=GlobalKey();
           
         },
         ),
+        BlocConsumer<WeightCheckCubit,WeightCheckStates>(
+                builder:(context,state){
+                  if(state is WeightCheckloading)
+                  {
+                    return const Center(child: CircularProgressIndicator(),);
+                  }
+                  else if(state is haveData)
+                  {
+                    List<FlSpot> spots = state.weight.asMap().entries.map((entry) {
+                        int index = entry.key;
+                        double value = entry.value.toDouble();
+                        return FlSpot(index.toDouble(), value);
+                      }).toList();
+                      print(spots);
+                    return Column(
+                        children: [
+                          SizedBox(
+                             width: double.infinity,
+                            height: 300,
+                            child: Weightchart(spots)
+                            ),
+                        ],);
+                  }
+                  else{
+                    return SizedBox(
+                        width: double.infinity,
+                        height: 300,
+                        child: Chartempty()
+                        );
+                  }
+                }, 
+                listener: (context,state){}),
+
+
+
+
+          ],
+          ),
+      )
       );
   }
 }
