@@ -171,7 +171,7 @@ class _SocialViewState extends State<SocialView> {
                                             widget.auth.username ??
                                                 'Unknown User',
                                             style: const TextStyle(
-                                                color: Colors.white,
+                                                color: Colors.black,
                                                 fontWeight: FontWeight.bold),
                                           ),
                                           Text(
@@ -181,7 +181,7 @@ class _SocialViewState extends State<SocialView> {
                                                     .format(post.createdAt!)
                                                 : 'Unknown',
                                             style: const TextStyle(
-                                                color: Colors.white,
+                                                color: Colors.grey,
                                                 fontSize: 12),
                                           ),
                                         ],
