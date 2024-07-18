@@ -23,6 +23,7 @@ class FavouriteDoctors extends StatelessWidget {
               body: Center(child: CircularProgressIndicator()));
         } else if (state is GetFavSuccessState) {
           final List<GetFavourite> fav = state.favModels;
+          // final List<Add> fav = state.favModels;
           return Scaffold(
             appBar: AppBar(
               title: const Text('الأطباء المفضلين'),
@@ -46,11 +47,11 @@ class FavouriteDoctors extends StatelessWidget {
 class FavWidget extends StatelessWidget {
   const FavWidget({
     Key? key,
-    required this.fav,
+    required this.fav, 
   }) : super(key: key);
 
   final GetFavourite fav;
-
+  // final AddDocFav addDocFav;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -64,7 +65,9 @@ class FavWidget extends StatelessWidget {
               color: Colors.red,
             ),
             onPressed: () {
-              
+              // FavCubit.get(context).addFavDoctor(
+              //   doctorId:  addDocFav!.id.toString(),
+              // );
             },
           ),
           leading: CircleAvatar(

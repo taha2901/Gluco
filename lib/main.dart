@@ -22,7 +22,9 @@ import 'package:gluco/features/settings/presentation/manager/update_cubit/update
 import 'package:gluco/features/social/presentation/manager/add_posts_cubit/add_post_cubit.dart';
 import 'package:gluco/features/social/presentation/manager/get_posts/social_cubit.dart';
 import 'package:gluco/features/social/presentation/manager/update_cubit/update_posts_cubit.dart';
+import 'package:gluco/features/social_media/presentation/manager/provider/user_provider.dart';
 import 'package:gluco/firebase_options.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,6 +37,7 @@ void main() async {
   userToken = ChachHelper.getData(key: 'token');
   debugPrint('Token in main is $userToken');
 
+
   Widget widget;
   bool? onBoarding = ChachHelper.getData(key: 'onBoarding');
 
@@ -45,7 +48,7 @@ void main() async {
         auth: auth,
       );
     } else {
-      widget =  LoginScreen();
+      widget = LoginScreen();
     }
   } else {
     widget = const OnBoardingScreen();
@@ -76,6 +79,7 @@ class Gluco extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => UserProvider()),
         BlocProvider(
           create: (context) => DoctorCubit()..getDoctors(),
         ),

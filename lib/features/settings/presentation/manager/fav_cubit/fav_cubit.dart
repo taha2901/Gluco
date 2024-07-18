@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/core/helper/api.dart';
 import 'package:gluco/core/widgets/network.dart';
+import 'package:gluco/features/settings/data/add_doc_fav.dart';
 import 'package:gluco/features/settings/data/get_favourite/get_favourite.dart';
 import 'package:meta/meta.dart';
 
@@ -12,7 +13,9 @@ class FavCubit extends Cubit<FavState> {
 
   static FavCubit get(context) => BlocProvider.of(context);
 
-  List<GetFavourite> favModels = [];
+  List<GetFavourite>?
+      favModels; // نوع المتغير يجب أن يكون قائمة من GetFavourite
+  List<AddDocFav>? addDocFav;
   Set<String> favoriteID = {};
 
   void getFavourites() {
@@ -25,12 +28,12 @@ class FavCubit extends Cubit<FavState> {
             .map((fav) => GetFavourite.fromJson(fav))
             .toList();
 
-        favModels.forEach((item) {
-          favoriteID.add(item.doctor!.about.toString());
+        addDocFav!.forEach((item) {
+          favoriteID.add(item.id!.toString());
         });
-        print('Favourite Number is ${favModels.length}');
-        print('Favourites fetched: ${favModels.length}');
-        emit(GetFavSuccessState(favModels: favModels));
+        print('Favourite Number is ${favModels?.length}');
+        print('Favourites fetched: ${addDocFav?.length}');
+        emit(GetFavSuccessState(favModels: favModels!));
       } else {
         emit(GetFavErrorState('Invalid response data'));
       }
@@ -53,6 +56,9 @@ class FavCubit extends Cubit<FavState> {
       token: 'Bearer $userToken',
     )
         .then((value) {
+      if (favoriteID.contains(doctorId)) {
+        favoriteID.add(doctorId);
+      } else {}
       getFavourites();
       print('Response: ${value.data}');
       emit(AddFavSuccessState());

@@ -8,7 +8,6 @@ import 'package:gluco/features/auth/data/auth.dart';
 import 'package:gluco/features/auth/presentation/manager/register/register_state.dart';
 import 'package:dio/dio.dart';
 import 'dart:io';
-
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
@@ -19,7 +18,6 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String username,
     required String email,
     required String password,
-    // required String confirmpPassword,
     required String phone,
     required File image,
     required String address,
@@ -34,7 +32,6 @@ class RegisterCubit extends Cubit<RegisterState> {
         'Photo': await MultipartFile.fromFile(image.path,
             filename: image.path.split('/').last),
         'Password': password,
-        // 'confirmpassword': confirmpPassword,
         'Address': address,
       });
       print("FormData prepared");
@@ -50,7 +47,9 @@ class RegisterCubit extends Cubit<RegisterState> {
       Map<String, dynamic> decodedToken = JwtDecoder.decode(token!);
 
       final userId = decodedToken['uid'];
-      ChachHelper.saveData(key: 'id', value: userId);
+      await ChachHelper.saveData(key: 'id', value: userId);
+      var myPic = await ChachHelper.saveData(key: 'photoUrl', value: registerModel.photoUrl);
+      print('pic is : $myPic');
       print('UserId Is $userId');
       print("id is : ${ChachHelper.getData(key: 'id')}");
       print('Registration successful: ${registerModel.message}');

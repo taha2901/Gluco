@@ -10,6 +10,7 @@ import 'package:gluco/features/auth/presentation/manager/register/register_state
 import 'package:gluco/features/auth/presentation/view/widget/text_field.dart'; // حقل نص مخصص
 import 'package:gluco/features/chat/presentation/manager/fire_auth.dart'; // مكتبة لإدارة المصادقة
 import 'package:gluco/features/layout/presentation/view/glocu_layout.dart'; // تخطيط واجهة المستخدم
+import 'package:gluco/features/social_media/presentation/manager/services/auth.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart'; // مكتبة للأيقونات
 import 'package:image_picker/image_picker.dart'; // مكتبة لاختيار الصور
 
@@ -34,12 +35,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   var imageController = TextEditingController(); 
-  var emailController = TextEditingController(); // متحكم لحقل النص
-  var passWordController = TextEditingController(); // متحكم لحقل النص
-  var nameController = TextEditingController(); // متحكم لحقل النص
-  var phoneController = TextEditingController(); // متحكم لحقل النص
-  // var confirmPassController = TextEditingController(); // متحكم لحقل النص
-  var addressController = TextEditingController(); // متحكم لحقل النص
+  var emailController = TextEditingController(); 
+  var passWordController = TextEditingController();
+  var nameController = TextEditingController(); 
+  var phoneController = TextEditingController(); 
+  var addressController = TextEditingController(); 
 
   final GlobalKey<FormState> formKey =
       GlobalKey<FormState>(); 
@@ -52,9 +52,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
         listener: (context, state) async {
           if (state is RegisterSuccess) {
             if (state.registerModel.isAuthenticated == true) {
-              print(state.registerModel.isAuthenticated);
-              print(state.registerModel.token);
-              print('emaaaaaaail issssss${state.registerModel.email}');
 
               await ChachHelper.saveData(
                       key: 'token', value: state.registerModel.token)
@@ -62,6 +59,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 (value) async {
                   userToken = '${state.registerModel.token}';
                   await FireAuth().createUser(state.registerModel);
+                  await FireAuthSocial().createUserSocial(state.registerModel);
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(

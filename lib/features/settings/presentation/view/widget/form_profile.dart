@@ -93,7 +93,8 @@ class FormProfile extends StatelessWidget {
             color: kPrimaryLightColor,
             child: ListTile(
               leading: Icon(
-                FontAwesomeIcons.creditCard,
+                // FontAwesomeIcons.creditCard,
+                Iconsax.card_edit,
               ),
               title: Text('طرق الدفع'),
             ),

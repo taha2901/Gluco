@@ -189,7 +189,8 @@ class _SocialViewState extends State<SocialView> {
                                       const Spacer(),
                                       PopupMenuButton<int>(
                                         icon: const Icon(
-                                            FontAwesomeIcons.ellipsis),
+                                            FontAwesomeIcons.ellipsis,
+                                            ),
                                         onSelected: (value) {
                                           if (value == 1) {
                                             _showEditDialog(

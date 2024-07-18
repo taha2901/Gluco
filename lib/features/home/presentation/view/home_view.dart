@@ -4,7 +4,6 @@ import 'package:gluco/features/home/presentation/view/widgets/tick_heart.dart';
 import 'package:gluco/features/home/presentation/view/widgets/tick_services.dart';
 import 'package:gluco/features/home/presentation/view/widgets/time_line_cal_one.dart';
 import 'package:gluco/features/home/presentation/view/widgets/two_square_container.dart';
-import 'package:gluco/features/seacrh/presentation/view/search.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -19,17 +18,17 @@ class HomeView extends StatelessWidget {
             SliverToBoxAdapter(
               child: GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SearchScreen(),
-                    ),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => const SearchScreen(),
+                  //   ),
+                  // );
                 },
-                child: const CardOfSearch(),
+                child:  CardOfSearch(),
               ),
             ),
-            const SliverToBoxAdapter(
+             SliverToBoxAdapter(
               child: SizedBox(
                 height: 16,
               ),

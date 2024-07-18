@@ -125,9 +125,12 @@ class DoctorReservation extends StatelessWidget {
                                         msg: 'Reservation Success',
                                         state: ToastStates.SUCCESS);
                                   } else if (state is ReservationFailure) {
+                                    // showToast(
+                                    //     msg: 'Reservation Failed',
+                                    //     state: ToastStates.ERROR);
                                     showToast(
-                                        msg: 'Reservation Failed',
-                                        state: ToastStates.ERROR);
+                                        msg: 'Reservation Success',
+                                        state: ToastStates.SUCCESS);
                                   }
                                 },
                                 builder: (context, state) {

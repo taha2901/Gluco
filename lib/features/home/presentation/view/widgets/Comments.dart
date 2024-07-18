@@ -5,19 +5,15 @@ class Comments extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Divider(),
+        Divider(),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image.asset(
-              'assets/Ellipse 114.png',
-              height: 40,
-              width: 40,
-            ),
-            const Padding(
+            Icon(Icons.person),
+            Padding(
               padding: EdgeInsets.only(right: 13),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,7 +49,7 @@ class Comments extends StatelessWidget {
             ),
           ],
         ),
-        const Padding(
+        Padding(
           padding: EdgeInsets.only(right: 19),
           child: Text(
             "دكتور سعيد من احسن دكاتره الباطنى الى اتعاملت معاهم كويس جدا ومريح فى التعامل",

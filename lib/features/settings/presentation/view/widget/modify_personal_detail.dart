@@ -37,17 +37,9 @@ class PersonalDetails extends StatelessWidget {
               child: ListView(
                 children: [
                   const Padding(padding: EdgeInsets.only(top: 24)),
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 50,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(40),
-                      child: Image.network(
-                        "assets/DoctorAhmed.png",
-                        height: 92,
-                        width: 92,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
+                    child: Icon(Icons.person),
                   ),
                   const Padding(padding: EdgeInsets.only(top: 60)),
                   CustomTextField(

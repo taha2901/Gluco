@@ -7,6 +7,7 @@ import 'package:gluco/features/auth/data/auth.dart';
 import 'package:gluco/features/home/presentation/view/home_view.dart';
 import 'package:gluco/features/pic_products/presentation/view/pic_products.dart';
 import 'package:gluco/features/social/presentation/view/social_view.dart';
+import 'package:gluco/features/social_media/presentation/view/social_media.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 part 'layout_state.dart';
@@ -22,7 +23,8 @@ class LayoutCubit extends Cubit<LayoutState> {
       const PicProductsView(),
       const ShowAppointment(),
       const Activities(),
-      SocialView(auth: auth),
+      // SocialView(auth: auth),
+      const SocialMedia()
     ];
   }
 

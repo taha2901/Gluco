@@ -1,15 +1,17 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gluco/core/helper/cach.dart';
 import 'package:gluco/core/widgets/constants.dart';
 import 'package:gluco/features/chat_bot/my_bot.dart';
 import 'package:gluco/features/layout/presentation/manager/layout_cubit/layout_cubit.dart';
 import 'package:gluco/features/settings/presentation/view/profile_screen.dart';
+import 'package:gluco/features/social_media/presentation/manager/provider/user_provider.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:gluco/features/auth/data/auth.dart';
+import 'package:provider/provider.dart';
 
-class GlucoLayout extends StatelessWidget {
+class GlucoLayout extends StatefulWidget {
   final Auth auth;
   final String? imagePath; // استلام مسار الصورة هنا
 
@@ -17,9 +19,21 @@ class GlucoLayout extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<GlucoLayout> createState() => _GlucoLayoutState();
+}
+
+class _GlucoLayoutState extends State<GlucoLayout> {
+  @override
+  void initState() {
+    Provider.of<UserProvider>(context, listen: false).getDetails();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    var myPic = ChachHelper.getData(key: 'photoUrl');
     return BlocProvider(
-      create: (context) => LayoutCubit(auth),
+      create: (context) => LayoutCubit(widget.auth),
       child: BlocConsumer<LayoutCubit, LayoutState>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -48,17 +62,19 @@ class GlucoLayout extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => ProfileScreen(
-                                    imagePath: imagePath,
+                                    imagePath: widget.imagePath,
                                   ),
                                 ),
                               );
                             },
                             child: CircleAvatar(
                               radius: 20,
-                              backgroundImage: imagePath != null
-                                  ? FileImage(File(imagePath!))
-                                  : null,
-                              child: imagePath == null
+                              backgroundImage: widget.imagePath != null
+                                  ? FileImage(File(widget.imagePath!))
+                                  : (myPic != null && myPic is String
+                                      ? NetworkImage(myPic)
+                                      : null),
+                              child: (widget.imagePath == null && myPic == null)
                                   ? const Icon(Icons.person)
                                   : null,
                             ),
@@ -116,7 +132,7 @@ class GlucoLayout extends StatelessWidget {
                 cubit.changeBottomNavBar(index);
               },
               items: cubit.bottomItem,
-              backgroundColor:  Colors.white,
+              backgroundColor: Colors.white,
               selectedItemColor: Colors.blue,
               unselectedItemColor: Colors.grey,
             ),
