@@ -25,10 +25,10 @@ class HomeView extends StatelessWidget {
                   //   ),
                   // );
                 },
-                child:  CardOfSearch(),
+                child:  const CardOfSearch(),
               ),
             ),
-             SliverToBoxAdapter(
+             const SliverToBoxAdapter(
               child: SizedBox(
                 height: 16,
               ),

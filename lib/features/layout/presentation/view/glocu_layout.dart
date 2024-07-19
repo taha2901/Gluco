@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gluco/core/helper/cach.dart';
 import 'package:gluco/core/widgets/constants.dart';
 import 'package:gluco/features/chat_bot/my_bot.dart';
@@ -108,23 +109,27 @@ class _GlucoLayoutState extends State<GlucoLayout> {
                             ),
                           );
                         },
-                        child: const SizedBox(
+                        child: SizedBox(
                           width: 40,
                           height: 40,
                           child: CircleAvatar(
                             radius: 19,
                             backgroundColor: kSecondaryColor,
-                            child: Icon(
-                              Iconsax.messages_1_copy,
-                              color: kPrimaryTextColor,
-                              size: 20,
+                            // child: Icon(
+                            //   Iconsax.messages_1_copy,
+                            //   color: kPrimaryTextColor,
+                            //   size: 20,
+                            // ),
+                            child: SvgPicture.asset(
+                              'assets/svg/wappGPTlogo.svg',
+                              height: 20,
                             ),
                           ),
                         ),
                       )
                     ],
                   )
-                : null, // إذا كانت الصفحة SocialView فلا تعرض AppBar
+                : null, 
             body: cubit.screens[cubit.currentIndex],
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: cubit.currentIndex,

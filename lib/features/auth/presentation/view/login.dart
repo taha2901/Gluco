@@ -165,7 +165,6 @@ import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
-  
 
   @override
   Widget build(BuildContext context) {
@@ -199,15 +198,14 @@ class LoginScreen extends StatelessWidget {
                 msg: state.login.message ?? 'Login Successful',
                 state: ToastStates.SUCCESS,
               );
-            } else {
-              print(state.login.message);
-              showToast(
-                msg: state.login.message ?? 'Login Failed',
-                state: ToastStates.ERROR,
-              );
             }
-          } else if (state is LoginFailure) {
-            showToast(msg: state.errMessage, state: ToastStates.ERROR);
+          }
+
+          if (state is LoginFailure) {
+            showToast(
+              msg: 'الرقم السري او الايميل غير صحيح',
+              state: ToastStates.ERROR,
+            );
           }
         },
         builder: (context, state) {

@@ -5,13 +5,11 @@ import 'package:gluco/core/widgets/custom_button.dart';
 import 'package:gluco/core/widgets/custom_show_toast.dart';
 import 'package:gluco/features/activities/presentation/manager/pressure_cubit/presssure_check_states.dart';
 import 'package:gluco/features/activities/presentation/manager/pressure_cubit/pressure_check_cubit.dart';
-import 'package:gluco/features/activities/presentation/manager/suger_cubit/sugar_check_cubit.dart';
 import 'package:gluco/features/activities/presentation/view/widgets/PressureChart.dart';
 import 'package:gluco/features/activities/presentation/view/widgets/chartempty.dart';
 import 'package:gluco/features/home/presentation/manager/pressure_cubit/pressure_cubit.dart';
 import 'package:gluco/features/home/presentation/manager/pressure_cubit/pressure_state.dart';
 import 'package:gluco/features/home/presentation/view/widgets/TextFieldNumber.dart';
-import 'package:gluco/features/home/presentation/view/widgets/cusrom_button.dart';
 
 class PartScreenPressure extends StatelessWidget {
   String? Text1;

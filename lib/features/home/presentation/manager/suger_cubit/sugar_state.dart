@@ -1,4 +1,3 @@
-import 'package:gluco/core/helper/serverfailure.dart';
 
 abstract class sugarstate {} 
 class sugarsuccess extends sugarstate{}
