@@ -5,7 +5,6 @@ import 'package:gluco/core/widgets/custom_show_toast.dart';
 import 'package:gluco/core/widgets/custom_text_field.dart';
 import 'package:gluco/features/appointments/presentation/manager/add_medicine_cubit/add_medicine_cubit.dart';
 import 'package:gluco/features/appointments/presentation/manager/get_medicine_cubit/get_medicine_cubit.dart';
-import 'package:gluco/features/home/presentation/view/widgets/custom_text_field_center_text.dart';
 
 class AddAppointments extends StatelessWidget {
   const AddAppointments({super.key});
@@ -49,11 +48,12 @@ class AddAppointments extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CustomTextFieldCenterlable(
-                      showBorder: false,
-                      hint: 'ابحث عن الدواء',
-                      suffixIcon: Icons.search,
+                    CustomTextField(
                       controller: nameController,
+                      showBorder: false,
+                      hint: 'الدواء',
+                      suffixIcon: Icons.search,
+                      textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 32),
                     Row(
@@ -123,7 +123,6 @@ class AddAppointments extends StatelessWidget {
 
                                 // Remove this line to prevent popping before the medicine is added
                               }
-                                
                             },
                           ),
                   ],

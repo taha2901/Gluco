@@ -10,12 +10,7 @@ class DoctorCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 8),
       child: Container(
-        // width: MediaQuery.of(context).size.width*0.3,
-        // height: MediaQuery.of(context).size.width*0.4,
         child: Card(
-          
-          // color: Colors.blue,
-          
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

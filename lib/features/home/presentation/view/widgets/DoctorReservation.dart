@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gluco/core/widgets/custom_button.dart';
 import 'package:gluco/core/widgets/custom_show_toast.dart';
 import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
+import 'package:gluco/features/home/presentation/view/widgets/BarApp.dart';
 import 'package:gluco/features/home/presentation/view/widgets/Comments.dart';
-import 'package:gluco/features/home/presentation/view/widgets/bar_app_one_doc.dart';
-import 'package:gluco/features/home/presentation/view/widgets/cusrom_button.dart';
 import 'package:gluco/features/home/presentation/view/widgets/custom_icon.dart';
 import 'package:gluco/features/home/presentation/view/widgets/define_doc_reservation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +29,6 @@ class DoctorReservation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     TextEditingController dateController = TextEditingController();
 
     Future<void> _selectDate(BuildContext context) async {
@@ -51,7 +50,10 @@ class DoctorReservation extends StatelessWidget {
           child: CustomScrollView(
             slivers: [
               const SliverToBoxAdapter(
-                child: BarAppOneDoc(),
+                child: BarApp(
+                  icon: Icons.favorite,
+                  text: 'حجز',
+                ),
               ),
               SliverToBoxAdapter(
                 child: Padding(
@@ -71,31 +73,16 @@ class DoctorReservation extends StatelessWidget {
                         ),
                         child: DefineInReservation(showDoc: showDoc),
                       ),
-                      const SizedBox(
-                        height: 24,
-                      ),
+                      const SizedBox(height: 24),
                       const Text(
                         "الايام",
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       // const MyCalenderTwo(),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      // const Text(
-                      //   "الوقت",
-                      //   style: TextStyle(
-                      //       fontSize: 16, fontWeight: FontWeight.bold),
-                      // ),
-                      // Padding(
-                      //   padding: const EdgeInsets.only(bottom: 20),
-                      //   child: Wrap(
-                      //     spacing: 8.0,
-                      //     runSpacing: 12.0,
-                      //     children: times.map((time) => Time(time)).toList(),
-                      //   ),
-                      // ),
+                      const SizedBox(height: 16),
                       GestureDetector(
                         onTap: () => _selectDate(context),
                         child: AbsorbPointer(
@@ -109,56 +96,44 @@ class DoctorReservation extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 16,
-                      ),
+                      const SizedBox(height: 16),
                       Container(
                         margin: const EdgeInsets.only(bottom: 30),
                         child: Row(
                           children: [
                             Expanded(
-                              child: BlocConsumer<ReservationCubit,
-                                  ReservationState>(
+                              child: BlocConsumer<ReservationCubit, ReservationState>(
                                 listener: (context, state) {
                                   if (state is ReservationSuccess) {
                                     showToast(
                                         msg: 'Reservation Success',
                                         state: ToastStates.SUCCESS);
                                   } else if (state is ReservationFailure) {
-                                    // showToast(
-                                    //     msg: 'Reservation Failed',
-                                    //     state: ToastStates.ERROR);
                                     showToast(
-                                        msg: 'Reservation Success',
-                                        state: ToastStates.SUCCESS);
+                                        msg: 'Reservation Failed',
+                                        state: ToastStates.ERROR);
                                   }
                                 },
                                 builder: (context, state) {
                                   if (state is ReservationLoaded) {
                                     return const Center(
-                                        child: CircularProgressIndicator());
+                                      child: CircularProgressIndicator(),
+                                    );
                                   }
-                                  return CustomButtonHome(
-                                    text: 'تأكيد    ',
-                                    color: Colors.blue,
-                                    textColor: Colors.white,
-                                    onPressed: () {
+                                  return CustomButton(
+                                    text: 'تأكيد',
+                                    onTap: () {
                                       if (dateController.text.isNotEmpty) {
-                                        // تحويل النص إلى عدد صحيح بعد تحويل الأرقام الهندية إلى الأرقام العربية
-                                        final String arabicDigits = age
-                                            .replaceAllMapped(
-                                                RegExp(r'[٠١٢٣٤٥٦٧٨٩]'),
-                                                (match) {
+                                        final String arabicDigits = age.replaceAllMapped(
+                                            RegExp(r'[٠١٢٣٤٥٦٧٨٩]'), (match) {
                                           final String digit = match.group(0)!;
                                           return String.fromCharCode(
-                                              digit.codeUnitAt(0) -
-                                                  0x0660 +
-                                                  0x0030);
+                                            digit.codeUnitAt(0) - 0x0660 + 0x0030,
+                                          );
                                         });
                                         int ageInt = int.parse(arabicDigits);
 
-                                        ReservationCubit.get(context)
-                                            .userReservation(
+                                        ReservationCubit.get(context).userReservation(
                                           username: username,
                                           phone: phone,
                                           age: ageInt,
@@ -168,7 +143,10 @@ class DoctorReservation extends StatelessWidget {
                                         );
                                       }
                                     },
-                                    borderRadius: 4,
+                                    color: Colors.blue,
+                                    textcolor: Colors.white,
+                                    width: double.infinity,
+                                    circular: 0.0,
                                   );
                                 },
                               ),
@@ -184,11 +162,16 @@ class DoctorReservation extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          const Text("  التعليقات"),
+                          const Text("التعليقات"),
                           const Spacer(),
                           IconButton(
-                              onPressed: () {}, icon: const Icon(Icons.add,color: Colors.blue)),
-                          const Text("اضافه تعليق",style: TextStyle(color: Colors.blue),),
+                            onPressed: () {},
+                            icon: const Icon(Icons.add, color: Colors.blue),
+                          ),
+                          const Text(
+                            "اضافه تعليق",
+                            style: TextStyle(color: Colors.blue),
+                          ),
                         ],
                       ),
                       ListView.builder(

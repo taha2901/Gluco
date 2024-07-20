@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gluco/core/widgets/custom_text_field.dart';
 import 'package:gluco/features/home/presentation/manager/dooctor_cubit/doctor_cubit.dart';
 import 'package:gluco/features/home/presentation/view/widgets/BarApp.dart';
 import 'package:gluco/features/home/presentation/view/widgets/DoctorCard.dart';
 import 'package:gluco/features/home/presentation/view/widgets/DoctorList.dart';
-import 'package:gluco/features/home/presentation/view/widgets/custom_text_field_center_text.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class Doctor extends StatelessWidget {
@@ -19,7 +19,7 @@ class Doctor extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             slivers: [
               const SliverToBoxAdapter(
-                child: BarApp(),
+                child: BarApp(icon: Iconsax.notification, text: 'دكتور'),
               ),
               const SliverToBoxAdapter(
                 child: SizedBox(
@@ -27,14 +27,25 @@ class Doctor extends StatelessWidget {
                 ),
               ),
               SliverToBoxAdapter(
-                child: CustomTextFieldCenterlable(
+                // child: CustomTextFieldCenterlable(
+                //   onChange: (input) {
+                //     DoctorCubit.get(context).filterProducts(input: input);
+                //   },
+                //   hint: 'بحث',
+                //   fillColor: Colors.white,
+                //   prefixIcon: FontAwesomeIcons.bars,
+                //   suffixIcon: Iconsax.search_normal_copy,
+                // ),
+                child: CustomTextField(
                   onChange: (input) {
                     DoctorCubit.get(context).filterProducts(input: input);
                   },
                   hint: 'بحث',
                   fillColor: Colors.white,
-                  prefixIcon: FontAwesomeIcons.bars,
+                  prefixIcon: const Icon(FontAwesomeIcons.bars),
                   suffixIcon: Iconsax.search_normal_copy,
+                  // textAlignVertical: TextAlignVertical.center,
+                  textAlign: TextAlign.center,
                 ),
               ),
               const SliverToBoxAdapter(
@@ -56,19 +67,24 @@ class Doctor extends StatelessWidget {
                   // TODO: implement listener
                 },
                 builder: (context, state) {
-                  return  SliverToBoxAdapter(
+                  return SliverToBoxAdapter(
                     child: SizedBox(
                       height: MediaQuery.of(context).size.height * 0.24,
-                      child:State is DoctorssLoadingState ? const Center(child: CircularProgressIndicator(),) : ListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: DoctorCubit.get(context).doctorModels.length,
-                        itemBuilder: (context, index) {
-                          return DoctorCard(
-                              doc:
-                                  DoctorCubit.get(context).doctorModels[index]);
-                        },
-                      ),
+                      child: State is DoctorssLoadingState
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : ListView.builder(
+                              physics: const BouncingScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
+                              itemCount:
+                                  DoctorCubit.get(context).doctorModels.length,
+                              itemBuilder: (context, index) {
+                                return DoctorCard(
+                                    doc: DoctorCubit.get(context)
+                                        .doctorModels[index]);
+                              },
+                            ),
                     ),
                   );
                 },

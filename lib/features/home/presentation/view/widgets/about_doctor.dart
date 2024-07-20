@@ -16,7 +16,6 @@ class AboutDoctor extends StatelessWidget {
           "عن الطبيب",
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
-        // Text(" الزيارات : (150) "),
         Text(
           docs.about.toString(),
         ),

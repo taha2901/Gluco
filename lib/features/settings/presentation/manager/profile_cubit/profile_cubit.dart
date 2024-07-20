@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gluco/core/helper/api.dart';
 import 'package:gluco/core/widgets/network.dart';
@@ -16,16 +15,17 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   Future<void> getUserData() async {
     emit(ProfileLoaded());
-    DioHelper().getData(url: 'Auth/Get User Details', token: 'Bearer $userToken').then((value) {
-      profileModel = UserDetails.fromJson(value.data);
+    try {
+      final response = await DioHelper().getData(url: 'Auth/Get User Details', token: 'Bearer $userToken');
+      profileModel = UserDetails.fromJson(response.data);
       print('token in profile is $userToken');
       emit(ProfileSuccess(profileModel!));
-    }).catchError((onError) {
-      
-        emit(ProfileFailure('Server error: ${onError.response?.statusCode}'));
-     
-    });
+    } catch (onError) {
+      emit(ProfileFailure('Server error: ${onError.toString()}'));
+    }
   }
+}
+
 
   // ChangePassword? changePassword;
 
@@ -89,4 +89,4 @@ class ProfileCubit extends Cubit<ProfileState> {
   //       emit(UpdateUserFailure('An unknown error occurred.'));
   //     }
   //   });
-  }
+  

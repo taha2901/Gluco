@@ -18,6 +18,7 @@ import 'package:gluco/features/home/presentation/manager/reservation_cubit/reser
 import 'package:gluco/features/layout/presentation/manager/layout_cubit/layout_cubit.dart';
 import 'package:gluco/features/layout/presentation/view/glocu_layout.dart';
 import 'package:gluco/features/settings/presentation/manager/fav_cubit/fav_cubit.dart';
+import 'package:gluco/features/settings/presentation/manager/profile_cubit/profile_cubit.dart';
 import 'package:gluco/features/settings/presentation/manager/update_cubit/update_profile_cubit.dart';
 import 'package:gluco/features/social/presentation/manager/add_posts_cubit/add_post_cubit.dart';
 import 'package:gluco/features/social/presentation/manager/get_posts/social_cubit.dart';
@@ -114,6 +115,9 @@ class Gluco extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => LayoutCubit(auth),
+        ),
+        BlocProvider(
+          create: (context) => ProfileCubit(),
         ),
       ],
       child: MaterialApp(

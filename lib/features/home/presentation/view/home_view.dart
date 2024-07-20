@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gluco/features/home/presentation/view/widgets/card_of_search.dart';
 import 'package:gluco/features/home/presentation/view/widgets/tick_heart.dart';
 import 'package:gluco/features/home/presentation/view/widgets/tick_services.dart';
 import 'package:gluco/features/home/presentation/view/widgets/time_line_cal_one.dart';
@@ -15,19 +14,19 @@ class HomeView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
         child: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(
-              child: GestureDetector(
-                onTap: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => const SearchScreen(),
-                  //   ),
-                  // );
-                },
-                child:  const CardOfSearch(),
-              ),
-            ),
+            // SliverToBoxAdapter(
+            //   child: GestureDetector(
+            //     onTap: () {
+            //       // Navigator.push(
+            //       //   context,
+            //       //   MaterialPageRoute(
+            //       //     builder: (context) => const SearchScreen(),
+            //       //   ),
+            //       // );
+            //     },
+            //     child:  const CardOfSearch(),
+            //   ),
+            // ),
              const SliverToBoxAdapter(
               child: SizedBox(
                 height: 16,

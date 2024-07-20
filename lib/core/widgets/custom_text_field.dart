@@ -27,10 +27,13 @@ class CustomTextField extends StatefulWidget {
     this.textColor,
     this.width,
     this.height,
-    this.backgroundColor,
+    this.backgroundColor, this.textAlignVertical,
+    this.textAlign,
   });
 
   final bool showBorder;
+  final TextAlignVertical? textAlignVertical;
+  final TextAlign? textAlign;
   final Color? fillColor;
   final String? hint;
   final String? prefixText;
@@ -63,12 +66,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
-        width: widget.width,
-        height: widget.height,
-        color: widget.backgroundColor,
+        // width: widget.width,
+        // height: widget.height,
+        // color: widget.backgroundColor,
         child: TextFormField(
-          textAlignVertical: TextAlignVertical.center,
-          // textAlign: TextAlign.end,
+          textAlignVertical: widget.textAlignVertical,
+          textAlign: widget.textAlign ?? TextAlign.start,
           controller: widget.controller,
           onTap: widget.suffixPressed,
           obscureText: widget.obscure!,

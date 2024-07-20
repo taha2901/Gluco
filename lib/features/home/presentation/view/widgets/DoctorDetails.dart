@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gluco/core/widgets/custom_button.dart';
 import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
 import 'package:gluco/features/home/presentation/view/widgets/confirm_reservation.dart';
-import 'package:gluco/features/home/presentation/view/widgets/cusrom_button.dart';
 import 'package:gluco/features/settings/presentation/manager/fav_cubit/fav_cubit.dart';
 
 class DoctorDetials extends StatelessWidget {
@@ -116,13 +116,9 @@ class DoctorDetials extends StatelessWidget {
                     const SizedBox(
                       height: 8,
                     ),
-                    CustomButtonHome(
-                      width: double.infinity,
-                      borderRadius: 0.0,
+                    CustomButton(
                       text: 'احجز',
-                      color: Colors.blue,
-                      textColor: Colors.white,
-                      onPressed: () {
+                      onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => ConfirmReservation(
@@ -132,6 +128,10 @@ class DoctorDetials extends StatelessWidget {
                           ),
                         );
                       },
+                      color: Colors.blue,
+                      textcolor:  Colors.white,
+                      width: double.infinity,
+                      circular: 0.0,
                     ),
                   ],
                 ),

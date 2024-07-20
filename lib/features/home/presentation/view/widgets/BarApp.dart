@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class BarApp extends StatelessWidget {
-  const BarApp({super.key});
+  const BarApp({super.key, required this.text, required this.icon});
+  final String text ;
+  final IconData icon ;
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +16,9 @@ class BarApp extends StatelessWidget {
             Icons.arrow_back_ios,
           ),
         ),
-        const Text(
-          "دكتور",
-          style: TextStyle(
+        Text(
+          text,
+          style: const TextStyle(
             fontSize: 18,
             fontStyle: FontStyle.normal,
             fontWeight: FontWeight.w600,
@@ -25,7 +26,7 @@ class BarApp extends StatelessWidget {
         ),
         MaterialButton(
           onPressed: () {},
-          child: const Icon(Iconsax.notification),
+          child: Icon(icon),
         ),
       ],
     );

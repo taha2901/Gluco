@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gluco/core/helper/cach.dart';
+import 'package:gluco/core/widgets/custom_button.dart';
 import 'package:gluco/core/widgets/custom_show_toast.dart';
 import 'package:gluco/core/widgets/custom_text_field.dart';
-import 'package:gluco/features/home/presentation/view/widgets/cusrom_button.dart';
 import 'package:gluco/features/settings/presentation/manager/update_cubit/update_profile_cubit.dart';
 
 class PersonalDetails extends StatelessWidget {
   const PersonalDetails({super.key});
-  static String id = 'PersonalDetails';
   @override
   Widget build(BuildContext context) {
+    var myPic = ChachHelper.getData(key: 'photoUrl');
     TextEditingController nameCon = TextEditingController();
     TextEditingController emailCon = TextEditingController();
     TextEditingController phoneCon = TextEditingController();
@@ -37,9 +38,25 @@ class PersonalDetails extends StatelessWidget {
               child: ListView(
                 children: [
                   const Padding(padding: EdgeInsets.only(top: 24)),
-                  const CircleAvatar(
-                    radius: 50,
-                    child: Icon(Icons.person),
+                  CircleAvatar(
+                    radius: 70,
+                    backgroundColor:
+                        Colors.grey.shade200, 
+                    child: ClipOval(
+                      child: Image.network(
+                        myPic.toString(),
+                        fit: BoxFit
+                            .cover, 
+                        width: 140,
+                        height: 140,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Icon(
+                            Icons.person,
+                            size: 70,
+                          );
+                        },
+                      ),
+                    ),
                   ),
                   const Padding(padding: EdgeInsets.only(top: 60)),
                   CustomTextField(
@@ -67,11 +84,9 @@ class PersonalDetails extends StatelessWidget {
                         ? const Center(
                             child: CircularProgressIndicator(),
                           )
-                        : CustomButtonHome(
+                        : CustomButton(
                             text: 'حفظ',
-                            color: Colors.blue,
-                            textColor: Colors.white,
-                            onPressed: () {
+                            onTap: () {
                               if (formKey.currentState!.validate()) {
                                 UpdateProfileCubit.get(context).updateUserData(
                                   name: nameCon.text,
@@ -80,7 +95,8 @@ class PersonalDetails extends StatelessWidget {
                                 );
                               }
                             },
-                            borderRadius: 4,
+                            color: Colors.blue,
+                            textcolor: Colors.white,
                           ),
                   ),
                 ],

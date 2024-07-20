@@ -63,13 +63,15 @@ class _MyBotState extends State<MyBot> {
         title: const Text('Glocu Bot'),
         centerTitle: true,
       ),
-      body: DashChat(
-        
-        currentUser: mySelf,
-        onSend: (ChatMessage m) {
-          getData(m);
-        },
-        messages: allMessages,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        child: DashChat(
+          currentUser: mySelf,
+          onSend: (ChatMessage m) {
+            getData(m);
+          },
+          messages: allMessages,
+        ),
       ),
     );
   }

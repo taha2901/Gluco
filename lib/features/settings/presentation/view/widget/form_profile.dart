@@ -27,16 +27,16 @@ class FormProfile extends StatelessWidget {
             color: kPrimaryLightColor,
             child: ListTile(
               leading: Icon(Iconsax.user),
-              title: Text('تفاصيل شخصيه'),
+              title: Text(' تعديل تفاصيل شخصيه'),
             ),
           ),
         ),
         GestureDetector(
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const MedicalRecords()),
-            );
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => const MedicalRecords()),
+            // );
           },
           child: const Card(
             color: kPrimaryLightColor,
@@ -102,10 +102,10 @@ class FormProfile extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) =>  const FavouriteDoctors()),
-            );
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) =>  const FavouriteDoctors()),
+            // );
           },
           child: const Card(
             color: kPrimaryLightColor,

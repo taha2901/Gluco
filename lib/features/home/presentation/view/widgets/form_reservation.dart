@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gluco/core/widgets/custom_button.dart';
 import 'package:gluco/core/widgets/custom_text_field.dart';
 import 'package:gluco/features/home/data/doctor_model/doctor_model.dart';
 import 'package:gluco/features/home/presentation/manager/reservation_cubit/reservation_cubit.dart';
 import 'package:gluco/features/home/presentation/view/widgets/DoctorReservation.dart';
-import 'package:gluco/features/home/presentation/view/widgets/cusrom_button.dart';
 
 class formReservation extends StatelessWidget {
-  const formReservation({super.key, required this.showDoc, required this.doctorId});
+  const formReservation(
+      {super.key, required this.showDoc, required this.doctorId});
   final DoctorModel showDoc;
   final int doctorId;
 
@@ -76,11 +77,9 @@ class formReservation extends StatelessWidget {
                   ? const Center(
                       child: CircularProgressIndicator(),
                     )
-                  : CustomButtonHome(
+                  : CustomButton(
                       text: 'التالي',
-                      color: Colors.blue,
-                      textColor: Colors.white,
-                      onPressed: () {
+                      onTap: () {
                         if (formKey.currentState!.validate()) {
                           Navigator.push(
                             context,
@@ -97,7 +96,10 @@ class formReservation extends StatelessWidget {
                           );
                         }
                       },
-                      borderRadius: 4,
+                      color: Colors.blue,
+                      textcolor: Colors.white,
+                      width: double.infinity,
+                      circular: 0.0,
                     ),
             ],
           ),
